@@ -1,5 +1,12 @@
-if (attacking) {
+// Enemy death
+if (dead) {
 
+    instance_destroy();
+
+}
+else if (attacking) {
+
+    // Damage player
     if (instance_exists(obj_player)) {
 
         var player = instance_nearest(x, y, obj_player);
@@ -11,9 +18,11 @@ if (attacking) {
         }
     }
 
+    // End attack
     attacking = false;
     attack_cooldown = game_get_speed(gamespeed_fps);
 
+    // Return to idle
     sprite_index = spr_enemy_golem;
     image_index = 0;
 }

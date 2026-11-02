@@ -1,15 +1,18 @@
 {
   "FolderOrderSettings":[
-    {"name":"sounds","order":9,"path":"folders/sounds.yy",},
     {"name":"objects","order":5,"path":"folders/objects.yy",},
     {"name":"rooms","order":6,"path":"folders/rooms.yy",},
     {"name":"scripts","order":8,"path":"folders/scripts.yy",},
+    {"name":"sounds","order":9,"path":"folders/sounds.yy",},
     {"name":"sprites","order":7,"path":"folders/sprites.yy",},
     {"name":"Enemies","order":1,"path":"folders/sprites/Enemies.yy",},
   ],
   "ResourceOrderSettings":[
     {"name":"obj_enemy","order":1,"path":"objects/obj_enemy/obj_enemy.yy",},
+    {"name":"obj_slash","order":2,"path":"objects/obj_slash/obj_slash.yy",},
     {"name":"enemy_attack","order":1,"path":"sounds/enemy_attack/enemy_attack.yy",},
+    {"name":"slash_hitbox","order":10,"path":"sprites/slash_hitbox/slash_hitbox.yy",},
     {"name":"spr_enemy_attack","order":1,"path":"sprites/spr_enemy_attack/spr_enemy_attack.yy",},
+    {"name":"spr_enemy_death","order":2,"path":"sprites/spr_enemy_death/spr_enemy_death.yy",},
   ],
 }

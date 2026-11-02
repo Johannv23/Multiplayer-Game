@@ -43,7 +43,33 @@ if (state == "move") {
         if (up) slash_dir = (face_x > 0) ? 0 : 1;
         else    slash_dir = (face_x > 0) ? 3 : 2;
         state = "slash";
+		slash_hit = false;
         set_anim(slash_sprites[slash_dir]);   // ends in Animation End
+		
+		// Slash hitbox position
+		var hit_x = x;
+		var hit_y = y;
+
+		if (slash_dir == 0) {
+		hit_x += 20;
+		hit_y -= 20;
+		}
+		else if (slash_dir == 1) {
+		hit_x -= 20;
+		hit_y -= 20;
+		}
+		else if (slash_dir == 2) {
+		hit_x -= 20;
+		hit_y += 20;
+		}
+		else if (slash_dir == 3) {
+		    hit_x += 20;
+		    hit_y += 20;
+		}
+
+		// Create slash hitbox
+		var slash = instance_create_layer(hit_x, hit_y, "Instances", obj_slash);
+		slash.damage = slash_damage;
     }
 }
 else if (state == "slash") {
@@ -108,5 +134,3 @@ if (keyboard_check_pressed(ord("H"))) {
 }
 
 hp = clamp(hp, 0, max_hp);
-
-	

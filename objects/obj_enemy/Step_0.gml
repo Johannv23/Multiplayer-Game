@@ -1,11 +1,11 @@
-if (instance_exists(obj_player)) {
+if (!dead && instance_exists(obj_player)) {
 
     var player = instance_nearest(x, y, obj_player);
 
     var dist = point_distance(x, y, player.x, player.y);
 
     // Attack cooldown
-    if (attack_cooldown > 0) {
+    if (!dead && attack_cooldown > 0) {
         attack_cooldown -= 1;
     }
 

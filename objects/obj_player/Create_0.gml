@@ -44,3 +44,7 @@ image_speed = 0;
 // Health bar
 max_hp = 100;
 hp = max_hp;
+
+// Slash damage
+slash_damage = 10;
+slash_hit = false;
