@@ -48,3 +48,6 @@ hp = max_hp;
 // Slash damage
 slash_damage = 10;
 slash_hit = false;
+
+// Slash sound
+slash_sound_id = -1;

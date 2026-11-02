@@ -24,3 +24,7 @@ spawn_timer = 0;
 spawn_interval = 180;
 max_enemies = 6;
 
+// Background music
+if (!audio_is_playing(background_music)) {
+    audio_play_sound(background_music, 0, true);
+}

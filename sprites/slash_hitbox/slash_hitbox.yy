@@ -44,8 +44,8 @@
   },
   "origin":0,
   "parent":{
-    "name":"multiplayergame",
-    "path":"multiplayergame.yyp",
+    "name":"sprites",
+    "path":"folders/sprites.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

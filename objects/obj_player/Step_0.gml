@@ -46,6 +46,10 @@ if (state == "move") {
 		slash_hit = false;
         set_anim(slash_sprites[slash_dir]);   // ends in Animation End
 		
+		// Slash sound
+		slash_sound_id = audio_play_sound(slash_sound, 1, false);
+		audio_sound_set_track_position(slash_sound_id, 0);
+		
 		// Slash hitbox position
 		var hit_x = x;
 		var hit_y = y;

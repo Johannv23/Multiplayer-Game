@@ -11,7 +11,7 @@ if (!dead) {
         dead = true;
         attacking = false;
 
-        sprite_index = spr_enemy_death;
+        sprite_index = death_sprite;
         image_index = 0;
         image_speed = 1;
     }

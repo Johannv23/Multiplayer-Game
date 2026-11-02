@@ -23,6 +23,6 @@ else if (attacking) {
     attack_cooldown = game_get_speed(gamespeed_fps);
 
     // Return to idle
-    sprite_index = spr_enemy_golem;
+    sprite_index = idle_sprite;
     image_index = 0;
 }
