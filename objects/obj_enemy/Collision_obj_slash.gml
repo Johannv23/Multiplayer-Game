@@ -1,18 +1,6 @@
 if (!dead) {
-
-    hp -= other.damage;
-
-    with (other) {
-        instance_destroy();
-    }
-
-    if (hp <= 0) {
-
-        dead = true;
-        attacking = false;
-
-        sprite_index = death_sprite;
-        image_index = 0;
-        image_speed = 1;
-    }
+    take_damage(other.damage);
+    with (other) instance_destroy();
+    // the weapon's hits charge player 1's cast
+    if (instance_exists(obj_player)) with (obj_player) cast_charge = min(100, cast_charge + 12);
 }

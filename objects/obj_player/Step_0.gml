@@ -1,10 +1,33 @@
-// ---- input: -1, 0 or 1 on each axis ----
-var ix = (keyboard_check(vk_right) || keyboard_check(ord("D")))
-       - (keyboard_check(vk_left)  || keyboard_check(ord("A")));
-var iy = (keyboard_check(vk_down)  || keyboard_check(ord("S")))
-       - (keyboard_check(vk_up)    || keyboard_check(ord("W")));
-var jump_pressed  = keyboard_check_pressed(vk_space);
-var slash_pressed = keyboard_check_pressed(ord("J")) || mouse_check_button_pressed(mb_left);
+// ---- input: player 1 = WASD move, Space jump, E kick, R recall weapon, Shift dash, Q cast ----
+// (arrows, / and . belong to player 2's weapon)
+var ix = keyboard_check(ord("D")) - keyboard_check(ord("A"));
+var iy = keyboard_check(ord("S")) - keyboard_check(ord("W"));
+var jump_pressed   = keyboard_check_pressed(vk_space);
+var kick_pressed   = keyboard_check_pressed(ord("E"));
+var recall_pressed = keyboard_check_pressed(ord("R"));
+var dash_pressed   = keyboard_check_pressed(vk_shift);
+var cast_pressed   = keyboard_check_pressed(ord("Q"));
+
+if (invuln > 0) invuln -= 1;
+if (hurt_flash > 0) hurt_flash -= 1;
+if (kick_cd > 0) kick_cd -= 1;
+if (kick_timer > 0) kick_timer -= 1;
+if (dash_cd > 0) dash_cd -= 1;
+
+// ---- death: Enter starts a new run ----
+hp = clamp(hp, 0, max_hp);
+if (hp <= 0 && state != "dead") {
+    state = "dead";
+    hsp = 0; vsp = 0; z = 0;
+    image_speed = 0;
+}
+if (state == "dead") {
+    if (keyboard_check_pressed(vk_enter)) {
+        reset_run();
+        room_goto(rm_chamber_1);
+    }
+    exit;
+}
 
 // ---- normalize so diagonals aren't faster ----
 var len = point_distance(0, 0, ix, iy);
@@ -31,54 +54,49 @@ if (state == "move" || state == "jump") {
 }
 
 if (state == "move") {
-    // ---- start a jump or a slash ----
     if (jump_pressed) {
         state = "jump";
         zspd = jump_speed;      // set, not add, so every jump is identical
         jump_timer = 0;
     }
-    else if (slash_pressed) {
-        // pick the closest diagonal: facing 1-3 is "up", face_x picks left or right
-        var up = (facing >= 1 && facing <= 3);
-        if (up) slash_dir = (face_x > 0) ? 0 : 1;
-        else    slash_dir = (face_x > 0) ? 3 : 2;
-        state = "slash";
-		slash_hit = false;
-        set_anim(slash_sprites[slash_dir]);   // ends in Animation End
-		
-		// Slash sound
-		slash_sound_id = audio_play_sound(slash_sound, 1, false);
-		audio_sound_set_track_position(slash_sound_id, 0);
-		
-		// Slash hitbox position
-		var hit_x = x;
-		var hit_y = y;
-
-		if (slash_dir == 0) {
-		hit_x += 20;
-		hit_y -= 20;
-		}
-		else if (slash_dir == 1) {
-		hit_x -= 20;
-		hit_y -= 20;
-		}
-		else if (slash_dir == 2) {
-		hit_x -= 20;
-		hit_y += 20;
-		}
-		else if (slash_dir == 3) {
-		    hit_x += 20;
-		    hit_y += 20;
-		}
-
-		// Create slash hitbox
-		var slash = instance_create_layer(hit_x, hit_y, "Instances", obj_slash);
-		slash.damage = slash_damage;
+    else if (dash_pressed && global.dash_unlocked && dash_cd <= 0) {
+        state = "dash";
+        dash_timer = dash_frames;
+        dash_cd = dash_cd_max;
+        dash_dir = (len > 0) ? point_direction(0, 0, ix, iy) : facing * 45;
+        facing = round(dash_dir / 45) mod 8;
+    }
+    else if (kick_pressed && kick_cd <= 0) {
+        do_kick();
+    }
+    else if (cast_pressed && global.cast_unlocked && cast_charge >= 100) {
+        do_cast();
     }
 }
 else if (state == "slash") {
     hsp = approach(hsp, 0, slash_fric);
     vsp = approach(vsp, 0, slash_fric);
+}
+
+// ---- recall: yank the weapon back, hurting everything on its way ----
+if (recall_pressed && instance_exists(obj_weapon)) with (obj_weapon) start_recall(true);
+
+// ---- dash: fixed burst, invulnerable, leaves afterimages ----
+if (state == "dash") {
+    hsp = lengthdir_x(dash_speed, dash_dir);
+    vsp = lengthdir_y(dash_speed, dash_dir);
+    invuln = max(invuln, 2);
+    array_insert(ghosts, 0, [x, y, sprite_index, image_index]);
+    if (array_length(ghosts) > 4) array_pop(ghosts);
+    dash_timer -= 1;
+    if (dash_timer <= 0) {
+        state = "move";
+        hsp *= 0.35;
+        vsp *= 0.35;
+    }
+}
+else if (array_length(ghosts) > 0) {
+    array_pop(ghosts);
 }
 
 // ---- jump height ----
@@ -114,11 +132,13 @@ y = clamp(y, sprite_height / 2, room_height - sprite_height / 2);
 depth = -bbox_bottom;
 
 // ---- animation ----
-if (state == "move") {
+if (state == "move" || state == "dash") {
     // walk plays while keys are held, frame 0 when idle
     // assign directly (not set_anim) so turning mid-walk keeps the stride
     sprite_index = walk_sprites[facing];
-    if (len > 0) {
+    if (state == "dash") {
+        image_speed = 2;
+    } else if (len > 0) {
         image_speed = 1;
     } else {
         image_speed = 0;
@@ -136,5 +156,3 @@ else if (state == "jump") {
 if (keyboard_check_pressed(ord("H"))) {
 	hp -= 10;
 }
-
-hp = clamp(hp, 0, max_hp);

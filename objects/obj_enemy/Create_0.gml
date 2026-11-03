@@ -25,3 +25,80 @@ attack_sprite = spr_enemy_attack;
 death_sprite = spr_enemy_death;
 
 sprite_index = idle_sprite;
+// health bar lag value (drains toward hp in Draw)
+hp_shown = hp;
+
+// fixed collision box at the feet, so attack/death frames never change the hitbox
+mask_index = spr_mask_golem;
+
+// facing: art_faces = 1 if the art looks right, -1 if it looks left, 0 = never flip
+art_scale = 1;
+art_faces = 0;
+
+// ---- ranged attack (children override). kind "" = melee only.
+// "wave": a ground shockwave ring that expands from the feet.  "bolt": a low shot along the ground.
+// Both only hit while the player is on the ground (z < 6), so jumping clears them.
+ranged_kind = "wave";
+ranged_sprite = attack_sprite;
+ranged_frame = 5;              // animation frame that releases the projectile
+ranged_min = 40;               // only from this far...
+ranged_max = 150;              // ...to this far
+ranged_damage = 14;
+ranged_speed = 1.6;            // wave: radius growth per frame. bolt: pixels per frame
+ranged_count = 1;              // bolts per shot
+ranged_spread = 18;            // degrees between bolts
+ranged_colour = make_color_rgb(255, 150, 60);
+ranged_cooldown_max = 200;
+ranged_cooldown = 90 + irandom(90);   // don't all fire the moment they spawn
+attack_is_ranged = false;
+fired = false;
+
+// ---- knockback / stun / falling (kick, cast, recall) ----
+kb_speed = 0;
+kb_dir = 0;
+stun = 0;               // frames unable to move or attack
+falling = false;        // kicked into the void
+fall_t = 0;
+recall_mark = -1;       // last weapon recall that hit us (each recall hits once)
+hit_flash = 0;
+drop_chance = 0.35;     // chance to drop a soul orb (heals) on death
+
+function take_damage(_dmg) {
+    if (dead) return;
+    hp -= _dmg;
+    hit_flash = 6;
+    if (hp <= 0) {
+        dead = true;
+        attacking = false;
+        sprite_index = death_sprite;
+        image_index = 0;
+        image_speed = 1;
+        if (random(1) < drop_chance) instance_create_layer(x, bbox_bottom - 4, "Instances", obj_pickup);
+    }
+}
+
+// cancel a windup (kicked, rooted)
+function interrupt() {
+    if (attacking) {
+        attacking = false;
+        attack_is_ranged = false;
+        attack_cooldown = 30;
+        sprite_index = idle_sprite;
+        image_index = 0;
+    }
+}
+
+// overlapping the void (plain obj_wall, not a block/prop/door child)?
+function over_void() {
+    var lst = ds_list_create();
+    var n = instance_place_list(x, y, obj_wall, lst, false);
+    var res = false;
+    for (var i = 0; i < n; i++) if (lst[| i].object_index == obj_wall) res = true;
+    ds_list_destroy(lst);
+    return res;
+}
+
+// solid things that stop a knockback (the void doesn't: that's how you kick enemies off)
+function blocked_at(_x, _y) {
+    return place_meeting(_x, _y, obj_block) || place_meeting(_x, _y, obj_prop) || place_meeting(_x, _y, obj_door);
+}

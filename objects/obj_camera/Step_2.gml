@@ -12,4 +12,6 @@ cam_y = clamp(cam_y, 0, room_height - view_h);
 
 // no round(): at 4x zoom whole-pixel snapping makes the world step 4 screen pixels at a time,
 // out of sync with the player, which looks like shaking
-camera_set_view_pos(cam, cam_x, cam_y);
+var sx = random_range(-shake, shake), sy = random_range(-shake, shake);
+shake = max(0, shake - 0.4);
+camera_set_view_pos(cam, cam_x + sx, cam_y + sy);

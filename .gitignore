@@ -2,3 +2,12 @@
 .yoyo/
 cache/
 temp/
+
+# Local backups
+_backup*/
+*.zip
+
+# Level tool output
+_tools/preview/
+__pycache__/
+Claude outputs/
