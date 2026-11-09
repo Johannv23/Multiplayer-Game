@@ -91,6 +91,9 @@ cast_charge = 0;        // 0-100
 // ---- Meteor Fall (restored in the third Reliquary): E in mid-air ----
 stomp_hits = 0;         // the shrine lesson counts these
 
+// Walking sound
+walk_sound_id = -1;
+
 // stats that come from boons; called again whenever a boon is chosen
 function apply_boons() {
     var ih = blv(1, "ironheart");

@@ -33,10 +33,33 @@ spawn_timer = 0;
 spawn_interval = 180;
 max_enemies = 6;
 
+// Check if player is in shrine
+var key = room_get_name(room);
+shrine_room = (string_pos("rm_shrine_", key) == 1);
+
 // Background music
-if (!audio_is_playing(background_music)) {
-    audio_play_sound(background_music, 0, true);
+if (shrine_room) {
+
+    // Stop background music
+    audio_stop_sound(background_music);
+
+    // Play shrine music
+    if (!audio_is_playing(shrine_music)) {
+        audio_play_sound(shrine_music, 0, true);
+    }
+
 }
+else {
+
+    // Stop shrine music
+    audio_stop_sound(shrine_music);
+
+    // Play background music
+    if (!audio_is_playing(background_music)) {
+        audio_play_sound(background_music, 0, true);
+    }
+}
+
 // ---------------------------------------------------------------- chambers (Hades-style rooms)
 // Rooms are built from ASCII blockouts by _tools/build_chambers.py. Each chamber runs its waves;
 // when the last wave is dead the doors open and walking into one goes to the next chamber.
