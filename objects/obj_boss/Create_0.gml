@@ -15,10 +15,10 @@ image_xscale = 3;
 image_yscale = 3;
 mask_index = spr_mask_wide;    // scaled 3x: a 72x30 box at the feet
 
-max_hp = 700;
+max_hp = 560;                  // tuned down: with two Reliquaries of boons it should be a medium fight
 hp = max_hp;
 hp_shown = hp;
-armor_mult = 0.6;              // phase 1 damage taken
+armor_mult = 0.7;              // phase 1 damage taken
 move_speed = 0.6;
 ranged_kind = "";
 drop_chance = 0;
@@ -46,9 +46,6 @@ col_fx = make_color_rgb(150, 190, 255);
 function face_player() {
     if (instance_exists(obj_player)) image_xscale = art_scale * art_faces * ((obj_player.x >= x) ? 1 : -1);
 }
-function shake(_a) {
-    if (instance_exists(obj_camera)) obj_camera.shake = max(obj_camera.shake, _a);
-}
 function ring(_spd, _dmg, _max, _delay) {
     with (instance_create_layer(x, bbox_bottom - 4, "Instances", obj_projectile,
           { kind: "wave", dir: 0, spd: _spd, dmg: _dmg, col: col_fx })) {
@@ -58,10 +55,10 @@ function ring(_spd, _dmg, _max, _delay) {
     }
 }
 function radial(_n, _off, _spd, _dmg) {
-    var fx = x, fy = bbox_bottom - 4;
+    var fx0 = x, fy = bbox_bottom - 4;
     for (var i = 0; i < _n; i++) {
         var a = _off + i * 360 / _n;
-        instance_create_layer(fx + lengthdir_x(20, a), fy + lengthdir_y(20, a), "Instances", obj_projectile,
+        instance_create_layer(fx0 + lengthdir_x(20, a), fy + lengthdir_y(20, a), "Instances", obj_projectile,
             { kind: "bolt", dir: a, spd: _spd, dmg: _dmg, col: col_fx });
     }
 }
@@ -129,18 +126,30 @@ function die() {
     with (obj_game) {
         pending = [];
         cleared = true;
-        unlock_msg = "THE STONE WARDEN FALLS  -  take the door to begin a new run";
+        unlock_msg = "THE STONE WARDEN FALLS";
         unlock_t = 600;
     }
-    with (obj_door) open_door();
+    global.cleared[$ "rm_boss"] = true;
+    // the Warden kept a Reliquary inside itself: the pillar wakes up
+    with (obj_reliquary) active = true;
+    start_dialogue([
+        ["SWORD", "It's over. It's actually over..."],
+        ["SWORD", "Look at the pillar. The Warden was guarding a Reliquary with its own body. Something of yours is in there - go claim it."]
+    ]);
+    fx("shard", x, bbox_bottom - 20, 40);
+    fx("soul", x, bbox_bottom - 20, 30);
+    flash(c_white, 0.6);
+    slowmo(60);
     shake(10);
 }
 
 // override obj_enemy's versions
-function take_damage(_dmg) {
+function take_damage(_dmg, _crit = false) {
     if (dead || bstate == "break" || bstate == "intro") return;
-    hp -= _dmg * ((phase == 1) ? armor_mult : 1);
+    var d = max(1, round(_dmg * ((phase == 1) ? armor_mult : 1)));
+    hp -= d;
     hit_flash = 4;
+    dmg_number(x + random_range(-20, 20), bbox_bottom - 80, d, _crit);
     if (phase == 1 && hp <= max_hp * 0.5) start_break();
     else if (hp <= 0) die();
 }

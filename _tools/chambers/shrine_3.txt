@@ -1,0 +1,16 @@
+# Shrine (Reliquary interior). L = altar, R = dash rune, T = training sentinel, E = entrance, X = way back out.
+# The same layout is used for every shrine; obj_shrine keeps only the runes or sentinels its lesson needs.
+######################
+#########XX###########
+#######........#######
+#####............#####
+####..............####
+###...R....R....R..###
+###................###
+###.....T....T.....###
+###.......LL.......###
+###...T...LL...T...###
+####..............####
+#####.....EE.....#####
+#######...EE...#######
+######################

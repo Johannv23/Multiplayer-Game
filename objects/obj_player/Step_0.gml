@@ -8,11 +8,36 @@ var recall_pressed = keyboard_check_pressed(ord("R"));
 var dash_pressed   = keyboard_check_pressed(vk_shift);
 var cast_pressed   = keyboard_check_pressed(ord("Q"));
 
+// ---- tutorial locks ----
+if (!global.allow_move) { ix = 0; iy = 0; }
+jump_pressed   = jump_pressed && global.allow_jump;
+kick_pressed   = kick_pressed && global.allow_kick;
+recall_pressed = recall_pressed && global.allow_recall;
+
+// ---- hit-stop: hold this exact frame ----
+if (global.hitstop > 0) exit;
+
+// ---- dialogue open: stand still ----
+if (global.freeze) {
+    hsp = 0;
+    vsp = 0;
+    if (state == "move") { image_speed = 0; image_index = 0; }
+    exit;
+}
+
 if (invuln > 0) invuln -= 1;
 if (hurt_flash > 0) hurt_flash -= 1;
 if (kick_cd > 0) kick_cd -= 1;
 if (kick_timer > 0) kick_timer -= 1;
-if (dash_cd > 0) dash_cd -= 1;
+if (thunder_cd > 0) thunder_cd -= 1;
+// dash charges refill one at a time
+if (dash_charges < dash_charges_max) {
+    dash_recharge += 1;
+    if (dash_recharge >= dash_cd_max) { dash_charges += 1; dash_recharge = 0; }
+}
+// squash & stretch settles back
+sx = lerp(sx, 1, 0.2);
+sy = lerp(sy, 1, 0.2);
 
 // ---- death: Enter starts a new run ----
 hp = clamp(hp, 0, max_hp);
@@ -58,19 +83,35 @@ if (state == "move") {
         state = "jump";
         zspd = jump_speed;      // set, not add, so every jump is identical
         jump_timer = 0;
+        double_used = false;
+        sx = 0.8;
+        sy = 1.25;
+        fx("smoke", x, bbox_bottom, 3);
     }
-    else if (dash_pressed && global.dash_unlocked && dash_cd <= 0) {
-        state = "dash";
-        dash_timer = dash_frames;
-        dash_cd = dash_cd_max;
-        dash_dir = (len > 0) ? point_direction(0, 0, ix, iy) : facing * 45;
-        facing = round(dash_dir / 45) mod 8;
+    else if (dash_pressed && global.dash_unlocked && dash_charges >= 1) {
+        start_dash(ix, iy, len);
     }
     else if (kick_pressed && kick_cd <= 0) {
         do_kick();
     }
     else if (cast_pressed && global.cast_unlocked && cast_charge >= 100) {
         do_cast();
+    }
+}
+else if (state == "jump") {
+    // Moon Jump Lv3: one more jump in mid-air
+    if (jump_pressed && !double_used && blv(1, "moonjump") >= 3) {
+        double_used = true;
+        zspd = jump_speed * 0.9;
+        fx("spark", x, y - z + 8, 8);
+        sx = 0.8;
+        sy = 1.25;
+    }
+    // Meteor Fall: E in mid-air
+    else if (kick_pressed && global.stomp_unlocked && z > 6) {
+        state = "stomp";
+        zspd = 2;                // a tiny hop up first, then down hard
+        invuln = max(invuln, 30);
     }
 }
 else if (state == "slash") {
@@ -88,11 +129,28 @@ if (state == "dash") {
     invuln = max(invuln, 2);
     array_insert(ghosts, 0, [x, y, sprite_index, image_index]);
     if (array_length(ghosts) > 4) array_pop(ghosts);
+    // Afterburn Dash: a trail of fire
+    var ab = blv(1, "afterburn");
+    if (ab > 0 && dash_timer mod 3 == 0) instance_create_layer(x, bbox_bottom - 3, "Instances", obj_fire, { lv: ab });
+    // Phantom Step: dash straight through enemies, slicing them
+    var ph = blv(1, "phantom");
+    if (ph > 0) {
+        var did = dash_id, pdmg = 6 + 6 * ph, mx = x, my = bbox_bottom - 6;
+        with (obj_enemy) {
+            if (!dead && phantom_mark != did && point_distance(x, bbox_bottom - 5, mx, my) < 18) {
+                phantom_mark = did;
+                take_damage(pdmg, false);
+                fx("soul", x, bbox_bottom - 10, 8);
+                hitstop(2);
+            }
+        }
+    }
     dash_timer -= 1;
     if (dash_timer <= 0) {
         state = "move";
         hsp *= 0.35;
         vsp *= 0.35;
+        end_dash();
     }
 }
 else if (array_length(ghosts) > 0) {
@@ -108,6 +166,22 @@ if (state == "jump") {
         z = 0;
         zspd = 0;
         state = "move";
+        land();
+    }
+}
+
+// ---- Meteor Fall: plunge ----
+if (state == "stomp") {
+    hsp *= 0.85;
+    vsp *= 0.85;
+    zspd -= 0.9;
+    z += zspd;
+    if (irandom(1) == 0) fx("ember", x, y - z + 6, 2);
+    if (z <= 0) {
+        z = 0;
+        zspd = 0;
+        state = "move";
+        land_stomp();
     }
 }
 
@@ -145,7 +219,7 @@ if (state == "move" || state == "dash") {
         image_index = 0;
     }
 }
-else if (state == "jump") {
+else if (state == "jump" || state == "stomp") {
     // flip frames follow the jump's progress, so the flip always lands on the last (standing) frame
     sprite_index = flip_sprites[facing];
     image_speed = 0;

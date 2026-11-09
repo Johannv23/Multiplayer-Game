@@ -30,7 +30,28 @@ var sword_behind = sword && (slash_dir <= 1);   // swinging upward: blade goes b
 if (sword_behind) draw_sprite_ext(sword_sprites[slash_dir], image_index, dx, dy, scale, scale, 0, c_white, 1);
 var tint = (hurt_flash > 0 && (hurt_flash mod 4) < 2) ? c_red : c_white;   // blink red when hit
 var alpha = (invuln > 0 && state != "dash" && (invuln mod 6) < 3) ? 0.55 : 1;   // flicker during grace frames
-draw_sprite_ext(sprite_index, image_index, dx, dy - dz, scale, scale, 0, tint, alpha);
+draw_sprite_ext(sprite_index, image_index, dx, dy - dz, scale * sx, scale * sy, 0, tint, alpha);
+
+// Soul Feast shield bubble
+if (shield > 0) {
+    gpu_set_blendmode(bm_add);
+    draw_set_color(make_color_rgb(120, 220, 255));
+    draw_set_alpha(0.25 + 0.1 * sin(current_time / 120));
+    draw_circle(dx, dy - dz, 16, false);
+    draw_set_alpha(0.6);
+    draw_circle(dx, dy - dz, 16, true);
+    gpu_set_blendmode(bm_normal);
+    draw_set_alpha(1);
+}
+// Meteor Fall: a burning streak while plunging
+if (state == "stomp") {
+    gpu_set_blendmode(bm_add);
+    draw_set_color(make_color_rgb(255, 150, 60));
+    draw_set_alpha(0.5);
+    draw_line_width(dx, dy - dz - 30, dx, dy - dz, 8);
+    gpu_set_blendmode(bm_normal);
+    draw_set_alpha(1);
+}
 if (sword && !sword_behind) draw_sprite_ext(sword_sprites[slash_dir], image_index, dx, dy, scale, scale, 0, c_white, 1);
 
 // kick: a quick white arc in front of the feet

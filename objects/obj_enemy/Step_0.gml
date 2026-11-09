@@ -1,3 +1,10 @@
+if (paused()) exit;   // dialogue open or hit-stop
+
+// ---- attack sound: cut it at 2.7 s (checked first, before any early exit) ----
+if (attack_sound != -1 && (!audio_is_playing(attack_sound) || audio_sound_get_track_position(attack_sound) >= 2.7)) {
+    stop_attack_sound();
+}
+
 if (hit_flash > 0) hit_flash -= 1;
 
 // ---- falling into the void (kicked off an edge) ----
@@ -14,24 +21,52 @@ if (falling) {
 // ---- knockback ----
 if (kb_speed > 0) {
     var nx = x + lengthdir_x(kb_speed, kb_dir), ny = y + lengthdir_y(kb_speed, kb_dir);
-    if (!blocked_at(nx, y)) x = nx;
-    if (!blocked_at(x, ny)) y = ny;
+    var hit_wall = false;
+    if (!blocked_at(nx, y)) x = nx; else hit_wall = true;
+    if (!blocked_at(x, ny)) y = ny; else hit_wall = true;
+
+    // Cannon Kick: a kicked enemy becomes a missile that bowls over the others
+    if (missile > 0 && kb_speed > 1.5) {
+        var me = id, md = 8 * missile, kd = kb_dir;
+        with (obj_enemy) {
+            if (id != me && !dead && missile_mark != me && point_distance(x, bbox_bottom - 5, me.x, me.bbox_bottom - 5) < 18) {
+                missile_mark = me;
+                take_damage(md, false);
+                kb_dir = kd;
+                kb_speed = max(kb_speed, 3);
+                fx("spark", x, bbox_bottom - 10, 8);
+                shake(2);
+            }
+        }
+        if (hit_wall && missile >= 2) {         // Lv2: they explode on impact
+            explode(x, bbox_bottom - 5, 34, 6 * missile, make_color_rgb(255, 170, 60));
+            kb_speed = 0;
+        }
+    }
+
     kb_speed = max(0, kb_speed - 0.3);
+    if (kb_speed <= 0) missile = 0;
+    if (kb_speed > 1) fx("smoke", x, bbox_bottom - 2, 1);
     if (!dead && over_void()) {
         dead = true;
         falling = true;
         fall_t = 40;
         kb_speed = 0;
         image_speed = 0;
+        dmg_number(x, bbox_bottom - 34, "BYE", false);
         if (random(1) < drop_chance) instance_create_layer(x, bbox_bottom - 4, "Instances", obj_pickup);
     }
     depth = -bbox_bottom;
     exit;
 }
 
-// ---- stunned (kicked or rooted by a cast) ----
+// ---- stunned (kicked, struck by lightning, or rooted by a cast) ----
 if (stun > 0 && !dead) {
     stun -= 1;
+    if (root_t > 0) {
+        root_t -= 1;
+        if (root_t == 0 && root_bloom) explode(x, bbox_bottom - 5, 34, 12, make_color_rgb(210, 130, 255));
+    }
     depth = -bbox_bottom;
     exit;
 }
@@ -113,34 +148,21 @@ if (!dead && instance_exists(obj_player)) {
     // ranged attack: release the projectile on the right animation frame
     else if (attack_is_ranged && !fired && image_index >= ranged_frame) {
         fired = true;
-        var fx = x, fy = bbox_bottom - 2;                 // from the feet, on the ground
-        var aim = point_direction(fx, fy, player.x, player.bbox_bottom - 6);
+        var fx0 = x, fy = bbox_bottom - 2;                 // from the feet, on the ground
+        var aim = point_direction(fx0, fy, player.x, player.bbox_bottom - 6);
         if (ranged_kind == "bolt") {
             for (var i = 0; i < ranged_count; i++) {
                 var a = aim + (i - (ranged_count - 1) / 2) * ranged_spread;
-                instance_create_layer(fx + lengthdir_x(10, a), fy + lengthdir_y(10, a), "Instances", obj_projectile,
+                instance_create_layer(fx0 + lengthdir_x(10, a), fy + lengthdir_y(10, a), "Instances", obj_projectile,
                     { kind: "bolt", dir: a, spd: ranged_speed, dmg: ranged_damage, col: ranged_colour });
             }
         } else {
-            instance_create_layer(fx, fy, "Instances", obj_projectile,
+            instance_create_layer(fx0, fy, "Instances", obj_projectile,
                 { kind: "wave", dir: 0, spd: ranged_speed, dmg: ranged_damage, col: ranged_colour });
         }
     }
 
     if (ranged_cooldown > 0) ranged_cooldown -= 1;
-}
-
-// Stop attack sound
-if (attack_sound != -1) {
-
-    if (audio_is_playing(attack_sound)) {
-
-        if (audio_sound_get_track_position(attack_sound) >= 2.7) {
-
-            audio_stop_sound(attack_sound);
-            attack_sound = -1;
-        }
-    }
 }
 
 depth = -bbox_bottom;

@@ -4,12 +4,23 @@ var p = obj_player;
 var bob = sin(float_t / 10) * 2;
 var wy = y - hover + bob;
 
-// tether line: pale blue, turning orange near the 5 m limit
+// tether line: pale blue, turning orange near the limit (not while orbiting)
 var k = point_distance(p.x, p.y, x, y) / tether;
+if (state != "orbit") {
 draw_set_alpha(0.35 + 0.4 * k);
 draw_set_color(merge_color(make_color_rgb(120, 190, 255), make_color_rgb(255, 150, 60), max(0, (k - 0.7) / 0.3)));
 draw_line_width(p.x, p.y - 8, x, wy, 1);
 draw_set_alpha(1);
+}
+// Frenzy: CLEAVE ready glows red-hot
+if (cleave_ready) {
+    gpu_set_blendmode(bm_add);
+    draw_set_color(make_color_rgb(255, 90, 40));
+    draw_set_alpha(0.5 + 0.3 * sin(current_time / 60));
+    draw_circle(x, wy, 9, false);
+    gpu_set_blendmode(bm_normal);
+    draw_set_alpha(1);
+}
 
 // shadow on the ground (or nothing over the void)
 draw_set_color(c_black);
@@ -18,7 +29,7 @@ draw_ellipse(x - 5, y - 2, x + 5, y + 2, false);
 draw_set_alpha(1);
 
 // the blade: points along swing_dir, spins during a recall
-var ang = (state == "recall") ? float_t * 25 : swing_dir;
+var ang = (state == "recall" || state == "orbit") ? float_t * 25 : swing_dir;
 var tipx = x + lengthdir_x(10, ang), tipy = wy + lengthdir_y(10, ang);
 var hx = x - lengthdir_x(6, ang), hy = wy - lengthdir_y(6, ang);
 draw_set_color(make_color_rgb(225, 235, 255));

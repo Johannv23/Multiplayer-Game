@@ -1,7 +1,9 @@
 if (use_waves) {
     var txt = "";
-    if (cleared) txt = "Chamber clear - take a door";
-    else if (wave >= 0) txt = "Wave " + string(wave + 1) + " / " + string(array_length(waves));
+    var total = array_length(waves) + tut_offset;
+    if (cleared) txt = (instance_exists(obj_reliquary) && !instance_find(obj_reliquary, 0).spent) ? "Chamber clear - enter the Reliquary" : "Chamber clear - take a door";
+    else if (tutorial_running) txt = "Wave 1 / " + string(total) + "  -  Tutorial";
+    else if (wave >= 0) txt = "Wave " + string(wave + 1 + tut_offset) + " / " + string(total);
     if (txt != "") {
         draw_set_halign(fa_center);
         draw_set_color(c_black);

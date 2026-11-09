@@ -1,3 +1,5 @@
+if (paused()) exit;   // dialogue open
+
 if (!landed) {
     t += 1;
     var k = t / dur;
@@ -12,9 +14,14 @@ if (!landed) {
             if (!dead && point_distance(x, bbox_bottom - 5, other.x, other.y) < r) {
                 interrupt();
                 stun = max(stun, rf);
-                take_damage(dmg);
+                root_t = rf;
+                root_bloom = (blv(1, "soulbloom") >= 3);
+                take_damage(dmg, false);
             }
         }
+        fx("soul", x, y, 24);
+        shake(3);
+        flash(make_color_rgb(200, 120, 255), 0.12);
     }
 } else {
     burst_t += 1;

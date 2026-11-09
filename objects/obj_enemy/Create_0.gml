@@ -63,22 +63,32 @@ recall_mark = -1;       // last weapon recall that hit us (each recall hits once
 hit_flash = 0;
 drop_chance = 0.35;     // chance to drop a soul orb (heals) on death
 
-function take_damage(_dmg) {
+function take_damage(_dmg, _crit = false) {
     if (dead) return;
+    if (root_t > 0 && blv(1, "soulbloom") >= 2) _dmg *= 1.25;     // Soul Bloom: rooted enemies take more
+    _dmg = max(1, round(_dmg));
     hp -= _dmg;
     hit_flash = 6;
+    dmg_number(x, bbox_bottom - 34, _dmg, _crit);
     if (hp <= 0) {
+        stop_attack_sound();
         dead = true;
         attacking = false;
         sprite_index = death_sprite;
         image_index = 0;
         image_speed = 1;
+        // death burst
+        fx("soul", x, bbox_bottom - 10, 10);
+        fx("shard", x, bbox_bottom - 8, 6);
+        shake(2);
+        hitstop(2);
         if (random(1) < drop_chance) instance_create_layer(x, bbox_bottom - 4, "Instances", obj_pickup);
     }
 }
 
 // cancel a windup (kicked, rooted)
 function interrupt() {
+    stop_attack_sound();
     if (attacking) {
         attacking = false;
         attack_is_ranged = false;
@@ -102,3 +112,20 @@ function over_void() {
 function blocked_at(_x, _y) {
     return place_meeting(_x, _y, obj_block) || place_meeting(_x, _y, obj_prop) || place_meeting(_x, _y, obj_door);
 }
+
+// the attack sound is a 10 s file: we play 0.8 s - 2.7 s of it and must always stop it ourselves
+function stop_attack_sound() {
+    if (attack_sound != -1) {
+        audio_stop_sound(attack_sound);
+        attack_sound = -1;
+    }
+}
+
+// ---- boon hooks ----
+root_t = 0;              // rooted by a cast (Soul Bloom watches it)
+root_bloom = false;      // Soul Bloom Lv3: burst when the root ends
+missile = 0;             // Cannon Kick level while flying from a kick
+missile_mark = noone;    // last flying enemy that hit us
+phantom_mark = -1;       // last Phantom Step dash that sliced us
+orbit_cd = 0;            // Whirling Return hit cooldown
+show_bar = true;

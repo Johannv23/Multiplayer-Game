@@ -1,7 +1,26 @@
+// ---- first frame: returning from a Reliquary puts the hero back beside it, doors open ----
+if (first_frame) {
+    first_frame = false;
+    if (revisit && instance_exists(obj_reliquary) && instance_exists(obj_player)) {
+        var rq = instance_find(obj_reliquary, 0);
+        obj_player.x = rq.cx;
+        obj_player.y = rq.by + 30;
+        with (obj_weapon) { x = obj_player.x; y = obj_player.y; }
+        if (rq.spent) with (obj_door) open_door();
+    }
+}
+
+if (paused()) exit;   // dialogue open or hit-stop: waves, spawns and timers wait
+
 // ---- boss room: one heal on arrival ----
-if (boss_rest && instance_exists(obj_player)) {
+if (boss_rest && !revisit && instance_exists(obj_player)) {
     boss_rest = false;
     obj_player.hp = min(obj_player.max_hp, obj_player.hp + 30);
+    start_dialogue([
+        ["SWORD", "Careful. That thing in the middle is the Stone Warden."],
+        ["HERO", "I know it. I don't know how, but I know it."],
+        ["SWORD", "It's the one that dragged you down here for the Demon King. Its armor is thick - wear it down, and stay off the ground when it slams."]
+    ]);
 }
 
 // ---- spawn warnings count down, then the enemy appears (waves and boss summons) ----
@@ -22,7 +41,7 @@ if (use_waves || boss_room) {
 
 if (use_waves) {
     // ---- next wave once this one is dead, then open the doors ----
-    if (!cleared && array_length(pending) == 0 && instance_number(obj_enemy) == 0) {
+    if (!cleared && !tutorial_running && array_length(pending) == 0 && instance_number(obj_enemy) == 0) {
         if (wave_delay > 0) {
             wave_delay -= 1;
         }
@@ -32,23 +51,11 @@ if (use_waves) {
             wave_delay = 60;
         }
         else {
-            cleared = true;
-            with (obj_door) open_door();
-            // progression: chamber 1 teaches dash, chamber 2 teaches cast
-            if (room == rm_chamber_1 && !global.dash_unlocked) {
-                global.dash_unlocked = true;
-                unlock_msg = "DASH UNLOCKED  -  Shift (invulnerable while dashing)";
-                unlock_t = 300;
-            }
-            else if (room == rm_chamber_2 && !global.cast_unlocked) {
-                global.cast_unlocked = true;
-                unlock_msg = "CAST UNLOCKED  -  Q (charges as the weapon lands hits)";
-                unlock_t = 300;
-            }
+            room_won();
         }
     }
 }
-else if (!boss_room) {
+else if (!boss_room && !shrine_room) {
     // ---- old open-field spawner (rm_level) ----
     spawn_timer += 1;
     if (spawn_timer >= spawn_interval) {

@@ -11,3 +11,7 @@ _backup*/
 _tools/preview/
 __pycache__/
 Claude outputs/
+
+# Playtest build (separate GameMaker project) and its export
+_playtest_build/
+*.yyz

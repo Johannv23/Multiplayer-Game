@@ -5,6 +5,7 @@ depth = -15000;                                // after every world object, befo
 surf = -1;
 enabled = true;
 ambient = make_color_rgb(62, 72, 104);         // cold blue cave light
+if (instance_exists(obj_game) && obj_game.shrine_room) ambient = make_color_rgb(70, 92, 120);   // shrines: a calmer teal
 
 // fixed lights from the props obj_game created from the "Props" layer
 lights = [];                                   // { x, y, r, col, flick }

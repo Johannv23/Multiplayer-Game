@@ -6,7 +6,7 @@ if (hit_flash > 0) {                   // white flash on hit
     gpu_set_fog(false, c_white, 0, 0);
 }
 
-if (!dead) {
+if (!dead && show_bar) {
     // ---- health bar above the head ----
     // anchored to the idle sprite's top so it doesn't jump around as animation frames change size
     var bar_w = 20;

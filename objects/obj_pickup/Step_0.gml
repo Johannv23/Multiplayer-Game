@@ -1,3 +1,5 @@
+if (paused()) exit;   // dialogue open
+
 life += 1;
 if (life > life_max) {
     instance_destroy();

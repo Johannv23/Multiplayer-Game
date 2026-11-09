@@ -243,6 +243,9 @@ maps = [(p, int(re.search(r"(\d+)", os.path.basename(p)).group(1))) for p in
 maps = [(p, n, f"rm_chamber_{n}") for p, n in sorted(maps, key=lambda m: m[1])]
 if os.path.exists(os.path.join(TOOLS, "chambers", "boss.txt")):       # the boss arena comes after the chambers
     maps.append((os.path.join(TOOLS, "chambers", "boss.txt"), 99, "rm_boss"))
+for sp in sorted(glob.glob(os.path.join(TOOLS, "chambers", "shrine_*.txt"))):   # Reliquary shrines (side rooms)
+    sn = int(re.search(r"(\d+)", os.path.basename(sp)).group(1))
+    maps.append((sp, 100 + sn, f"rm_shrine_{sn}"))
 for path, n, rname in maps:
     lines = [l.rstrip("\n") for l in open(path) if not l.startswith("# ")]
     lines = [l for l in lines if l.strip()]
@@ -251,7 +254,7 @@ for path, n, rname in maps:
     H = len(g)
     at = lambda c, r: g[r][c] if 0 <= r < H and 0 <= c < W else "#"
     cells = lambda ch: [(c, r) for r in range(H) for c in range(W) if g[r][c] in ch]
-    bad = set("".join(g)) - set("#.BLSEXK")
+    bad = set("".join(g)) - set("#.BLSEXKPRT")
     assert not bad, f"{rname}: unknown characters {bad}"
 
     # reachability: everything must be reachable from the entrance
@@ -262,7 +265,7 @@ for path, n, rname in maps:
         c, r = todo.pop()
         for d in ((1, 0), (-1, 0), (0, 1), (0, -1)):
             q = (c + d[0], r + d[1])
-            if q not in seen and at(*q) in ".SEXK":
+            if q not in seen and at(*q) in ".SEXKRT":
                 seen.add(q)
                 todo.append(q)
     for need in cells("SXK"):
@@ -281,6 +284,10 @@ for path, n, rname in maps:
     insts += [rect_inst("obj_landmark", *rc) for rc in rects(cells("L"))]
     insts += [rect_inst("obj_door", *rc) for rc in rects(cells("X"))]
     insts += [inst("obj_spawn", c * CELL + CELL / 2, r * CELL + CELL / 2) for c, r in cells("S")]
+    # Reliquary pillar, dash runes, training sentinels
+    insts += [rect_inst("obj_reliquary", c, r, 1, 1) for c, r in cells("P")]
+    insts += [inst("obj_rune", c * CELL + CELL / 2, r * CELL + CELL / 2) for c, r in cells("R")]
+    insts += [inst("obj_dummy", c * CELL + CELL / 2, r * CELL + CELL / 2) for c, r in cells("T")]
     K = cells("K")
     if K:                                              # boss start: centre of the K cells
         insts.append(inst("obj_boss", sum(c for c, _ in K) / len(K) * CELL + CELL / 2,
@@ -308,6 +315,13 @@ for path, n, rname in maps:
         dais(c0, r0, w, h)
     for c0, r0, w, h in rects(cells("K")):            # a wide cobble arena floor under the boss
         dais(c0, r0, w, h, 6)
+    for c0, r0, w, h in rects(cells("P")):            # a cobble plinth around each Reliquary
+        dais(c0, r0, w, h, 2)
+    if rname.startswith("rm_shrine"):                 # shrines: the whole floor is worked stone
+        for r in range(TH):
+            for c in range(TW):
+                if F(c, r):
+                    cob[r][c] = True
     C = lambda c, r: 0 <= c < TW and 0 <= r < TH and cob[r][c]
 
     for r in range(TH):
@@ -388,7 +402,7 @@ for path, n, rname in maps:
 
     marks = []
     for c0, r0, w, h in rects(cells("L")):
-        base = "spr_lich" if w >= 4 else random.choice(LANDMARK)
+        base = "spr_lich" if w >= 4 else ("spr_shrine" if rname.startswith("rm_shrine") else random.choice(LANDMARK))
         P(base, (c0 + w / 2) * CELL, (r0 + h) * CELL - 4, c0, r0, flip=1)
         marks.append(base)
         used |= {(c0 + i, r0 + j) for i in range(w) for j in range(h)}
@@ -412,8 +426,8 @@ for path, n, rname in maps:
                               1 if x < 100 else -1, FG_COLOUR))
 
     # decor: small plants/bones clustered around cover, a few along the island edge, big bones in the open
-    keep_clear = set(cells("ESXK"))
-    for c, r in cells("ESXK"):
+    keep_clear = set(cells("ESXKPRT"))
+    for c, r in cells("ESXKPRT"):
         keep_clear |= {(c + dc, r + dr) for dc in (-1, 0, 1) for dr in (-1, 0, 1)}
     floor_cells = [q for q in cells(".") if q not in keep_clear]
     near_cover = [q for q in floor_cells if any((q[0] + dc, q[1] + dr) in used for dc in (-1, 0, 1) for dr in (-1, 0, 1))]

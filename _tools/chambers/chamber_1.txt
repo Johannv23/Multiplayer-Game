@@ -1,3 +1,4 @@
+# P = Reliquary pillar (activates when the room is cleared; step into it for the shrine)
 # Chamber 1 - gray blockout.  # void   . floor   B cover block   L landmark (tall)
 #                             S enemy spawn   E entrance / player start   X exit door (opens when clear)
 # Rows can be any length; short rows are padded with void. Rebuild: python3 _tools/build_chambers.py
@@ -13,7 +14,7 @@
 ###...BB....B..................#
 ##....BB...........BBB.......###
 #..S...............BBB........##
-#..........BB..................#
+#..........BB.............P....#
 ##.........BB.........S........#
 ###..................#####.....#
 ####....B...........######...###

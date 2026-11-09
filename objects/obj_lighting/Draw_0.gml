@@ -30,6 +30,15 @@ with (obj_door) {
 // the boss: cold blue while armored, molten orange after the armor breaks
 with (obj_boss) if (!dead) draw_circle_colour(x - cx, y - cy, 110, (phase == 1) ? make_color_rgb(70, 90, 140) : make_color_rgb(150, 80, 40), c_black, false);
 
+// Reliquaries, runes, fire, combat effects
+with (obj_reliquary) {
+    var on = active && !spent;
+    draw_circle_colour(x + 16 - cx, y + 2 - cy, on ? 130 : 50, on ? make_color_rgb(80, 180, 220) : make_color_rgb(40, 60, 80), c_black, false);
+}
+with (obj_rune) draw_circle_colour(x - cx, y - cy, lit ? 50 : 22, lit ? make_color_rgb(70, 160, 200) : make_color_rgb(30, 50, 70), c_black, false);
+with (obj_fire) draw_circle_colour(x - cx, y - cy, 34, make_color_rgb(150, 70, 20), c_black, false);
+with (obj_fx) if (kind == "ring") draw_circle_colour(x - cx, y - cy, rmax, merge_color(col, c_black, 0.4 + 0.6 * t / life), c_black, false);
+
 // player 2's weapon carries its own light while detached
 with (obj_weapon) if (state != "held") draw_circle_colour(x - cx, y - hover - cy, 60, make_color_rgb(110, 140, 190), c_black, false);
 with (obj_pickup) draw_circle_colour(x - cx, y - cy, 26, make_color_rgb(120, 30, 50), c_black, false);

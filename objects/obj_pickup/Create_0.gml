@@ -7,6 +7,7 @@ bob = random(100);
 depth = -15001;          // glows above the lighting
 
 function collect() {
-    if (instance_exists(obj_player)) with (obj_player) hp = min(max_hp, hp + other.heal);
+    heal_player(heal * (1 + 0.5 * blv(1, "ironheart")));
+    fx("soul", x, y - 6, 8);
     instance_destroy();
 }

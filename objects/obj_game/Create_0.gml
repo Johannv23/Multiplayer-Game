@@ -44,10 +44,8 @@ chambers = [rm_chamber_1, rm_chamber_2, rm_boss];   // the boss arena ends the r
 
 // one array of enemy objects per wave, keyed by room name
 wave_table = {
-    rm_chamber_1: [                                  // rats swarm, slimes shoot from range
-        [obj_rat, obj_rat, obj_rat, obj_rat, obj_slime],
-        [obj_rat, obj_rat, obj_rat, obj_rat, obj_slime, obj_slime],
-        [obj_rat, obj_rat, obj_rat, obj_skeleton, obj_slime, obj_slime]
+    rm_chamber_1: [                                  // wave 1 is the tutorial; this is wave 2
+        [obj_rat, obj_rat, obj_rat, obj_rat, obj_slime, obj_slime]
     ],
     rm_chamber_2: [                                  // shockwaves + bolt fans at the same time
         [obj_skeleton, obj_skeleton, obj_slime, obj_slime],
@@ -56,7 +54,15 @@ wave_table = {
     ]
 };
 
+// a fresh room never starts frozen (a Reliquary freezes play while it swallows the hero)
+global.freeze = false;
+global.hitstop = 0;
+
 var key = room_get_name(room);
+shrine_room = (string_pos("rm_shrine_", key) == 1);          // a Reliquary's inside
+shrine_n = shrine_room ? real(string_delete(key, 1, 10)) : 0;
+revisit = variable_struct_exists(global.cleared, key);       // back from this room's Reliquary: no fight
+instance_create_depth(0, 0, -15005, obj_juice);              // particles, hit-stop, flash, debug keys
 waves = variable_struct_exists(wave_table, key) ? wave_table[$ key] : [];
 use_waves = array_length(waves) > 0;   // false in rm_level: it keeps the old timed spawner
 boss_room = (room == rm_boss);         // no waves: obj_boss runs the fight and opens the doors
@@ -66,7 +72,35 @@ wave_delay = 60;        // frames of calm before the first wave and between wave
 warn_frames = 45;       // a red ring shows where an enemy will appear, this long before it does
 pending = [];           // enemies waiting to appear: { x, y, obj, t }
 cleared = false;
-if (use_waves || boss_room) depth = 500;   // above the floor tiles and decor, below everyone standing
+
+// chamber 1 opens with the tutorial (it counts as wave 1); the normal waves start when it ends
+tutorial_running = (room == rm_chamber_1 && !global.tutorial_done && !revisit);
+tut_offset = tutorial_running ? 1 : 0;
+if (tutorial_running) instance_create_depth(0, 0, -100, obj_tutorial);
+if (revisit) cleared = true;
+first_frame = true;
+if (shrine_room) instance_create_depth(0, 0, -100, obj_shrine);
+if (use_waves || boss_room || shrine_room) depth = 500;   // above the floor tiles and decor, below everyone standing
+
+// the chamber is won: wake its Reliquary (the doors stay sealed until its fragment is claimed)
+function room_won() {
+    cleared = true;
+    global.cleared[$ room_get_name(room)] = true;
+    with (obj_reliquary) active = true;
+    flash(make_color_rgb(140, 230, 255), 0.25);
+    if (room == rm_chamber_1) {
+        start_dialogue([
+            ["SWORD", "That's the last of them. Now look - over there."],
+            ["HERO",  "The pillar... it's glowing. It wasn't before."],
+            ["SWORD", "It woke up when its guards died. That's a Reliquary. Something of yours is sealed inside it - I can feel it from here."],
+            ["SWORD", "These doors won't let us leave with it still locked away. Step into the light."]
+        ]);
+    } else {
+        start_dialogue([
+            ["SWORD", "Another Reliquary is awake. You know what to do."]
+        ]);
+    }
+}
 
 // queue one wave: spread enemies over the spawn points that aren't right next to the player
 function start_wave(_list) {
@@ -99,9 +133,15 @@ function start_wave(_list) {
 // next chamber in the list, looping back to the first after the last
 function go_next() {
     if (instance_exists(obj_player)) global.player_hp = obj_player.hp;   // HP carries over
-    if (room == rm_boss) {           // run won: start a fresh run
-        reset_run();
-        room_goto(rm_chamber_1);
+    if (shrine_room) {
+        if (shrine_n >= 3) {             // the Warden's Reliquary ends the run (until deeper chambers exist)
+            global.runs_won += 1;
+            reset_run();
+            global.banner_next = "RUN COMPLETE  -  the descent begins again";
+            room_goto(rm_chamber_1);
+        } else {
+            room_goto((shrine_n == 1) ? rm_chamber_1 : rm_chamber_2);   // back out to the chamber
+        }
         return;
     }
     var nxt = chambers[0];
@@ -112,8 +152,13 @@ function go_next() {
 }
 
 // lighting overlay in chambers (created last, so it can find the props made above)
-if (use_waves || boss_room) instance_create_depth(0, 0, -15000, obj_lighting);
+if (use_waves || boss_room || shrine_room) instance_create_depth(0, 0, -15000, obj_lighting);
 
 // unlock banner ("DASH UNLOCKED")
 unlock_msg = "";
 unlock_t = 0;
+if (global.banner_next != "") {
+    unlock_msg = global.banner_next;
+    unlock_t = 300;
+    global.banner_next = "";
+}

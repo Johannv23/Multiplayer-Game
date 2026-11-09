@@ -13,4 +13,4 @@ if (instance_exists(obj_player)) {
     cam_y = 0;
 }
 
-shake = 0;            // pixels of random offset, fades out (set by the boss's slams)
+shake_amt = 0;        // pixels of random offset, fades out (set through shake() in scr_utility)

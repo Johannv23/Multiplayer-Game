@@ -8,3 +8,17 @@ hit_done = false;      // a wave hits once
 trail = [];            // bolt: recent positions
 // drawn after the lighting overlay, so projectiles glow and stay readable in the dark
 depth = -15001;
+dodged = false;        // Perfect Hop already triggered by this one
+
+// Moon Jump Lv2: clearing an attack mid-jump slows time and feeds the soul mark
+function perfect_hop() {
+    dodged = true;
+    if (blv(1, "moonjump") < 2) return;
+    slowmo(30);
+    flash(c_white, 0.15);
+    if (instance_exists(obj_player)) {
+        obj_player.cast_charge = min(100, obj_player.cast_charge + 15);
+        dmg_number(obj_player.x, obj_player.y - 30, "PERFECT", true);
+        fx("zap", obj_player.x, obj_player.y, 10);
+    }
+}

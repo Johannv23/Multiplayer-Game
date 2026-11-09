@@ -19,6 +19,7 @@ else if (attacking) {
     }
 
     // End attack
+    stop_attack_sound();
     if (attack_is_ranged) ranged_cooldown = ranged_cooldown_max + irandom(60);
     attack_is_ranged = false;
     attacking = false;

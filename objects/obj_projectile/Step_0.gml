@@ -1,3 +1,5 @@
+if (paused()) exit;   // dialogue open
+
 life += 1;
 
 var pl = instance_exists(obj_player) ? instance_nearest(x, y, obj_player) : noone;
@@ -20,6 +22,7 @@ if (kind == "bolt") {
         instance_destroy();
         exit;
     }
+    if (pl != noone && pl.z >= 6 && !dodged && point_distance(x, y, px, py) < 12) perfect_hop();
     if (pl != noone && pl.z < 6 && point_distance(x, y, px, py) < 9 && hurt_player(pl, dmg)) {
         instance_destroy();
         exit;
@@ -31,6 +34,7 @@ else {   // wave
         instance_destroy();
         exit;
     }
+    if (!hit_done && !dodged && radius > 0 && pl != noone && pl.z >= 6 && abs(point_distance(x, y, px, py) - radius) < band) perfect_hop();
     if (!hit_done && radius > 0 && pl != noone && pl.z < 6 && abs(point_distance(x, y, px, py) - radius) < band) {
         if (hurt_player(pl, dmg)) hit_done = true;
     }

@@ -20,14 +20,61 @@ if (global.cast_unlocked) {
     }
 }
 
+// ---- dash charges ----
+if (global.dash_unlocked) {
+    for (var i = 0; i < dash_charges_max; i++) {
+        var px = bar_x + i * 22, py = bar_y + bar_height + (global.cast_unlocked ? 30 : 12);
+        draw_set_colour(c_black);
+        draw_rectangle(px - 2, py - 2, px + 16, py + 8, false);
+        draw_set_colour((i < dash_charges) ? make_color_rgb(140, 200, 255) : make_color_rgb(40, 50, 70));
+        draw_rectangle(px, py, px + 14, py + 6, false);
+    }
+}
+// ---- shield ----
+if (shield > 0) {
+    draw_set_colour(make_color_rgb(120, 220, 255));
+    draw_rectangle(bar_x, bar_y - 8, bar_x + bar_width * (shield / 25), bar_y - 4, false);
+}
+// ---- Frenzy combo ----
+if (instance_exists(obj_weapon) && blv(2, "frenzy") > 0 && (obj_weapon.combo > 1 || obj_weapon.cleave_ready)) {
+    draw_set_halign(fa_right);
+    draw_set_colour(obj_weapon.cleave_ready ? make_color_rgb(255, 120, 80) : c_white);
+    var ctxt = obj_weapon.cleave_ready ? "CLEAVE READY" : ("COMBO x" + string(obj_weapon.combo));
+    draw_text_transformed(gw - 30, 110, ctxt, 2, 2, 0);
+    draw_set_halign(fa_left);
+}
+// ---- owned boons (top right) ----
+var by_ = 150;
+draw_set_halign(fa_right);
+for (var i = 0; i < array_length(global.BOON_LIST); i++) {
+    var b = global.BOON_LIST[i];
+    var l = blv(b.side, b.id);
+    if (l > 0) {
+        draw_set_colour(b.col);
+        draw_text(gw - 30, by_, ((b.side == 1) ? "P1 " : "P2 ") + b.name + "  " + string_repeat("I", l));
+        by_ += 18;
+    }
+}
+draw_set_halign(fa_left);
+
 // ---- controls ----
 draw_set_colour(c_white);
 draw_set_alpha(0.75);
-var p1 = "P1  WASD move   Space jump   E kick   R recall weapon";
+var p1 = "P1 ";
+if (global.allow_move) p1 += "  WASD move";
+if (global.allow_jump) p1 += "   Space jump";
+if (global.allow_kick) p1 += "   E kick";
+if (global.allow_recall) p1 += "   R recall weapon";
 if (global.dash_unlocked) p1 += "   Shift dash";
 if (global.cast_unlocked) p1 += "   Q cast";
-draw_text(20, gh - 48, p1);
-draw_text(20, gh - 28, "P2  Arrows move weapon   / attack   . detach / return");
+if (global.stomp_unlocked) p1 += "   E in mid-air: Meteor Fall";
+var p2 = "P2 ";
+if (global.allow_attack) p2 += "  / attack";
+if (global.allow_detach) p2 += "   . detach / return   Arrows move weapon";
+if (!instance_exists(obj_dialogue)) {
+    draw_text(20, gh - 48, p1);
+    draw_text(20, gh - 28, p2);
+}
 draw_set_alpha(1);
 
 // ---- death ----

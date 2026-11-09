@@ -1,6 +1,8 @@
+// a swing hits each enemy once (it can sweep through several)
 if (!dead) {
-    take_damage(other.damage);
-    with (other) instance_destroy();
-    // the weapon's hits charge player 1's cast
-    if (instance_exists(obj_player)) with (obj_player) cast_charge = min(100, cast_charge + 12);
+    var s = other;
+    if (!in_list(s.hits, id)) {
+        array_push(s.hits, id);
+        sword_hit(id, s.damage, s.src);
+    }
 }
