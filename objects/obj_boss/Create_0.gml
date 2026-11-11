@@ -14,6 +14,7 @@ art_faces = 1;                 // art looks right
 image_xscale = 3;
 image_yscale = 3;
 mask_index = spr_mask_wide;    // scaled 3x: a 72x30 box at the feet
+hit_h = 66;                    // hits land anywhere from its feet up to its head, not just at the feet
 
 max_hp = 560;                  // tuned down: with two Reliquaries of boons it should be a medium fight
 hp = max_hp;
@@ -97,7 +98,7 @@ function choose_attack() {
             sprite_index = spr_golem_attack_c;
             image_index = 0;
             image_speed = 0;
-            charge_dir = point_direction(x, bbox_bottom, obj_player.x, obj_player.bbox_bottom);
+            charge_dir = instance_exists(obj_player) ? point_direction(x, bbox_bottom, obj_player.x, obj_player.bbox_bottom) : 270;
             face_player();
         }
         else                begin_attack("spiral", spr_golem_attack_b, [3], 4);
@@ -121,7 +122,11 @@ function die() {
     image_index = 0;
     image_speed = 1;
     var me = id;
-    with (obj_enemy) if (id != me && !dead) take_damage(999);
+    // its summons die with it (call each one's OWN take_damage: inside this method a bare
+    // take_damage() would run the Warden's version on the rat and crash)
+    var minions = [];
+    with (obj_enemy) if (id != me && !dead) array_push(minions, id);
+    for (var i = 0; i < array_length(minions); i++) minions[i].take_damage(999);
     with (obj_projectile) instance_destroy();
     with (obj_game) {
         pending = [];
@@ -154,3 +159,5 @@ function take_damage(_dmg, _crit = false) {
     else if (hp <= 0) die();
 }
 function interrupt() { }       // attacks can't be cancelled; a cast still staggers it (stun)
+
+guarded = false;         // its armor phase already soaks damage; a kick staggers it (every 4 s at most)

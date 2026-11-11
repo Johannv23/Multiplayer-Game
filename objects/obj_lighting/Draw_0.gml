@@ -12,7 +12,11 @@ gpu_set_blendmode(bm_add);
 draw_set_circle_precision(32);
 
 // player: a warm pool around them
-with (obj_player) draw_circle_colour(x - cx, y - cy, 120, make_color_rgb(150, 135, 115), c_black, false);
+with (obj_player) {
+    draw_circle_colour(x - cx, y - cy, 120, make_color_rgb(150, 135, 115), c_black, false);
+    if (state == "ascend") draw_circle_colour(x - cx, y - cy, 150, make_color_rgb(120, 60, 160), c_black, false);
+    if (state == "bond") draw_circle_colour(x - cx, y - cy, 170, make_color_rgb(160, 130, 60), c_black, false);
+}
 
 // crystals and landmarks, with a slow flicker
 for (var i = 0; i < array_length(lights); i++) {
@@ -35,7 +39,7 @@ with (obj_reliquary) {
     var on = active && !spent;
     draw_circle_colour(x + 16 - cx, y + 2 - cy, on ? 130 : 50, on ? make_color_rgb(80, 180, 220) : make_color_rgb(40, 60, 80), c_black, false);
 }
-with (obj_rune) draw_circle_colour(x - cx, y - cy, lit ? 50 : 22, lit ? make_color_rgb(70, 160, 200) : make_color_rgb(30, 50, 70), c_black, false);
+with (obj_rune) draw_circle_colour(x - cx, y - cy, lit ? 56 : 40, lit ? make_color_rgb(70, 160, 200) : make_color_rgb(50, 90, 120), c_black, false);
 with (obj_fire) draw_circle_colour(x - cx, y - cy, 34, make_color_rgb(150, 70, 20), c_black, false);
 with (obj_fx) if (kind == "ring") draw_circle_colour(x - cx, y - cy, rmax, merge_color(col, c_black, 0.4 + 0.6 * t / life), c_black, false);
 

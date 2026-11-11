@@ -1,6 +1,8 @@
 if (paused()) exit;   // dialogue open
 
 if (hit_flash > 0) hit_flash -= 1;
+if (stagger > 0) stagger -= 1;
+if (stagger_cd > 0) stagger_cd -= 1;
 kb_speed = 0;                      // kicks don't push the Warden
 if (stun > 60) stun = 60;          // a cast staggers it for at most 1 s
 depth = -bbox_bottom;

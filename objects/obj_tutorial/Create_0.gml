@@ -20,10 +20,10 @@ steps = [
     ["task", "move"],
     ["say", [
         ["SWORD", "Good. Your legs remember, even if you don't."],
-        ["SWORD", "Their magic crawls along the ground. When it comes for you, jump over it."]
+        ["SWORD", "Their magic crawls along the ground. When a ring comes for you, jump over it."]
     ]],
     ["allow", ["jump"]],
-    ["task", "jump"],
+    ["task", "dodge"],
     ["say", [
         ["SWORD", "Now my turn. You carry me, but I fight on my own."],
         ["HERO",  "A sword that fights on its own?"],
@@ -46,12 +46,13 @@ steps = [
     ["task", "recall"],
     ["say", [
         ["HERO",  "And what am I supposed to do while you do all the fighting?"],
-        ["SWORD", "Kick them. Push them off me, and if one's standing near a ledge... kick it right off."]
+        ["SWORD", "This one carries a shield - I'll just bounce off it. Kick it. Break the guard, and then I cut deep."]
     ]],
     ["allow", ["kick"]],
-    ["spawn", 2],
+    ["spawn", 1, obj_skeleton],
     ["task", "kick"],
     ["say", [
+        ["SWORD", "Kick, then strike. Fight together like that and our bond grows. When it's full, call on it at the same time - you with F, me with UP."],
         ["SWORD", "That's all I can teach you right now. More will come back to you - I'll tell you what I can as we find things."],
         ["HERO",  "Then let's go find them."],
         ["SWORD", "They're here. Get ready!"]
@@ -65,6 +66,8 @@ moved = { w: false, a: false, s: false, d: false };
 jumps = 0;
 was_jumping = false;
 detach_start = false;
+dodges = 0;              // shockwaves cleared in the jump lesson
+wave_t = 0;              // timer for the next practice shockwave
 
 // debug skip (Backspace): jump straight to the end of the tutorial
 function skip() {

@@ -1,4 +1,5 @@
 event_inherited();
+guarded = false;      // no guard
 
 // Rat: weak and quick. Chamber 1 fodder.
 move_speed = 1.1;

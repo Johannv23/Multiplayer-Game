@@ -3,6 +3,6 @@
 
 // which arena this spawn belongs to (index into obj_game.arenas, -1 = none)
 arena = -1;
-for (var i = 0; i < array_length(obj_game.arenas); i++) {
+if (instance_exists(obj_game) && variable_instance_exists(obj_game, "arenas")) for (var i = 0; i < array_length(obj_game.arenas); i++) {
     if (y >= obj_game.arenas[i].top && y < obj_game.arenas[i].bottom) arena = i;
 }

@@ -35,7 +35,11 @@ else {   // wave
         exit;
     }
     if (!hit_done && !dodged && radius > 0 && pl != noone && pl.z >= 6 && abs(point_distance(x, y, px, py) - radius) < band) perfect_hop();
-    if (!hit_done && radius > 0 && pl != noone && pl.z < 6 && abs(point_distance(x, y, px, py) - radius) < band) {
+    if (!hit_done && dmg <= 0 && radius > 0 && pl != noone && pl.z < 6 && abs(point_distance(x, y, px, py) - radius) < band) {
+        hit_done = true;                                   // tutorial practice ring: no damage, just a nudge
+        dmg_number(pl.x, pl.y - 30, "JUMP!", -1);
+    }
+    if (!hit_done && dmg > 0 && radius > 0 && pl != noone && pl.z < 6 && abs(point_distance(x, y, px, py) - radius) < band) {
         if (hurt_player(pl, dmg)) hit_done = true;
     }
 }

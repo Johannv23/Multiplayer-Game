@@ -88,8 +88,18 @@ cannon_lv   = 0;
 // ---- cast: Soul Mark (restored in the second Reliquary): charges when the weapon lands hits ----
 cast_charge = 0;        // 0-100
 
+asc_t = 0;              // Soul Ascension timer
+asc_len = 60;           // frames spent rising and spinning before the nova
+bond_t = 0;             // Bond Strike timer
+bond1_t = 0;            // frames since P1 pressed Bond (both must press within half a second)
+bond2_t = 0;            // frames since P2 pressed Bond (set by obj_weapon)
+
 // ---- Meteor Fall (restored in the third Reliquary): E in mid-air ----
 stomp_hits = 0;         // the shrine lesson counts these
+heavy_lv = 0;           // Heavy Boots level
+bond_hint_t = 0;        // the first full Bond meter gets a big banner
+drink_t = 0;            // Fury Draught: > 0 while the potion is drawn at the hero's lips
+whet_mark = -1;         // Whetstone Step: the dash that last sharpened the sword
 
 // stats that come from boons; called again whenever a boon is chosen
 function apply_boons() {
@@ -104,6 +114,9 @@ function apply_boons() {
     kick_cd_max = round(30 * (1 - 0.25 * cannon_lv));
     kick_damage = 3 + 3 * cannon_lv;
     dash_charges_max = 1 + blv(1, "phantom");
+    max_speed = 1.5 * (1 + 0.12 * blv(1, "swift"));            // Swift Feet
+    heavy_lv = blv(1, "heavy");                                 // Heavy Boots
+    kick_force *= 1 + 0.25 * heavy_lv;
     dash_charges = dash_charges_max;
     last_stand = (ih >= 3);
 }
@@ -124,15 +137,19 @@ function start_slash() {
     slash_hit = false;
     set_anim(slash_sprites[slash_dir]);   // ends in Animation End
     // Frenzy: a running combo speeds the swing up
-    if (instance_exists(obj_weapon)) image_speed = 1 + 0.05 * min(obj_weapon.combo, 10) * blv(2, "frenzy");
+    // a quicker swing than before (1.6x); a Frenzy combo speeds it up further
+    image_speed = 1.6 * (1 + 0.15 * blv(2, "honed"));                    // Honed Grip
+    if (instance_exists(obj_weapon)) {
+        image_speed *= 1 + 0.05 * min(obj_weapon.combo, 10) * blv(2, "frenzy");
+        if (obj_weapon.fury_t > 0) image_speed *= 1.3;                  // Fury Draught
+    }
 
     slash_sound_id = audio_play_sound(slash_sound, 1, false);
     audio_sound_set_track_position(slash_sound_id, 0);
 
-    var hit_x = x + ((slash_dir == 0 || slash_dir == 3) ? 20 : -20);
-    var hit_y = y + ((slash_dir <= 1) ? -20 : 20);
-    var sd = slash_damage;
-    with (obj_weapon) make_slash(hit_x, hit_y, sd);
+    // player 1 aims (facing, 8 directions), player 2 swings: one sweeping arc in front of the hero
+    var sd = slash_damage, ang = facing * 45, ax = x, ay = y + 6;
+    with (obj_weapon) make_slash(ax, ay, sd, ang, 34, 80);
 }
 
 function start_dash(_ix, _iy, _len) {
@@ -166,7 +183,7 @@ function land_stomp() {
     var r = 50 * (1 + 0.2 * m), dmg = (m >= 3) ? 24 : 12;
     var cx = x, cy = bbox_bottom - 6, n = 0;
     with (obj_enemy) {
-        if (!dead && point_distance(x, bbox_bottom - 5, cx, cy) < r) {
+        if (!dead && point_distance(x, hit_y(id, cy), cx, cy) < r) {
             take_damage(dmg, false);
             kb_dir = point_direction(cx, cy, x, bbox_bottom - 5);
             kb_speed = max(kb_speed, 4);
@@ -192,38 +209,142 @@ function land_stomp() {
 
 function do_kick() {
     kick_cd = kick_cd_max;
-    kick_timer = 8;
+    kick_timer = 10;
     kick_dir = facing * 45;
+    // lunge into it, with a golden crescent swoosh
+    hsp += lengthdir_x(2.5, kick_dir);
+    vsp += lengthdir_y(2.5, kick_dir);
+    fx_arc(x, bbox_bottom - 4, kick_dir, kick_range + 6, 70, make_color_rgb(255, 215, 120));
+    fx("smoke", x, bbox_bottom, 4);
     var kx = x, ky = bbox_bottom - 6, kdir = kick_dir, hit = false;
     with (obj_enemy) {
-        var ex = x, ey = bbox_bottom - 5;
-        if (!dead && point_distance(kx, ky, ex, ey) < other.kick_range
-            && abs(angle_difference(point_direction(kx, ky, ex, ey), kdir)) < 75) {
+        var ex = x, ey = hit_y(id, ky);
+        var kd_ = point_distance(kx, ky, ex, ey);
+        if (!dead && kd_ < other.kick_range
+            && (kd_ < 10 || abs(angle_difference(point_direction(kx, ky, ex, ey), kdir)) < 75)) {
             interrupt();
             other.kick_landed = true;
             hit = true;
-            kb_dir = point_direction(kx, ky, ex, ey);
-            kb_speed = other.kick_force;
-            missile = other.cannon_lv;              // Cannon Kick: now it's a projectile
-            missile_mark = noone;
-            stun = max(stun, 30);
+            if (object_index == obj_boss) {           // the Warden doesn't budge, but it can be staggered
+                if (stagger_cd <= 0) {
+                    stagger = 90;
+                    stagger_cd = 240;
+                    dmg_number(ex, ey - 70, "STAGGER", true);
+                    fx_ring(ex, ey, 40, make_color_rgb(255, 210, 80));
+                }
+            } else {
+                if (guarded && stagger <= 0) {        // breaking a guard gets its own flourish
+                    dmg_number(ex, ey - 30, "GUARD BREAK", true);
+                    fx_ring(ex, ey, 24, make_color_rgb(255, 210, 80));
+                }
+                kb_dir = point_direction(kx, ky, ex, ey);
+                kb_speed = other.kick_force;
+                missile = 1 + other.cannon_lv;        // kicked enemies bowl into others
+                missile_mark = noone;
+                stun = max(stun, 30);
+                stagger = round(stagger_max * ((other.heavy_lv >= 3) ? 2 : 1 + 0.25 * other.heavy_lv));
+            }
             take_damage(other.kick_damage, false);
+            add_bond(8);
             fx("spark", ex, ey - 6, 10);
         }
     }
-    sx = 1.2;
-    sy = 0.85;
-    if (hit) { hitstop(3); shake(2); }
+    sx = 1.35;
+    sy = 0.75;
+    if (hit) {                                   // the impact: a freeze, a thump, a burst
+        hitstop(4);
+        shake(3);
+        fx("spark", kx + lengthdir_x(18, kdir), ky + lengthdir_y(18, kdir), 12);
+        fx_ring(kx + lengthdir_x(18, kdir), ky + lengthdir_y(18, kdir), 18, make_color_rgb(255, 230, 160));
+    }
 }
 
+// ---- Soul Ascension (Q, when the soul mark is full) ----
+// The hero rises, spins, eyes blazing, untouchable for a second - then a soul nova roots,
+// staggers and damages everything around him.
 function do_cast() {
     cast_charge = 0;
-    // lands 110px ahead, or on the nearest enemy within 180px (aim assist)
-    var tx = x + lengthdir_x(110, facing * 45), ty = y + lengthdir_y(110, facing * 45);
-    var best = noone, bd = 180;
-    with (obj_enemy) if (!dead && point_distance(x, y, other.x, other.y) < bd) { best = id; bd = point_distance(x, y, other.x, other.y); }
-    if (best != noone) { tx = best.x; ty = best.bbox_bottom - 5; }
-    instance_create_layer(x, bbox_bottom - 6, "Instances", obj_cast, { tx: tx, ty: ty, rscale: 1 + 0.25 * blv(1, "soulbloom") });
-    sx = 0.85;
-    sy = 1.2;
+    state = "ascend";
+    asc_t = 0;
+    hsp = 0;
+    vsp = 0;
+    fx("soul", x, y, 20);
+    flash(make_color_rgb(200, 120, 255), 0.15);
+}
+function soul_nova() {
+    var r = 80 * (1 + 0.25 * blv(1, "soulbloom"));
+    var cx = x, cy = bbox_bottom - 6;
+    with (obj_enemy) {
+        if (!dead && point_distance(x, hit_y(id, cy), cx, cy) < r) {
+            interrupt();
+            stagger = max(stagger, 120);
+            if (object_index != obj_boss) {
+                stun = max(stun, 100);
+                root_t = 100;
+                root_bloom = (blv(1, "soulbloom") >= 3);
+                kb_dir = point_direction(cx, cy, x, bbox_bottom - 5);
+                kb_speed = 3;
+            } else stun = max(stun, 45);
+            take_damage(18, false);
+        }
+    }
+    fx_ring(cx, cy, r, make_color_rgb(200, 120, 255));
+    fx_ring(cx, cy, r * 0.6, make_color_rgb(255, 180, 255));
+    fx("soul", cx, cy, 40);
+    flash(make_color_rgb(200, 120, 255), 0.35);
+    slowmo(18);
+    shake(7);
+    hitstop(4);
+}
+
+// ---- Bond Strike: both players press their Bond key (P1 F, P2 UP) when the meter is full ----
+function start_bond() {
+    global.bond = 0;
+    state = "bond";
+    bond_t = 0;
+    hsp = 0;
+    vsp = 0;
+    bond1_t = 0;
+    bond2_t = 0;
+    with (obj_weapon) { state = "bond"; orbit_ang = 0; }
+    flash(make_color_rgb(255, 230, 150), 0.3);
+    fx("spark", x, y, 20);
+    shake(3);
+}
+function bond_slam() {
+    var r = 120, cx = x, cy = bbox_bottom - 6;
+    with (obj_enemy) {
+        if (!dead && point_distance(x, hit_y(id, cy), cx, cy) < r) {
+            stagger = max(stagger, 150);
+            if (object_index != obj_boss) {
+                kb_dir = point_direction(cx, cy, x, bbox_bottom - 5);
+                kb_speed = 5;
+                stun = max(stun, 40);
+            }
+            take_damage(35, true);
+        }
+    }
+    fx_ring(cx, cy, r, make_color_rgb(255, 215, 120));
+    fx_ring(cx, cy, r * 0.7, c_white);
+    fx_ring(cx, cy, r * 0.4, make_color_rgb(150, 230, 255));
+    fx("spark", cx, cy, 40);
+    fx("ember", cx, cy, 30);
+    fx("soul", cx, cy, 20);
+    flash(c_white, 0.7);
+    slowmo(35);
+    shake(10);
+    hitstop(6);
+}
+
+// ---- Fury Draught: recalling the sword makes the hero drink - and the SWORD gets the fury ----
+function drink_fury() {
+    var lv = blv(1, "fury");
+    if (lv <= 0) return;
+    drink_t = 30;
+    with (obj_weapon) fury_t = 60 * (2 + 2 * lv);                // 4 / 6 / 8 seconds
+    dmg_number(x, y - 34, "FURY!", true);
+    fx("ember", x, y - 14, 14);
+    fx_ring(x, bbox_bottom - 6, 26, make_color_rgb(255, 80, 40));
+    flash(make_color_rgb(255, 60, 30), 0.18);
+    shake(2);
 }

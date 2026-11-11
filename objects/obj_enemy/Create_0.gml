@@ -78,10 +78,12 @@ function take_damage(_dmg, _crit = false) {
         image_index = 0;
         image_speed = 1;
         // death burst
-        fx("soul", x, bbox_bottom - 10, 10);
-        fx("shard", x, bbox_bottom - 8, 6);
-        shake(2);
-        hitstop(2);
+        fx("soul", x, bbox_bottom - 10, 16);
+        fx("shard", x, bbox_bottom - 8, 10);
+        fx("spark", x, bbox_bottom - 10, 8);
+        fx_ring(x, bbox_bottom - 6, 22, make_color_rgb(220, 190, 255));
+        shake(3);
+        hitstop(3);
         if (random(1) < drop_chance) instance_create_layer(x, bbox_bottom - 4, "Instances", obj_pickup);
     }
 }
@@ -128,4 +130,21 @@ missile = 0;             // Cannon Kick level while flying from a kick
 missile_mark = noone;    // last flying enemy that hit us
 phantom_mark = -1;       // last Phantom Step dash that sliced us
 orbit_cd = 0;            // Whirling Return hit cooldown
+hit_h = 0;               // how tall the body is above the feet for hits (0 = feet only; the Warden is tall)
+lash_cd = 0;             // Tether Lash burn cooldown
+skewer_cd = 0;           // Skewer cooldown
 show_bar = true;
+
+// ---- guard & stagger ----
+// A GUARDED enemy blocks most sword damage. A kick STAGGERS it: guard down, and every enemy
+// takes 1.5x sword damage while staggered. So the hero sets enemies up and the sword finishes them.
+guarded = true;          // the golem is guarded; children set their own
+stagger = 0;             // frames left
+stagger_max = 120;
+stagger_cd = 0;          // the boss can only be staggered every few seconds
+
+// ---- pathfinding around walls (obj_game builds the grid) ----
+mypath = path_add();
+path_t = irandom(20);    // re-plan timer (staggered so enemies don't all plan on one frame)
+path_i = 1;
+path_ok = false;

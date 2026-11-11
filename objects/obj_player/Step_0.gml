@@ -7,6 +7,7 @@ var kick_pressed   = keyboard_check_pressed(ord("E"));
 var recall_pressed = keyboard_check_pressed(ord("R"));
 var dash_pressed   = keyboard_check_pressed(vk_shift);
 var cast_pressed   = keyboard_check_pressed(ord("Q"));
+var bond_pressed   = keyboard_check_pressed(ord("F")) && global.allow_bond;
 
 // ---- tutorial locks ----
 if (!global.allow_move) { ix = 0; iy = 0; }
@@ -15,7 +16,7 @@ kick_pressed   = kick_pressed && global.allow_kick;
 recall_pressed = recall_pressed && global.allow_recall;
 
 // ---- hit-stop: hold this exact frame ----
-if (global.hitstop > 0) exit;
+if (global.hitstop_t > 0) exit;
 
 // ---- dialogue open: stand still ----
 if (global.freeze) {
@@ -26,6 +27,11 @@ if (global.freeze) {
 }
 
 if (invuln > 0) invuln -= 1;
+if (bond1_t > 0) bond1_t -= 1;
+if (bond2_t > 0) bond2_t -= 1;
+if (bond_pressed) bond1_t = 30;
+if (global.bond >= 100 && !global.bond_hint_seen) { global.bond_hint_seen = true; bond_hint_t = 240; }
+if (bond_hint_t > 0) bond_hint_t -= 1;
 if (hurt_flash > 0) hurt_flash -= 1;
 if (kick_cd > 0) kick_cd -= 1;
 if (kick_timer > 0) kick_timer -= 1;
@@ -115,12 +121,51 @@ else if (state == "jump") {
     }
 }
 else if (state == "slash") {
-    hsp = approach(hsp, 0, slash_fric);
-    vsp = approach(vsp, 0, slash_fric);
+    // keep walking (slowly) while the sword swings; the facing - the aim - stays put
+    hsp = approach(hsp, ix * max_speed * 0.5, (ix != 0) ? accel : slash_fric);
+    vsp = approach(vsp, iy * max_speed * 0.5, (iy != 0) ? accel : slash_fric);
+}
+
+// ---- Bond Strike: both keys within half a second, meter full ----
+if (bond1_t > 0 && bond2_t > 0 && global.bond >= 100 && (state == "move" || state == "jump" || state == "slash")) start_bond();
+
+// ---- Soul Ascension: rise, spin, then the nova ----
+if (state == "ascend") {
+    asc_t += 1;
+    hsp = 0;
+    vsp = 0;
+    invuln = max(invuln, 2);
+    z = lerp(z, 22, 0.15);
+    if (asc_t mod 2 == 0) {
+        var sa = asc_t * 18;
+        fx("soul", x + lengthdir_x(18, sa), y - z + 6 + lengthdir_y(8, sa), 1);
+    }
+    if (asc_t == asc_len) soul_nova();
+    if (asc_t >= asc_len + 8) { state = "jump"; zspd = 0; jump_timer = air_time * 0.5; }   // drift back down
+}
+
+// ---- Bond Strike: rise while the sword whirls, then slam ----
+if (state == "bond") {
+    bond_t += 1;
+    hsp = 0;
+    vsp = 0;
+    invuln = max(invuln, 2);
+    z = lerp(z, 26, 0.12);
+    if (bond_t == 50) bond_slam();
+    if (bond_t >= 62) {
+        state = "jump";
+        zspd = 0;
+        jump_timer = air_time * 0.5;
+        with (obj_weapon) state = "held";
+    }
 }
 
 // ---- recall: yank the weapon back, hurting everything on its way ----
-if (recall_pressed && instance_exists(obj_weapon)) with (obj_weapon) start_recall(true);
+if (recall_pressed && instance_exists(obj_weapon) && obj_weapon.state == "out") {
+    with (obj_weapon) start_recall(true);
+    drink_fury();
+}
+if (drink_t > 0) drink_t -= 1;
 
 // ---- dash: fixed burst, invulnerable, leaves afterimages ----
 if (state == "dash") {
@@ -137,12 +182,27 @@ if (state == "dash") {
     if (ph > 0) {
         var did = dash_id, pdmg = 6 + 6 * ph, mx = x, my = bbox_bottom - 6;
         with (obj_enemy) {
-            if (!dead && phantom_mark != did && point_distance(x, bbox_bottom - 5, mx, my) < 18) {
+            if (!dead && phantom_mark != did && point_distance(x, hit_y(id, my), mx, my) < 18) {
                 phantom_mark = did;
                 take_damage(pdmg, false);
                 fx("soul", x, bbox_bottom - 10, 8);
                 hitstop(2);
             }
+        }
+    }
+    // Whetstone Step: dash through the floating sword to sharpen it
+    var wl = blv(1, "whetstone");
+    if (wl > 0 && whet_mark != dash_id && instance_exists(obj_weapon)) {
+        var w = obj_weapon;
+        if (w.state != "held" && w.state != "bond" && point_distance(x, y, w.x, w.y) < 18) {
+            whet_mark = dash_id;
+            w.whet = 2 + wl;
+            dmg_number(w.x, w.y - 30, "SHARPENED x" + string(w.whet), true);
+            fx("zap", w.x, w.y - w.hover, 16);
+            fx_ring(w.x, w.y, 22, make_color_rgb(140, 220, 255));
+            hitstop(3);
+            shake(2);
+            if (wl >= 3) explode(w.x, w.y, 40, 12, make_color_rgb(140, 220, 255));
         }
     }
     dash_timer -= 1;

@@ -10,6 +10,8 @@ draw_text_transformed(gw / 2, 40, "THE RELIQUARY'S POWER", 3, 3, 0);
 draw_set_color(c_white);
 draw_text_transformed(gw / 4, 100, "P1  -  BODY", 2, 2, 0);
 draw_text_transformed(3 * gw / 4, 100, "P2  -  BLADE", 2, 2, 0);
+draw_set_color(make_color_rgb(170, 175, 190));
+draw_text(gw / 2, 76, "FLAIR = a new move     BOND = helps your partner     STAT = base stats");
 
 var cw = 190, chh = 300, gap = 12;
 for (var s = 0; s < 2; s++) {
@@ -40,9 +42,17 @@ for (var s = 0; s < 2; s++) {
         draw_text_ext_transformed(x1 + cw / 2, y1 + 20, b.name, 14, (cw - 16) / 1.5, 1.5, 1.5, 0);
         draw_set_color(c_white);
         var lvtxt = (lv_now == 0) ? "NEW" : ("Lv " + string(lv_now) + "  >  " + string(lv_now + 1));
+        if (lv_now >= 3) lvtxt = "MAX";                       // just taken its last level (the card stays on screen)
         draw_text(x1 + cw / 2, y1 + 82, lvtxt);
         draw_set_color(make_color_rgb(210, 215, 230));
-        draw_text_ext(x1 + cw / 2, y1 + 112, b.desc[lv_now], 18, cw - 20);
+        draw_text_ext(x1 + cw / 2, y1 + 112, b.desc[min(lv_now, 2)], 18, cw - 20);
+        // category tag: FLAIR (a new move) / BOND (helps your partner) / STAT (base numbers)
+        var ctag = "STAT", ccol = make_color_rgb(170, 175, 190);
+        if (b.cat == "flair") { ctag = "FLAIR"; ccol = make_color_rgb(255, 170, 80); }
+        if (b.cat == "bond")  { ctag = "BOND";  ccol = make_color_rgb(255, 215, 120); }
+        draw_set_color(ccol);
+        draw_rectangle(x1 + cw / 2 - 34, y1 + chh - 54, x1 + cw / 2 + 34, y1 + chh - 36, true);
+        draw_text(x1 + cw / 2, y1 + chh - 52, ctag);
         // pips for the 3 levels
         for (var k = 0; k < 3; k++) {
             var px = x1 + cw / 2 - 30 + k * 22;
@@ -56,7 +66,7 @@ for (var s = 0; s < 2; s++) {
         draw_set_alpha(1);
     }
     draw_set_color(make_color_rgb(180, 180, 190));
-    var hint = (s == 0) ? "A / D to pick,  SPACE to take it" : "LEFT / RIGHT to pick,  /  to take it";
+    var hint = (s == 0) ? "A / D to pick,  SPACE to take it" : "J / L to pick,  LEFT ARROW to take it";
     if (n == 0) hint = "Nothing left to learn here";
     if (!chosen[s] || n == 0) draw_text_transformed(half_x + gw / 4, 140 + chh + 50, hint, 1.5, 1.5, 0);
 }

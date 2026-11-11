@@ -7,3 +7,5 @@ col = c_white;
 x2 = x;
 y2 = y;
 pts = [];
+dir = 0;
+half = 60;

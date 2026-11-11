@@ -27,9 +27,9 @@ if (!chosen[0]) {
 // player 2
 if (!chosen[1]) {
     var n2 = array_length(offers[1]);
-    if (keyboard_check_pressed(vk_left)) sel[1] = (sel[1] + n2 - 1) mod n2;
-    if (keyboard_check_pressed(vk_right)) sel[1] = (sel[1] + 1) mod n2;
-    if (keyboard_check_pressed(191) || keyboard_check_pressed(vk_numpad0)) {
+    if (keyboard_check_pressed(ord("J"))) sel[1] = (sel[1] + n2 - 1) mod n2;
+    if (keyboard_check_pressed(ord("L"))) sel[1] = (sel[1] + 1) mod n2;
+    if (p2_attack_pressed()) {
         chosen[1] = true;
         grant_boon(2, offers[1][sel[1]].id);
         flash(offers[1][sel[1]].col, 0.25);

@@ -28,7 +28,8 @@ switch (s[0]) {
 
     case "spawn":
         var list = [];
-        repeat (s[1]) array_push(list, obj_rat);
+        var kind_ = (array_length(s) > 2) ? s[2] : obj_rat;
+        repeat (s[1]) array_push(list, kind_);
         with (obj_game) start_wave(list);
         spawned = true;
         step += 1;
@@ -50,10 +51,18 @@ switch (s[0]) {
                 if (keyboard_check(ord("D"))) moved.d = true;
                 done = moved.w && moved.a && moved.s && moved.d;
                 break;
-            case "jump":
-                if (p.state == "jump" && !was_jumping) jumps += 1;
-                was_jumping = (p.state == "jump");
-                done = (jumps >= 2 && p.state != "jump");
+            case "dodge":
+                // a harmless practice ring rolls out near the hero every 2 seconds; clear two of them
+                wave_t -= 1;
+                if (wave_t <= 0 && !instance_exists(obj_projectile)) {
+                    wave_t = 120;
+                    var a = irandom(359);
+                    var wx = p.x + lengthdir_x(60, a), wy = p.bbox_bottom - 6 + lengthdir_y(40, a);
+                    instance_create_depth(wx, wy, -15001, obj_projectile, { kind: "wave", dir: 0, spd: 1.6, dmg: 0, col: make_color_rgb(255, 120, 200) });
+                    fx_ring(wx, wy, 14, make_color_rgb(255, 120, 200));
+                }
+                with (obj_projectile) if (dodged && !variable_instance_exists(id, "counted")) { counted = true; other.dodges += 1; }
+                done = (dodges >= 2 && p.state != "jump");
                 break;
             case "attack":
                 done = spawned && no_enemies;

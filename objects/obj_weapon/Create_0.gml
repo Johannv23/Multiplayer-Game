@@ -28,16 +28,16 @@ combo_t = 0;
 cleave_ready = false;
 depth = -9000;               // above props, still lit by the lighting overlay
 
-// P2 keys: / and . (US layout keycodes 191 / 190), or numpad 0 / numpad .
-function p2_attack() { return keyboard_check_pressed(191) || keyboard_check_pressed(vk_numpad0); }
-function p2_detach() { return keyboard_check_pressed(190) || keyboard_check_pressed(vk_decimal); }
+// P2 keys: I J K L fly the sword, LEFT = attack, RIGHT = fly out / return, UP = Bond (see scr_utility)
+function p2_attack() { return p2_attack_pressed(); }
+function p2_detach() { return p2_detach_pressed(); }
 
 function apply_boons() {
     var l = blv(2, "leash");
     tether = 90 + 30 * l;
     var mults = [0.6, 0.75, 0.9, 1.05];
     detached_mult = mults[l];
-    swing_cd_max = round(20 * (1 - 0.15 * l));
+    swing_cd_max = round(20 * (1 - 0.15 * l) / (1 + 0.15 * blv(2, "honed")));   // Long Leash, Honed Grip
     recall_damage = 15 + 10 * blv(2, "orbit");
 }
 apply_boons();
@@ -50,24 +50,32 @@ function start_recall(_hurts) {
 }
 
 // every swing (held or detached) makes its hitbox here: Keen Edge size, Frenzy's CLEAVE
-function make_slash(_cx, _cy, _dmg) {
-    var k = 1 + 0.15 * blv(2, "edge");
-    var dmg = _dmg;
-    if (cleave_ready) {
+function make_slash(_cx, _cy, _dmg, _dir, _r, _half) {
+    var k = 1 + 0.15 * blv(2, "edge");                        // Keen Edge: bigger swings
+    var dmg = _dmg, half = _half;
+    var col = (fury_t > 0) ? make_color_rgb(255, 120, 60) : make_color_rgb(220, 235, 255);
+    if (cleave_ready) {                                        // Frenzy: CLEAVE
         cleave_ready = false;
         k *= 2.2;
         dmg *= 3;
+        half = max(half, 120);
+        col = make_color_rgb(255, 140, 90);
         shake(6);
         hitstop(5);
         flash(make_color_rgb(255, 200, 150), 0.2);
         fx_ring(_cx, _cy, 44, make_color_rgb(255, 120, 80));
         fx("spark", _cx, _cy, 24);
     }
-    var half = sprite_get_width(slash_hitbox) * k / 2;
-    var s = instance_create_layer(_cx - half, _cy - half, "Instances", obj_slash);
+    if (fury_t > 0 && blv(1, "fury") >= 3)                     // Fury Lv3: the swing sets the ground alight
+        instance_create_layer(_cx + lengthdir_x(_r * 0.7, _dir), _cy + lengthdir_y(_r * 0.5, _dir), "Instances", obj_fire, { lv: 1 });
+    var s = instance_create_depth(_cx, _cy, -10000, obj_slash);
     s.damage = dmg;
-    s.image_xscale = k;
-    s.image_yscale = k;
+    s.cx = _cx;
+    s.cy = _cy;
+    s.dir = _dir;
+    s.r = _r * k;
+    s.half = half;
+    s.col = col;
     return s;
 }
 
@@ -84,3 +92,6 @@ function add_combo() {
         fx("ember", x, y - hover, 12);
     }
 }
+
+fury_t = 0;          // Fury Draught: frames of FURY left
+whet = 0;            // Whetstone Step: sharpened hits left

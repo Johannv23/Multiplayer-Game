@@ -57,6 +57,35 @@ for (var i = 0; i < array_length(global.BOON_LIST); i++) {
 }
 draw_set_halign(fa_left);
 
+// ---- Bond meter (bottom centre) ----
+if (global.allow_bond) {
+    var mw = 260, mx_ = gw / 2 - mw / 2, my_ = gh - 86;
+    var full = (global.bond >= 100);
+    draw_set_colour(c_black);
+    draw_rectangle(mx_ - 3, my_ - 3, mx_ + mw + 3, my_ + 11, false);
+    draw_set_colour(full ? merge_color(make_color_rgb(255, 215, 120), c_white, 0.5 + 0.5 * sin(current_time / 100)) : make_color_rgb(180, 140, 60));
+    draw_rectangle(mx_, my_, mx_ + mw * (global.bond / 100), my_ + 8, false);
+    draw_set_halign(fa_center);
+    draw_set_colour(c_white);
+    var bt = full ? "BOND READY - P1 F + P2 UP together" : "BOND";
+    if (full && bond1_t > 0) bt = "P1 READY - P2 press UP!";
+    if (full && bond2_t > 0) bt = "P2 READY - P1 press F!";
+    draw_text(gw / 2, my_ - 20, bt);
+    draw_set_halign(fa_left);
+}
+
+if (bond_hint_t > 0) {
+    draw_set_halign(fa_center);
+    draw_set_alpha(min(1, bond_hint_t / 30));
+    draw_set_colour(make_color_rgb(255, 215, 120));
+    var sc = 2 + 0.1 * sin(current_time / 80);
+    draw_text_transformed(gw / 2, gh / 2 - 120, "BOND READY!", sc, sc, 0);
+    draw_set_colour(c_white);
+    draw_text_transformed(gw / 2, gh / 2 - 84, "P1 F  +  P2 UP  at the same time", 1.5, 1.5, 0);
+    draw_set_alpha(1);
+    draw_set_halign(fa_left);
+}
+
 // ---- controls ----
 draw_set_colour(c_white);
 draw_set_alpha(0.75);
@@ -66,11 +95,13 @@ if (global.allow_jump) p1 += "   Space jump";
 if (global.allow_kick) p1 += "   E kick";
 if (global.allow_recall) p1 += "   R recall weapon";
 if (global.dash_unlocked) p1 += "   Shift dash";
-if (global.cast_unlocked) p1 += "   Q cast";
+if (global.cast_unlocked) p1 += "   Q soul ascension";
+if (global.allow_bond) p1 += "   F bond";
 if (global.stomp_unlocked) p1 += "   E in mid-air: Meteor Fall";
 var p2 = "P2 ";
-if (global.allow_attack) p2 += "  / attack";
-if (global.allow_detach) p2 += "   . detach / return   Arrows move weapon";
+if (global.allow_attack) p2 += "  LEFT attack";
+if (global.allow_detach) p2 += "   RIGHT fly out / return   I J K L move sword";
+if (global.allow_bond) p2 += "   UP bond";
 if (!instance_exists(obj_dialogue)) {
     draw_text(20, gh - 48, p1);
     draw_text(20, gh - 28, p2);

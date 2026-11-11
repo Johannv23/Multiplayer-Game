@@ -1,4 +1,5 @@
 event_inherited();
+guarded = true;      // blocks sword hits until kicked
 
 // Different enemy stats
 move_speed = 1.2;

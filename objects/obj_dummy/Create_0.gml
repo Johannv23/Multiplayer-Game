@@ -1,5 +1,6 @@
 // Training sentinel inside a Reliquary: stands still, never attacks, can't die. Rooted / hit for the lessons.
 event_inherited();
+guarded = false;      // no guard
 idle_sprite = spr_golem_idle_a;
 walk_sprite = spr_golem_idle_a;
 attack_sprite = spr_golem_idle_a;

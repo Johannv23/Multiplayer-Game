@@ -6,6 +6,7 @@ if (attack_sound != -1 && (!audio_is_playing(attack_sound) || audio_sound_get_tr
 }
 
 if (hit_flash > 0) hit_flash -= 1;
+if (stagger > 0) stagger -= 1;
 
 // ---- falling into the void (kicked off an edge) ----
 if (falling) {
@@ -27,18 +28,19 @@ if (kb_speed > 0) {
 
     // Cannon Kick: a kicked enemy becomes a missile that bowls over the others
     if (missile > 0 && kb_speed > 1.5) {
-        var me = id, md = 8 * missile, kd = kb_dir;
+        var me = id, md = 4 + 8 * (missile - 1), kd = kb_dir;
         with (obj_enemy) {
             if (id != me && !dead && missile_mark != me && point_distance(x, bbox_bottom - 5, me.x, me.bbox_bottom - 5) < 18) {
                 missile_mark = me;
                 take_damage(md, false);
+                stagger = max(stagger, 60);          // bowled-over enemies are staggered too
                 kb_dir = kd;
                 kb_speed = max(kb_speed, 3);
                 fx("spark", x, bbox_bottom - 10, 8);
                 shake(2);
             }
         }
-        if (hit_wall && missile >= 2) {         // Lv2: they explode on impact
+        if (hit_wall && missile >= 3) {         // Cannon Kick Lv2: they explode on impact
             explode(x, bbox_bottom - 5, 34, 6 * missile, make_color_rgb(255, 170, 60));
             kb_speed = 0;
         }
@@ -94,20 +96,36 @@ if (!dead && instance_exists(obj_player)) {
                 image_index = 0;
             }
 
-			var dir = point_direction(x, y, player.x, player.y);
-
-			var move_x = lengthdir_x(move_speed, dir);
-			var move_y = lengthdir_y(move_speed, dir);
-
-			// face the way we walk
-			if (art_faces != 0 && move_x != 0) image_xscale = art_scale * art_faces * sign(move_x);
-
-            if (!place_meeting(x + move_x, y, obj_wall)) {
-                x += move_x;
+            // ---- follow a path around walls, re-planned about twice a second ----
+            var fx_ = x, fy_ = bbox_bottom - 4;                  // our feet
+            var tx = player.x, ty = player.bbox_bottom - 4;
+            path_t -= 1;
+            if (path_t <= 0 && instance_exists(obj_game) && obj_game.grid != -1) {
+                path_t = 25 + irandom(10);
+                path_ok = mp_grid_path(obj_game.grid, mypath, fx_, fy_, tx, ty, true);
+                path_i = 1;
             }
+            if (path_ok && path_i < path_get_number(mypath)) {
+                tx = path_get_point_x(mypath, path_i);
+                ty = path_get_point_y(mypath, path_i);
+                if (point_distance(fx_, fy_, tx, ty) < 6) path_i += 1;
+            }
+            var dir = point_direction(fx_, fy_, tx, ty);
+            var move_x = lengthdir_x(move_speed, dir);
+            var move_y = lengthdir_y(move_speed, dir);
 
-            if (!place_meeting(x, y + move_y, obj_wall)) {
-                y += move_y;
+            // face the way we walk
+            if (art_faces != 0 && move_x != 0) image_xscale = art_scale * art_faces * sign(move_x);
+
+            var moved = false;
+            if (!place_meeting(x + move_x, y, obj_wall)) { x += move_x; moved = true; }
+            if (!place_meeting(x, y + move_y, obj_wall)) { y += move_y; moved = true; }
+            // wedged on a corner: slide along the wall instead of standing still
+            if (!moved) {
+                for (var k = -1; k <= 1; k += 2) {
+                    var sxm = lengthdir_x(move_speed, dir + 90 * k), sym = lengthdir_y(move_speed, dir + 90 * k);
+                    if (!place_meeting(x + sxm, y + sym, obj_wall)) { x += sxm; y += sym; path_t = 0; break; }
+                }
             }
         }
         else {

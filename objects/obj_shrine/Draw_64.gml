@@ -10,7 +10,7 @@ switch (s[1]) {
         txt = "P1: Dash (Shift) through the runes  " + string(lit_n) + " / " + string(all_n);
         break;
     case "root":
-        txt = (obj_player.cast_charge < 100) ? "P2: Strike the sentinels to charge the soul mark" : "P1: Press Q to throw the soul mark";
+        txt = (obj_player.cast_charge < 100) ? "P2: Strike the sentinels to charge the soul mark" : "P1: Stand near them, press Q to ascend";
         break;
     case "stomp":
         txt = "P1: Jump (Space), then E in mid-air near a sentinel";

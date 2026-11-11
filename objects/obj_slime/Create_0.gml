@@ -1,4 +1,5 @@
 event_inherited();
+guarded = false;      // no guard
 
 // Slime: slow, tanky, hits hard.
 move_speed = 0.6;

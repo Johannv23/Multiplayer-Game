@@ -45,6 +45,7 @@ function reset_run() {
     global.dash_unlocked = false;
     global.cast_unlocked = false;
     global.player_hp = -1;
+    global.bond = 0;
 }
 
 // every hit on the character goes through here: respects i-frames (dash, recent hit) and death
@@ -93,6 +94,7 @@ function set_allow_all(_on) {
     global.allow_recall = _on;
     global.allow_attack = _on;
     global.allow_detach = _on;
+    global.allow_bond = _on;
 }
 
 // open a dialogue: _lines = [ ["SWORD", "text"], ["HERO", "text"], ... ]. Space advances; play is frozen until the last line.
@@ -116,39 +118,56 @@ global.banner_next = "";                             // shown by the next room's
 global.runs_won = 0;
 
 // Every boon has 3 levels; picking it again levels it up. "req" = needs that ability first.
+// Every Reliquary offers each player one card of each category:
+//   flair = a showy upgrade to an ability   bond = one player's action powers up the other   stat = plain numbers
+// Picking a boon again levels it up (max 3).
 global.BOON_LIST = [
     // ---- player 1: body ----
-    { id: "afterburn", side: 1, name: "Afterburn Dash", col: make_color_rgb(255, 120, 40), req: "dash",
+    { id: "afterburn", side: 1, cat: "flair", name: "Afterburn Dash", col: make_color_rgb(255, 120, 40), req: "dash",
       desc: ["Your dash leaves a trail of fire that burns enemies.", "The fire burns longer and hotter.", "Every dash ends in an explosion."] },
-    { id: "thunder", side: 1, name: "Thunder Step", col: make_color_rgb(150, 200, 255), req: "",
+    { id: "thunder", side: 1, cat: "flair", name: "Thunder Step", col: make_color_rgb(150, 200, 255), req: "",
       desc: ["Landing a jump or ending a dash calls down lightning around you.", "Bigger strike, more damage.", "Huge strike. Struck enemies are stunned longer."] },
-    { id: "phantom", side: 1, name: "Phantom Step", col: make_color_rgb(170, 130, 255), req: "dash",
+    { id: "phantom", side: 1, cat: "flair", name: "Phantom Step", col: make_color_rgb(170, 130, 255), req: "dash",
       desc: ["+1 dash charge. Dashing through enemies slices them.", "+1 more charge. Slices cut deeper.", "+1 more charge. Slices cut to the bone."] },
-    { id: "cannon", side: 1, name: "Cannon Kick", col: make_color_rgb(255, 200, 90), req: "",
-      desc: ["Kicks hit harder. Kicked enemies smash into others.", "Kicked enemies explode when they hit a wall.", "Kicks recharge almost instantly."] },
-    { id: "moonjump", side: 1, name: "Moon Jump", col: make_color_rgb(200, 220, 255), req: "",
+    { id: "cannon", side: 1, cat: "flair", name: "Cannon Kick", col: make_color_rgb(255, 200, 90), req: "",
+      desc: ["Kicked enemies hit others much harder.", "Kicked enemies explode when they hit a wall.", "Kicks recharge almost instantly."] },
+    { id: "moonjump", side: 1, cat: "flair", name: "Moon Jump", col: make_color_rgb(200, 220, 255), req: "",
       desc: ["Jump higher and hang in the air longer.", "PERFECT HOP: clearing an attack mid-jump slows time.", "Jump again in mid-air."] },
-    { id: "ironheart", side: 1, name: "Iron Heart", col: make_color_rgb(255, 90, 110), req: "",
-      desc: ["+20 max health. Soul orbs heal 50% more.", "+20 max health. Soul orbs heal double.", "+20 max health. Survive one deadly hit per room."] },
-    { id: "soulbloom", side: 1, name: "Soul Bloom", col: make_color_rgb(210, 130, 255), req: "cast",
-      desc: ["Bigger cast. Your soul mark charges faster.", "Rooted enemies take 25% more damage.", "When a root ends, the victim bursts in soul fire."] },
-    { id: "meteor", side: 1, name: "Meteor Core", col: make_color_rgb(255, 140, 60), req: "stomp",
+    { id: "soulbloom", side: 1, cat: "flair", name: "Soul Bloom", col: make_color_rgb(210, 130, 255), req: "cast",
+      desc: ["Bigger Soul Ascension. It charges faster.", "Rooted enemies take 25% more damage.", "When a root ends, the victim bursts in soul fire."] },
+    { id: "meteor", side: 1, cat: "flair", name: "Meteor Core", col: make_color_rgb(255, 140, 60), req: "stomp",
       desc: ["Meteor Fall hits a wider area.", "Meteor Fall leaves a ring of fire.", "Meteor Fall deals double damage."] },
-    // ---- player 2: blade ----
-    { id: "edge", side: 2, name: "Keen Edge", col: make_color_rgb(230, 235, 255), req: "",
-      desc: ["+25% damage. Bigger swings.", "+50% damage. Even bigger swings.", "+75% damage. Massive swings."] },
-    { id: "chain", side: 2, name: "Chain Lightning", col: make_color_rgb(140, 200, 255), req: "",
+    { id: "fury", side: 1, cat: "bond", name: "Fury Draught", col: make_color_rgb(255, 60, 40), req: "",
+      desc: ["When you recall the sword, you drink a potion: the sword burns with FURY for 4 s (+40% damage, faster swings, fire).", "FURY lasts 6 s.", "FURY lasts 8 s and its swings set the ground on fire."] },
+    { id: "whetstone", side: 1, cat: "bond", name: "Whetstone Step", col: make_color_rgb(140, 220, 255), req: "dash",
+      desc: ["Dash through the floating sword to sharpen it: its next 3 hits deal double damage.", "Next 4 hits.", "Next 5 hits, and the sharpening blasts enemies around the sword."] },
+    { id: "ironheart", side: 1, cat: "stat", name: "Iron Heart", col: make_color_rgb(255, 90, 110), req: "",
+      desc: ["+20 max health. Soul orbs heal 50% more.", "+20 max health. Soul orbs heal double.", "+20 max health. Survive one deadly hit per room."] },
+    { id: "swift", side: 1, cat: "stat", name: "Swift Feet", col: make_color_rgb(200, 255, 180), req: "",
+      desc: ["+12% move speed.", "+24% move speed.", "+36% move speed."] },
+    { id: "heavy", side: 1, cat: "stat", name: "Heavy Boots", col: make_color_rgb(230, 190, 120), req: "",
+      desc: ["Kicks push 25% further and stagger 25% longer.", "50% further and longer.", "Kicks push 75% further and stagger twice as long."] },
+    // ---- player 2: sword ----
+    { id: "chain", side: 2, cat: "flair", name: "Chain Lightning", col: make_color_rgb(140, 200, 255), req: "",
       desc: ["Hits arc to 1 nearby enemy.", "Hits arc to 2 enemies.", "Hits arc to 3 enemies."] },
-    { id: "bloodedge", side: 2, name: "Blood Edge", col: make_color_rgb(220, 40, 60), req: "",
-      desc: ["Every hit heals the hero 1.", "Every hit heals 2.", "Kills always drop a soul orb."] },
-    { id: "leash", side: 2, name: "Long Leash", col: make_color_rgb(120, 230, 200), req: "",
-      desc: ["Fly 30px further. Detached hits deal 75%.", "Fly 60px further. Detached hits deal 90%.", "Fly 90px further. Detached hits deal full damage, faster."] },
-    { id: "orbit", side: 2, name: "Whirling Return", col: make_color_rgb(160, 255, 220), req: "",
+    { id: "orbit", side: 2, cat: "flair", name: "Whirling Return", col: make_color_rgb(160, 255, 220), req: "",
       desc: ["Recall hits harder; the blade then orbits the hero for 1 s.", "Orbits for 2 s and hits harder.", "Orbits for 3 s and hits hardest."] },
-    { id: "executioner", side: 2, name: "Executioner", col: make_color_rgb(255, 210, 60), req: "",
+    { id: "executioner", side: 2, cat: "flair", name: "Executioner", col: make_color_rgb(255, 210, 60), req: "",
       desc: ["CRITS: x2 damage on stunned, rooted or flying enemies.", "Crits deal x2.5.", "Crits deal x3 and crit kills explode."] },
-    { id: "frenzy", side: 2, name: "Frenzy", col: make_color_rgb(255, 80, 60), req: "",
-      desc: ["Combos speed up your swings. 10 hits: a giant CLEAVE.", "Faster. CLEAVE every 8 hits.", "Fastest. CLEAVE every 6 hits."] }
+    { id: "frenzy", side: 2, cat: "flair", name: "Frenzy", col: make_color_rgb(255, 80, 60), req: "",
+      desc: ["Combos speed up your swings. 10 hits: a giant CLEAVE.", "Faster. CLEAVE every 8 hits.", "Fastest. CLEAVE every 6 hits."] },
+    { id: "tetherlash", side: 2, cat: "bond", name: "Tether Lash", col: make_color_rgb(255, 150, 60), req: "",
+      desc: ["The tether burns: enemies crossing the line between you take damage.", "It burns hotter.", "It burns hottest and staggers."] },
+    { id: "skewer", side: 2, cat: "bond", name: "Skewer", col: make_color_rgb(255, 230, 120), req: "",
+      desc: ["Enemies the hero kicks into the flying sword get skewered for big damage.", "Skewers hit harder.", "Skewers hit hardest and explode."] },
+    { id: "bloodedge", side: 2, cat: "bond", name: "Blood Edge", col: make_color_rgb(220, 40, 60), req: "",
+      desc: ["Every hit heals the hero 1.", "Every hit heals 2.", "Kills always drop a soul orb."] },
+    { id: "edge", side: 2, cat: "stat", name: "Keen Edge", col: make_color_rgb(230, 235, 255), req: "",
+      desc: ["+25% damage. Bigger swings.", "+50% damage. Even bigger swings.", "+75% damage. Massive swings."] },
+    { id: "leash", side: 2, cat: "stat", name: "Long Leash", col: make_color_rgb(120, 230, 200), req: "",
+      desc: ["Fly 30px further. Detached hits deal 75%.", "Fly 60px further. Detached hits deal 90%.", "Fly 90px further. Detached hits deal full damage, faster."] },
+    { id: "honed", side: 2, cat: "stat", name: "Honed Grip", col: make_color_rgb(200, 200, 255), req: "",
+      desc: ["Swings 15% faster.", "Swings 30% faster.", "Swings 45% faster."] }
 ];
 
 function blv(_side, _id) {
@@ -165,18 +184,19 @@ function boon_ok(_b) {
     return true;
 }
 // 3 random boons a side can take (not maxed, requirement met)
+// one random card from each category (flair, bond, stat) a side can still take
 function roll_offers(_side) {
-    var pool = [];
-    for (var i = 0; i < array_length(global.BOON_LIST); i++) {
-        var b = global.BOON_LIST[i];
-        if (b.side == _side && blv(_side, b.id) < 3 && boon_ok(b)) array_push(pool, b);
+    var out = [];
+    var cats = ["flair", "bond", "stat"];
+    for (var c = 0; c < 3; c++) {
+        var pool = [];
+        for (var i = 0; i < array_length(global.BOON_LIST); i++) {
+            var b = global.BOON_LIST[i];
+            if (b.side == _side && b.cat == cats[c] && blv(_side, b.id) < 3 && boon_ok(b)) array_push(pool, b);
+        }
+        if (array_length(pool) > 0) array_push(out, pool[irandom(array_length(pool) - 1)]);
     }
-    for (var i = array_length(pool) - 1; i > 0; i--) {
-        var j = irandom(i);
-        var tmp = pool[i]; pool[i] = pool[j]; pool[j] = tmp;
-    }
-    if (array_length(pool) > 3) array_resize(pool, 3);
-    return pool;
+    return out;
 }
 function grant_boon(_side, _id) {
     var s = (_side == 1) ? global.boons_p1 : global.boons_p2;
@@ -206,15 +226,15 @@ function give_random_boons() {
 // ======================================================================
 // ---- juice: shake, hit-stop, slow-mo, flash, particles, numbers ----
 // ======================================================================
-global.hitstop = 0;      // frames the action holds still on a big hit
-global.slowmo = 0;       // frames of half-speed bullet time
+global.hitstop_t = 0;      // frames the action holds still on a big hit
+global.slowmo_t = 0;       // frames of half-speed bullet time
 global.flash_a = 0;      // full-screen flash (Draw GUI in obj_juice)
 global.flash_col = c_white;
 
-function paused() { return global.freeze || global.hitstop > 0; }
+function paused() { return global.freeze || global.hitstop_t > 0; }
 function shake(_a) { if (instance_exists(obj_camera)) obj_camera.shake_amt = max(obj_camera.shake_amt, _a); }
-function hitstop(_f) { global.hitstop = max(global.hitstop, _f); }
-function slowmo(_f) { global.slowmo = max(global.slowmo, _f); }
+function hitstop(_f) { global.hitstop_t = max(global.hitstop_t, _f); }
+function slowmo(_f) { global.slowmo_t = max(global.slowmo_t, _f); }
 function flash(_col, _a) { global.flash_col = _col; global.flash_a = max(global.flash_a, _a); }
 // particles: "spark", "ember", "smoke", "shard", "soul", "zap", "mote"
 function fx(_type, _x, _y, _n) {
@@ -248,7 +268,7 @@ function in_list(_arr, _v) {
 // knock everything near (_x, _y) away and hurt it
 function explode(_x, _y, _r, _dmg, _col) {
     with (obj_enemy) {
-        if (!dead && point_distance(x, bbox_bottom - 5, _x, _y) < _r) {
+        if (!dead && point_distance(x, hit_y(id, _y), _x, _y) < _r) {
             take_damage(_dmg, false);
             kb_dir = point_direction(_x, _y, x, bbox_bottom - 5);
             kb_speed = max(kb_speed, 3);
@@ -293,7 +313,7 @@ function thunder_ring(_x, _y) {
     if (has_duo("storm")) r *= 1.4;
     var col = make_color_rgb(150, 200, 255);
     with (obj_enemy) {
-        if (!dead && point_distance(x, bbox_bottom - 5, _x, _y) < r) {
+        if (!dead && point_distance(x, hit_y(id, _y), _x, _y) < r) {
             fx_bolt(_x, _y - 40, x, bbox_bottom - 10, col);
             take_damage(dmg, false);
             if (object_index != obj_boss) stun = max(stun, st);
@@ -313,6 +333,19 @@ function sword_hit(_e, _dmg, _src) {
     if (_e.dead) return;
     var d = _dmg * (1 + 0.25 * blv(2, "edge"));
     var crit = false;
+    var w = instance_exists(obj_weapon) ? obj_weapon : noone;
+    if (w != noone && w.fury_t > 0) d *= 1.4;                       // Fury Draught
+    if (w != noone && w.whet > 0) { d *= 2; w.whet -= 1; fx("zap", _e.x, _e.bbox_bottom - 10, 8); }   // Whetstone Step
+    // STAGGER (from a kick) opens enemies up; a GUARD blocks most of the damage until it's broken
+    if (_e.stagger > 0) {
+        d *= 1.5;
+        add_bond(5);
+    } else if (_e.guarded) {
+        d *= 0.3;
+        with (_e) take_damage(d, -1);                                // grey "blocked" number
+        fx("spark", _e.x, _e.bbox_bottom - 14, 3);
+        return;
+    }
     var ex = blv(2, "executioner");
     if (ex > 0 && (_e.stun > 0 || _e.kb_speed > 0.5)) {
         d *= 1.5 + 0.5 * ex;
@@ -361,3 +394,36 @@ function debug_skip() {
     with (obj_tutorial) skip();
     with (obj_shrine) skip();
 }
+
+// ======================================================================
+// ---- Bond Strike: the duo spell. Teamwork fills the meter; both players press their Bond key together ----
+// ======================================================================
+global.bond = 0;                 // 0-100
+global.allow_bond = true;
+function add_bond(_n) { global.bond = min(100, global.bond + _n); }
+
+// ---- player 2's keys: IJKL fly the sword, LEFT = attack, RIGHT = fly out / return, UP = Bond ----
+function p2_move_x() { return keyboard_check(ord("L")) - keyboard_check(ord("J")); }
+function p2_move_y() { return keyboard_check(ord("K")) - keyboard_check(ord("I")); }
+function p2_attack_pressed() { return keyboard_check_pressed(vk_left); }
+function p2_detach_pressed() { return keyboard_check_pressed(vk_right); }
+function p2_bond_pressed() { return keyboard_check_pressed(vk_up); }
+
+// a crescent swoosh (the kick); drawn by obj_fx kind "arc"
+function fx_arc(_x, _y, _dir, _r, _half, _col) {
+    with (instance_create_depth(_x, _y, -15002, obj_fx)) { kind = "arc"; dir = _dir; rmax = _r; half = _half; col = _col; life = 10; }
+}
+
+// shortest distance from point (px, py) to the segment (x1, y1)-(x2, y2)
+function dist_to_segment(_px, _py, _x1, _y1, _x2, _y2) {
+    var dx = _x2 - _x1, dy = _y2 - _y1;
+    var l2 = dx * dx + dy * dy;
+    var t = (l2 == 0) ? 0 : clamp(((_px - _x1) * dx + (_py - _y1) * dy) / l2, 0, 1);
+    return point_distance(_px, _py, _x1 + t * dx, _y1 + t * dy);
+}
+
+global.bond_hint_seen = false;   // the first full Bond meter shows a banner once per game
+
+// the height on an enemy's body closest to an attack at height _py: the feet for most enemies,
+// anywhere from feet to head for tall ones (hit_h). Hit checks measure to this point.
+function hit_y(_e, _py) { return clamp(_py, _e.bbox_bottom - 5 - _e.hit_h, _e.bbox_bottom - 5); }

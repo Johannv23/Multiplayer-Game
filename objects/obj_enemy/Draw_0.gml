@@ -1,8 +1,30 @@
 // adding a Draw event replaces default drawing, so draw the sprite ourselves
-draw_self();
+// ground warning while a ranged attack winds up: a pulsing ring (shockwave) or aim lines (bolts)
+if (attacking && attack_is_ranged && !fired && !dead) {
+    var k = clamp(image_index / max(1, ranged_frame), 0, 1);
+    var fy_ = bbox_bottom - 2;
+    draw_set_color(ranged_colour);
+    draw_set_alpha(0.25 + 0.5 * k);
+    if (ranged_kind == "wave") {
+        draw_ellipse(x - 10 - 20 * k, fy_ - 5 - 10 * k, x + 10 + 20 * k, fy_ + 5 + 10 * k, true);
+        draw_ellipse(x - 8 - 16 * k, fy_ - 4 - 8 * k, x + 8 + 16 * k, fy_ + 4 + 8 * k, true);
+    } else if (instance_exists(obj_player)) {
+        var aim = point_direction(x, fy_, obj_player.x, obj_player.bbox_bottom - 6);
+        for (var i = 0; i < ranged_count; i++) {
+            var a = aim + (i - (ranged_count - 1) / 2) * ranged_spread;
+            draw_line(x, fy_, x + lengthdir_x(30 + 40 * k, a), fy_ + lengthdir_y(30 + 40 * k, a));
+        }
+    }
+    draw_set_alpha(1);
+    draw_set_color(c_white);
+}
+
+// staggered enemies wobble
+var wob = (stagger > 0 && !dead) ? sin(current_time / 25) * 1.5 : 0;
+draw_sprite_ext(sprite_index, image_index, x + wob, y, image_xscale, image_yscale, 0, image_blend, image_alpha);
 if (hit_flash > 0) {                   // white flash on hit
     gpu_set_fog(true, c_white, 0, 0);
-    draw_self();
+    draw_sprite_ext(sprite_index, image_index, x + wob, y, image_xscale, image_yscale, 0, c_white, image_alpha);
     gpu_set_fog(false, c_white, 0, 0);
 }
 
@@ -25,6 +47,22 @@ if (!dead && show_bar) {
     draw_set_color(make_color_rgb(220, 40, 40));
     if (hp > 0) draw_rectangle(bx, by, bx + bar_w * (hp / max_hp) - 1, by + bar_h - 1, false);
     draw_set_color(c_white);
+
+    // guard: a small shield by the health bar. Staggered: it cracks open and glows gold
+    if (guarded || stagger > 0) {
+        var gx = bx - 7, gy = by - 1;
+        if (stagger > 0) {
+            var o = 1 + sin(current_time / 60);
+            draw_set_color(make_color_rgb(255, 210, 80));
+            draw_triangle(gx - 3 - o, gy, gx - o, gy, gx - o, gy + 6, false);
+            draw_triangle(gx + o, gy, gx + 3 + o, gy, gx + o, gy + 6, false);
+        } else {
+            draw_set_color(make_color_rgb(150, 170, 200));
+            draw_rectangle(gx - 3, gy, gx + 3, gy + 3, false);
+            draw_triangle(gx - 3, gy + 3, gx + 3, gy + 3, gx, gy + 7, false);
+        }
+        draw_set_color(c_white);
+    }
 
     // stunned: little stars circling above the head
     if (stun > 0) {

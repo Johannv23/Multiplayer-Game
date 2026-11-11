@@ -11,7 +11,7 @@ if (!landed) {
         h = 0;
         var r = radius, rf = root_frames, dmg = damage;
         with (obj_enemy) {
-            if (!dead && point_distance(x, bbox_bottom - 5, other.x, other.y) < r) {
+            if (!dead && point_distance(x, hit_y(id, other.y), other.x, other.y) < r) {
                 interrupt();
                 stun = max(stun, rf);
                 root_t = rf;

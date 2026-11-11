@@ -45,7 +45,7 @@ chambers = [rm_chamber_1, rm_chamber_2, rm_boss];   // the boss arena ends the r
 // one array of enemy objects per wave, keyed by room name
 wave_table = {
     rm_chamber_1: [                                  // wave 1 is the tutorial; this is wave 2
-        [obj_rat, obj_rat, obj_rat, obj_rat, obj_slime, obj_slime]
+        [obj_rat, obj_rat, obj_rat, obj_skeleton, obj_rat, obj_slime, obj_slime]
     ],
     rm_chamber_2: [                                  // shockwaves + bolt fans at the same time
         [obj_skeleton, obj_skeleton, obj_slime, obj_slime],
@@ -56,7 +56,7 @@ wave_table = {
 
 // a fresh room never starts frozen (a Reliquary freezes play while it swallows the hero)
 global.freeze = false;
-global.hitstop = 0;
+global.hitstop_t = 0;
 
 var key = room_get_name(room);
 shrine_room = (string_pos("rm_shrine_", key) == 1);          // a Reliquary's inside
@@ -79,6 +79,8 @@ tut_offset = tutorial_running ? 1 : 0;
 if (tutorial_running) instance_create_depth(0, 0, -100, obj_tutorial);
 if (revisit) cleared = true;
 first_frame = true;
+grid = -1;               // pathfinding grid for enemies (built on the first frame, once the walls exist)
+max_alive = 5;           // no more than this many enemies at once; the rest wait their turn
 if (shrine_room) instance_create_depth(0, 0, -100, obj_shrine);
 if (use_waves || boss_room || shrine_room) depth = 500;   // above the floor tiles and decor, below everyone standing
 

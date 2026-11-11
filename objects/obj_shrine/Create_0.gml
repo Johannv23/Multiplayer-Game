@@ -45,7 +45,7 @@ case 2:
         ]],
         ["unlock", "cast"],
         ["say", [
-            ["SWORD", "It feeds on battle. Every strike I land charges it. When it's full, throw it with Q - whatever it touches is rooted where it stands."],
+            ["SWORD", "It feeds on battle. Every strike I land charges it. When it's full, press Q - you'll rise above it all, untouchable, and burst with soul fire. Everything near you is rooted where it stands."],
             ["SWORD", "These sentinels won't fight back. I'll hit them to charge your mark, then you throw it."]
         ]],
         ["task", "root"],

@@ -1,6 +1,9 @@
 // ---- first frame: returning from a Reliquary puts the hero back beside it, doors open ----
 if (first_frame) {
     first_frame = false;
+    // pathfinding grid: 16px cells, blocked wherever a wall, cover, prop or door is
+    grid = mp_grid_create(0, 0, ceil(room_width / 16), ceil(room_height / 16), 16, 16);
+    mp_grid_add_instances(grid, obj_wall, false);
     if (revisit && instance_exists(obj_reliquary) && instance_exists(obj_player)) {
         var rq = instance_find(obj_reliquary, 0);
         obj_player.x = rq.cx;
@@ -28,6 +31,7 @@ if (use_waves || boss_room) {
     for (var i = array_length(pending) - 1; i >= 0; i--) {
         var p = pending[i];
         p.t -= 1;
+        if (p.t <= 0 && instance_number(obj_enemy) >= max_alive) p.t = 1;   // full: wait for a free slot
         if (p.t <= 0) {
             // chambers are bigger than the old chase range, so wave enemies always hunt the player
             with (instance_create_layer(p.x, p.y, "Instances", p.obj)) {
@@ -76,8 +80,8 @@ if (keyboard_check_pressed(ord("B"))) {
     global.show_hitboxes = !global.show_hitboxes;
 }
 
-// Toggle lighting
-if (keyboard_check_pressed(ord("L")) && instance_exists(obj_lighting)) {
+// Toggle lighting (F2 - L is player 2's sword key now)
+if (keyboard_check_pressed(vk_f2) && instance_exists(obj_lighting)) {
     obj_lighting.enabled = !obj_lighting.enabled;
 }
 

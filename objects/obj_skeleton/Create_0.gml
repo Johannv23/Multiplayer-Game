@@ -1,4 +1,5 @@
 event_inherited();
+guarded = true;      // blocks sword hits until kicked
 
 // Skeleton: the steady melee threat.
 move_speed = 0.9;

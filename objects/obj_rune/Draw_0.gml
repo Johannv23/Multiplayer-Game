@@ -1,8 +1,12 @@
-var col = lit ? make_color_rgb(140, 240, 255) : make_color_rgb(70, 90, 110);
-var r = 11 + pulse * 0.3;
-if (lit) gpu_set_blendmode(bm_add);
+var col = lit ? make_color_rgb(140, 240, 255) : make_color_rgb(120, 200, 240);
+var r = 12 + pulse * 0.3 + (lit ? 0 : 1.5 * sin(current_time / 200));
+gpu_set_blendmode(bm_add);
+// a soft filled glow so an unlit rune reads from across the room
 draw_set_color(col);
-draw_set_alpha(lit ? 0.9 : 0.6 + 0.2 * sin(current_time / 300));
+draw_set_alpha(lit ? 0.35 : 0.2 + 0.1 * sin(current_time / 200));
+draw_ellipse(x - r - 4, y - (r + 4) * 0.55, x + r + 4, y + (r + 4) * 0.55, false);
+draw_set_color(col);
+draw_set_alpha(lit ? 1 : 0.8 + 0.2 * sin(current_time / 300));
 draw_ellipse(x - r, y - r * 0.55, x + r, y + r * 0.55, true);
 draw_ellipse(x - r + 3, y - r * 0.55 + 2, x + r - 3, y + r * 0.55 - 2, true);
 for (var i = 0; i < 3; i++) {                      // the glyph

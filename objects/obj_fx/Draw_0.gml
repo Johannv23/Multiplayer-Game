@@ -9,6 +9,20 @@ if (kind == "ring") {
     draw_circle(x, y, r - 2, true);
     draw_set_alpha((1 - k) * 0.2);
     draw_circle(x, y, r, false);
+} else if (kind == "arc") {
+    // a crescent that sweeps across, then fades (y squashed to sit on the ground)
+    var sw = min(1, k * 2.5);
+    var a0 = dir - half, a1 = dir - half + 2 * half * sw;
+    if (a1 > a0 + 1) {
+        draw_primitive_begin(pr_trianglestrip);
+        for (var a = a0; a <= a1; a += 6) {
+            var f = (a - a0) / (a1 - a0);
+            var al = (1 - k) * (0.2 + 0.8 * f);
+            draw_vertex_colour(x + lengthdir_x(rmax * 0.4, a), y + lengthdir_y(rmax * 0.4, a) * 0.7, col, al * 0.2);
+            draw_vertex_colour(x + lengthdir_x(rmax, a), y + lengthdir_y(rmax, a) * 0.7, col, al);
+        }
+        draw_primitive_end();
+    }
 } else {
     for (var i = 0; i < array_length(pts) - 1; i++) {
         draw_set_alpha(1 - k);
