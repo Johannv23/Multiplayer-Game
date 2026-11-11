@@ -1,8 +1,13 @@
 // ---- clocks ----
 if (global.hitstop > 0) global.hitstop -= 1;
-if (global.slowmo > 0) {
-    global.slowmo -= 1;
-    if (game_get_speed(gamespeed_fps) != 30) game_set_speed(30, gamespeed_fps);   // bullet time
+
+if (global.slowmo_frames > 0) {
+    global.slowmo_frames -= 1;
+
+    if (game_get_speed(gamespeed_fps) != 30) {
+        game_set_speed(30, gamespeed_fps);
+    }
+
 } else if (game_get_speed(gamespeed_fps) != 60) {
     game_set_speed(60, gamespeed_fps);
 }
@@ -14,7 +19,7 @@ if (menu) {
     for (var k = 1; k <= 6; k++) {
         if (keyboard_check_pressed(ord(string(k)))) {
             menu = false;
-            global.slowmo = 0;
+			global.slowmo_frames = 0;
             game_set_speed(60, gamespeed_fps);
             debug_jump(k);
         }

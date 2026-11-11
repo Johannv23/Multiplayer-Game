@@ -111,7 +111,10 @@ global.shrine_done = [false, false, false, false];   // [1..3]: the Reliquary of
 global.stomp_unlocked = false;                       // Meteor Fall (shrine 3)
 global.boons_p1 = {};                                // boon id -> level (1-3)   player 1: body
 global.boons_p2 = {};                                //                          player 2: blade
-global.duos = {};                                    // duo id -> true
+global.duos = {};									 // duo id -> true
+global.boons_p1 = {};
+global.boons_p2 = {};
+global.duos = {};
 global.banner_next = "";                             // shown by the next room's obj_game
 global.runs_won = 0;
 
@@ -207,14 +210,14 @@ function give_random_boons() {
 // ---- juice: shake, hit-stop, slow-mo, flash, particles, numbers ----
 // ======================================================================
 global.hitstop = 0;      // frames the action holds still on a big hit
-global.slowmo = 0;       // frames of half-speed bullet time
+global.slowmo_frames = 0;       // frames of half-speed bullet time
 global.flash_a = 0;      // full-screen flash (Draw GUI in obj_juice)
 global.flash_col = c_white;
 
 function paused() { return global.freeze || global.hitstop > 0; }
 function shake(_a) { if (instance_exists(obj_camera)) obj_camera.shake_amt = max(obj_camera.shake_amt, _a); }
 function hitstop(_f) { global.hitstop = max(global.hitstop, _f); }
-function slowmo(_f) { global.slowmo = max(global.slowmo, _f); }
+function slowmo(_f) { global.slowmo_frames = max(global.slowmo_frames, _f);}
 function flash(_col, _a) { global.flash_col = _col; global.flash_a = max(global.flash_a, _a); }
 // particles: "spark", "ember", "smoke", "shard", "soul", "zap", "mote"
 function fx(_type, _x, _y, _n) {
