@@ -23,6 +23,7 @@ if (global.freeze) {
     hsp = 0;
     vsp = 0;
     if (state == "move") { image_speed = 0; image_index = 0; }
+    if (walk_sound_id != -1) { audio_stop_sound(walk_sound_id); walk_sound_id = -1; }   // no footsteps during dialogue
     exit;
 }
 
@@ -88,6 +89,11 @@ if (state == "move") {
     if (jump_pressed) {
         state = "jump";
         zspd = jump_speed;      // set, not add, so every jump is identical
+		
+		// Play jump sound
+        var jump_sound_id = audio_play_sound(player_jump, 1, false);
+		audio_sound_gain(jump_sound_id, 0.3, 0);
+		
         jump_timer = 0;
         double_used = false;
         sx = 0.8;
@@ -264,6 +270,24 @@ y = clamp(y, sprite_height / 2, room_height - sprite_height / 2);
 
 // ---- draw order: lower on screen = in front (props do the same with their base) ----
 depth = -bbox_bottom;
+
+
+// Walking sound
+if (state == "move" && len > 0 && (hsp != 0 || vsp != 0)) {
+
+    if (!audio_is_playing(walk_sound_id)) {
+        walk_sound_id = audio_play_sound(player_walk, 1, true);
+        audio_sound_gain(walk_sound_id, 1, 0);
+    }
+
+}
+else {
+
+    if (walk_sound_id != -1) {
+        audio_stop_sound(walk_sound_id);
+        walk_sound_id = -1;
+    }
+}
 
 // ---- animation ----
 if (state == "move" || state == "dash") {

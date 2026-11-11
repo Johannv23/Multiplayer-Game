@@ -76,11 +76,37 @@ function begin_attack(_name, _spr, _frames, _loops) {
 }
 function attack_effect() {
     switch (atk) {
-        case "slam":    ring(2.0, 15, 170, 0); shake(5); break;
-        case "tremor":  ring(1.8, 12, 150, 0); shake(3); break;
-        case "rockfall": radial(12, (loops_left mod 2) * 15 + fi * 15, 2.0, 10); shake(2); break;
-        case "slam2":   ring(2.2, 18, 190, 0); ring(2.2, 18, 190, 24); shake(6); break;
-        case "spiral":  radial(8, spiral_off, 2.4, 10); spiral_off += 22; break;
+
+        case "slam":
+            audio_play_sound(smash_attack, 1, false);
+            ring(2.0, 15, 170, 0);
+            shake(5);
+            break;
+
+        case "tremor":
+            audio_play_sound(smash_attack, 1, false);
+            ring(1.8, 12, 150, 0);
+            shake(3);
+            break;
+
+        case "rockfall":
+            audio_play_sound(bolt_attack, 1, false);
+            radial(12, (loops_left mod 2) * 15 + fi * 15, 2.0, 10);
+            shake(2);
+            break;
+
+        case "slam2":
+            audio_play_sound(smash_attack, 1, false);
+            ring(2.2, 18, 190, 0);
+            ring(2.2, 18, 190, 24);
+            shake(6);
+            break;
+
+        case "spiral":
+            audio_play_sound(bolt_attack, 1, false);
+            radial(8, spiral_off, 2.4, 10);
+            spiral_off += 22;
+            break;
     }
 }
 function choose_attack() {

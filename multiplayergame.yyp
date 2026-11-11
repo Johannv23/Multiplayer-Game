@@ -1,2992 +1,527 @@
 {
-  "$GMProject": "v1",
-  "%Name": "multiplayergame",
-  "AudioGroups": [
-    {
-      "$GMAudioGroup": "v1",
-      "%Name": "audiogroup_default",
-      "exportDir": "",
-      "name": "audiogroup_default",
-      "resourceType": "GMAudioGroup",
-      "resourceVersion": "2.0",
-      "targets": -1
-    }
+  "$GMProject":"v1",
+  "%Name":"multiplayergame",
+  "AudioGroups":[
+    {"$GMAudioGroup":"v1","%Name":"audiogroup_default","exportDir":"","name":"audiogroup_default","resourceType":"GMAudioGroup","resourceVersion":"2.0","targets":-1,},
   ],
-  "configs": {
-    "children": [],
-    "name": "Default"
+  "configs":{
+    "children":[],
+    "name":"Default",
   },
-  "defaultScriptType": 1,
-  "Folders": [
-    {
-      "$GMFolder": "",
-      "%Name": "objects",
-      "folderPath": "folders/objects.yy",
-      "name": "objects",
-      "resourceType": "GMFolder",
-      "resourceVersion": "2.0"
-    },
-    {
-      "$GMFolder": "",
-      "%Name": "rooms",
-      "folderPath": "folders/rooms.yy",
-      "name": "rooms",
-      "resourceType": "GMFolder",
-      "resourceVersion": "2.0"
-    },
-    {
-      "$GMFolder": "",
-      "%Name": "scripts",
-      "folderPath": "folders/scripts.yy",
-      "name": "scripts",
-      "resourceType": "GMFolder",
-      "resourceVersion": "2.0"
-    },
-    {
-      "$GMFolder": "",
-      "%Name": "sounds",
-      "folderPath": "folders/sounds.yy",
-      "name": "sounds",
-      "resourceType": "GMFolder",
-      "resourceVersion": "2.0"
-    },
-    {
-      "$GMFolder": "",
-      "%Name": "sprites",
-      "folderPath": "folders/sprites.yy",
-      "name": "sprites",
-      "resourceType": "GMFolder",
-      "resourceVersion": "2.0"
-    },
-    {
-      "$GMFolder": "",
-      "%Name": "Enemies",
-      "folderPath": "folders/sprites/Enemies.yy",
-      "name": "Enemies",
-      "resourceType": "GMFolder",
-      "resourceVersion": "2.0"
-    },
-    {
-      "$GMFolder": "",
-      "%Name": "Enemy Galore",
-      "folderPath": "folders/sprites/Enemies/Enemy Galore.yy",
-      "name": "Enemy Galore",
-      "resourceType": "GMFolder",
-      "resourceVersion": "2.0"
-    },
-    {
-      "$GMFolder": "",
-      "%Name": "Pixel Enemies",
-      "folderPath": "folders/sprites/Enemies/Pixel Enemies.yy",
-      "name": "Pixel Enemies",
-      "resourceType": "GMFolder",
-      "resourceVersion": "2.0"
-    },
-    {
-      "$GMFolder": "",
-      "%Name": "Ramses",
-      "folderPath": "folders/sprites/Enemies/Ramses.yy",
-      "name": "Ramses",
-      "resourceType": "GMFolder",
-      "resourceVersion": "2.0"
-    },
-    {
-      "$GMFolder": "",
-      "%Name": "Tile Sheets",
-      "folderPath": "folders/sprites/Tile Sheets.yy",
-      "name": "Tile Sheets",
-      "resourceType": "GMFolder",
-      "resourceVersion": "2.0"
-    },
-    {
-      "$GMFolder": "",
-      "%Name": "Undead Animated",
-      "folderPath": "folders/sprites/Undead Animated.yy",
-      "name": "Undead Animated",
-      "resourceType": "GMFolder",
-      "resourceVersion": "2.0"
-    },
-    {
-      "$GMFolder": "",
-      "%Name": "Undead Objects",
-      "folderPath": "folders/sprites/Undead Objects.yy",
-      "name": "Undead Objects",
-      "resourceType": "GMFolder",
-      "resourceVersion": "2.0"
-    },
-    {
-      "$GMFolder": "",
-      "%Name": "tilesets",
-      "folderPath": "folders/tilesets.yy",
-      "name": "tilesets",
-      "resourceType": "GMFolder",
-      "resourceVersion": "2.0"
-    }
+  "defaultScriptType":1,
+  "Folders":[
+    {"$GMFolder":"","%Name":"objects","folderPath":"folders/objects.yy","name":"objects","resourceType":"GMFolder","resourceVersion":"2.0",},
+    {"$GMFolder":"","%Name":"rooms","folderPath":"folders/rooms.yy","name":"rooms","resourceType":"GMFolder","resourceVersion":"2.0",},
+    {"$GMFolder":"","%Name":"scripts","folderPath":"folders/scripts.yy","name":"scripts","resourceType":"GMFolder","resourceVersion":"2.0",},
+    {"$GMFolder":"","%Name":"sounds","folderPath":"folders/sounds.yy","name":"sounds","resourceType":"GMFolder","resourceVersion":"2.0",},
+    {"$GMFolder":"","%Name":"sprites","folderPath":"folders/sprites.yy","name":"sprites","resourceType":"GMFolder","resourceVersion":"2.0",},
+    {"$GMFolder":"","%Name":"Enemies","folderPath":"folders/sprites/Enemies.yy","name":"Enemies","resourceType":"GMFolder","resourceVersion":"2.0",},
+    {"$GMFolder":"","%Name":"Enemy Galore","folderPath":"folders/sprites/Enemies/Enemy Galore.yy","name":"Enemy Galore","resourceType":"GMFolder","resourceVersion":"2.0",},
+    {"$GMFolder":"","%Name":"Pixel Enemies","folderPath":"folders/sprites/Enemies/Pixel Enemies.yy","name":"Pixel Enemies","resourceType":"GMFolder","resourceVersion":"2.0",},
+    {"$GMFolder":"","%Name":"Ramses","folderPath":"folders/sprites/Enemies/Ramses.yy","name":"Ramses","resourceType":"GMFolder","resourceVersion":"2.0",},
+    {"$GMFolder":"","%Name":"Tile Sheets","folderPath":"folders/sprites/Tile Sheets.yy","name":"Tile Sheets","resourceType":"GMFolder","resourceVersion":"2.0",},
+    {"$GMFolder":"","%Name":"Undead Animated","folderPath":"folders/sprites/Undead Animated.yy","name":"Undead Animated","resourceType":"GMFolder","resourceVersion":"2.0",},
+    {"$GMFolder":"","%Name":"Undead Objects","folderPath":"folders/sprites/Undead Objects.yy","name":"Undead Objects","resourceType":"GMFolder","resourceVersion":"2.0",},
+    {"$GMFolder":"","%Name":"tilesets","folderPath":"folders/tilesets.yy","name":"tilesets","resourceType":"GMFolder","resourceVersion":"2.0",},
   ],
-  "ForcedPrefabProjectReferences": [],
-  "IncludedFiles": [],
-  "isEcma": false,
-  "LibraryEmitters": [],
-  "MetaData": {
-    "IDEVersion": "2026.0.0.16"
+  "ForcedPrefabProjectReferences":[],
+  "IncludedFiles":[
+    {"$GMIncludedFile":"","%Name":"399095__plasterbrain__8bit-jump.flac","CopyToMask":-1,"filePath":"datafiles","name":"399095__plasterbrain__8bit-jump.flac","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
+  ],
+  "isEcma":false,
+  "LibraryEmitters":[],
+  "MetaData":{
+    "IDEVersion":"2026.0.0.16",
   },
-  "name": "multiplayergame",
-  "resources": [
-    {
-      "id": {
-        "name": "obj_block",
-        "path": "objects/obj_block/obj_block.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "obj_boonselect",
-        "path": "objects/obj_boonselect/obj_boonselect.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "obj_boss",
-        "path": "objects/obj_boss/obj_boss.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "obj_camera",
-        "path": "objects/obj_camera/obj_camera.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "obj_cast",
-        "path": "objects/obj_cast/obj_cast.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "obj_cliff",
-        "path": "objects/obj_cliff/obj_cliff.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "obj_dialogue",
-        "path": "objects/obj_dialogue/obj_dialogue.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "obj_dmgnum",
-        "path": "objects/obj_dmgnum/obj_dmgnum.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "obj_door",
-        "path": "objects/obj_door/obj_door.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "obj_dummy",
-        "path": "objects/obj_dummy/obj_dummy.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "obj_enemy",
-        "path": "objects/obj_enemy/obj_enemy.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "obj_enemy_2",
-        "path": "objects/obj_enemy_2/obj_enemy_2.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "obj_fire",
-        "path": "objects/obj_fire/obj_fire.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "obj_floor",
-        "path": "objects/obj_floor/obj_floor.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "obj_fx",
-        "path": "objects/obj_fx/obj_fx.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "obj_game",
-        "path": "objects/obj_game/obj_game.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "obj_juice",
-        "path": "objects/obj_juice/obj_juice.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "obj_landmark",
-        "path": "objects/obj_landmark/obj_landmark.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "obj_lighting",
-        "path": "objects/obj_lighting/obj_lighting.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "obj_pickup",
-        "path": "objects/obj_pickup/obj_pickup.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "obj_player",
-        "path": "objects/obj_player/obj_player.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "obj_projectile",
-        "path": "objects/obj_projectile/obj_projectile.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "obj_prop",
-        "path": "objects/obj_prop/obj_prop.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "obj_rat",
-        "path": "objects/obj_rat/obj_rat.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "obj_reliquary",
-        "path": "objects/obj_reliquary/obj_reliquary.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "obj_rune",
-        "path": "objects/obj_rune/obj_rune.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "obj_shrine",
-        "path": "objects/obj_shrine/obj_shrine.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "obj_skeleton",
-        "path": "objects/obj_skeleton/obj_skeleton.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "obj_slash",
-        "path": "objects/obj_slash/obj_slash.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "obj_slime",
-        "path": "objects/obj_slime/obj_slime.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "obj_spawn",
-        "path": "objects/obj_spawn/obj_spawn.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "obj_tutorial",
-        "path": "objects/obj_tutorial/obj_tutorial.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "obj_wall",
-        "path": "objects/obj_wall/obj_wall.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "obj_weapon",
-        "path": "objects/obj_weapon/obj_weapon.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "rm_boss",
-        "path": "rooms/rm_boss/rm_boss.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "rm_chamber_1",
-        "path": "rooms/rm_chamber_1/rm_chamber_1.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "rm_chamber_2",
-        "path": "rooms/rm_chamber_2/rm_chamber_2.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "rm_level",
-        "path": "rooms/rm_level/rm_level.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "rm_shrine_1",
-        "path": "rooms/rm_shrine_1/rm_shrine_1.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "rm_shrine_2",
-        "path": "rooms/rm_shrine_2/rm_shrine_2.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "rm_shrine_3",
-        "path": "rooms/rm_shrine_3/rm_shrine_3.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "scr_utility",
-        "path": "scripts/scr_utility/scr_utility.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "background_music",
-        "path": "sounds/background_music/background_music.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "enemy_attack",
-        "path": "sounds/enemy_attack/enemy_attack.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "slash_sound",
-        "path": "sounds/slash_sound/slash_sound.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "slash_hitbox",
-        "path": "sprites/slash_hitbox/slash_hitbox.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_bat_attack",
-        "path": "sprites/spr_bat_attack/spr_bat_attack.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_bat_attack_fx",
-        "path": "sprites/spr_bat_attack_fx/spr_bat_attack_fx.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_bat_death",
-        "path": "sprites/spr_bat_death/spr_bat_death.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_bat_death_fx",
-        "path": "sprites/spr_bat_death_fx/spr_bat_death_fx.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_bat_fly",
-        "path": "sprites/spr_bat_fly/spr_bat_fly.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_bat_hit",
-        "path": "sprites/spr_bat_hit/spr_bat_hit.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_bones_10_a",
-        "path": "sprites/spr_bones_10_a/spr_bones_10_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_bones_10_b",
-        "path": "sprites/spr_bones_10_b/spr_bones_10_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_bones_10_c",
-        "path": "sprites/spr_bones_10_c/spr_bones_10_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_bones_11_a",
-        "path": "sprites/spr_bones_11_a/spr_bones_11_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_bones_11_b",
-        "path": "sprites/spr_bones_11_b/spr_bones_11_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_bones_11_c",
-        "path": "sprites/spr_bones_11_c/spr_bones_11_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_bones_12_a",
-        "path": "sprites/spr_bones_12_a/spr_bones_12_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_bones_12_b",
-        "path": "sprites/spr_bones_12_b/spr_bones_12_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_bones_12_c",
-        "path": "sprites/spr_bones_12_c/spr_bones_12_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_bones_13_a",
-        "path": "sprites/spr_bones_13_a/spr_bones_13_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_bones_13_b",
-        "path": "sprites/spr_bones_13_b/spr_bones_13_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_bones_13_c",
-        "path": "sprites/spr_bones_13_c/spr_bones_13_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_bones_14_a",
-        "path": "sprites/spr_bones_14_a/spr_bones_14_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_bones_14_c",
-        "path": "sprites/spr_bones_14_c/spr_bones_14_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_bones_15_a",
-        "path": "sprites/spr_bones_15_a/spr_bones_15_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_bones_15_b",
-        "path": "sprites/spr_bones_15_b/spr_bones_15_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_bones_15_c",
-        "path": "sprites/spr_bones_15_c/spr_bones_15_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_bones_16_a",
-        "path": "sprites/spr_bones_16_a/spr_bones_16_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_bones_16_b",
-        "path": "sprites/spr_bones_16_b/spr_bones_16_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_bones_16_c",
-        "path": "sprites/spr_bones_16_c/spr_bones_16_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_bones_17_a",
-        "path": "sprites/spr_bones_17_a/spr_bones_17_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_bones_17_b",
-        "path": "sprites/spr_bones_17_b/spr_bones_17_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_bones_17_c",
-        "path": "sprites/spr_bones_17_c/spr_bones_17_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_bones_18_a",
-        "path": "sprites/spr_bones_18_a/spr_bones_18_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_bones_18_b",
-        "path": "sprites/spr_bones_18_b/spr_bones_18_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_bones_18_c",
-        "path": "sprites/spr_bones_18_c/spr_bones_18_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_bones_1_a",
-        "path": "sprites/spr_bones_1_a/spr_bones_1_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_bones_1_b",
-        "path": "sprites/spr_bones_1_b/spr_bones_1_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_bones_1_c",
-        "path": "sprites/spr_bones_1_c/spr_bones_1_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_bones_2_a",
-        "path": "sprites/spr_bones_2_a/spr_bones_2_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_bones_2_b",
-        "path": "sprites/spr_bones_2_b/spr_bones_2_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_bones_2_c",
-        "path": "sprites/spr_bones_2_c/spr_bones_2_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_bones_3_a",
-        "path": "sprites/spr_bones_3_a/spr_bones_3_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_bones_3_b",
-        "path": "sprites/spr_bones_3_b/spr_bones_3_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_bones_3_c",
-        "path": "sprites/spr_bones_3_c/spr_bones_3_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_bones_4_1_b",
-        "path": "sprites/spr_bones_4_1_b/spr_bones_4_1_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_bones_4_a",
-        "path": "sprites/spr_bones_4_a/spr_bones_4_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_bones_4_b",
-        "path": "sprites/spr_bones_4_b/spr_bones_4_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_bones_4_c",
-        "path": "sprites/spr_bones_4_c/spr_bones_4_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_bones_5_a",
-        "path": "sprites/spr_bones_5_a/spr_bones_5_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_bones_5_b",
-        "path": "sprites/spr_bones_5_b/spr_bones_5_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_bones_5_c",
-        "path": "sprites/spr_bones_5_c/spr_bones_5_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_bones_6_a",
-        "path": "sprites/spr_bones_6_a/spr_bones_6_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_bones_6_b",
-        "path": "sprites/spr_bones_6_b/spr_bones_6_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_bones_6_c",
-        "path": "sprites/spr_bones_6_c/spr_bones_6_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_bones_7_a",
-        "path": "sprites/spr_bones_7_a/spr_bones_7_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_bones_7_b",
-        "path": "sprites/spr_bones_7_b/spr_bones_7_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_bones_7_c",
-        "path": "sprites/spr_bones_7_c/spr_bones_7_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_bones_8_a",
-        "path": "sprites/spr_bones_8_a/spr_bones_8_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_bones_8_b",
-        "path": "sprites/spr_bones_8_b/spr_bones_8_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_bones_8_c",
-        "path": "sprites/spr_bones_8_c/spr_bones_8_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_bones_9_a",
-        "path": "sprites/spr_bones_9_a/spr_bones_9_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_bones_9_b",
-        "path": "sprites/spr_bones_9_b/spr_bones_9_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_bones_9_c",
-        "path": "sprites/spr_bones_9_c/spr_bones_9_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_broken_tree_1_1_b",
-        "path": "sprites/spr_broken_tree_1_1_b/spr_broken_tree_1_1_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_broken_tree_1_a",
-        "path": "sprites/spr_broken_tree_1_a/spr_broken_tree_1_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_broken_tree_1_b",
-        "path": "sprites/spr_broken_tree_1_b/spr_broken_tree_1_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_broken_tree_1_c",
-        "path": "sprites/spr_broken_tree_1_c/spr_broken_tree_1_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_broken_tree_2_1_b",
-        "path": "sprites/spr_broken_tree_2_1_b/spr_broken_tree_2_1_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_broken_tree_2_a",
-        "path": "sprites/spr_broken_tree_2_a/spr_broken_tree_2_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_broken_tree_2_b",
-        "path": "sprites/spr_broken_tree_2_b/spr_broken_tree_2_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_broken_tree_2_c",
-        "path": "sprites/spr_broken_tree_2_c/spr_broken_tree_2_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_broken_tree_3_1_b",
-        "path": "sprites/spr_broken_tree_3_1_b/spr_broken_tree_3_1_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_broken_tree_3_a",
-        "path": "sprites/spr_broken_tree_3_a/spr_broken_tree_3_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_broken_tree_3_b",
-        "path": "sprites/spr_broken_tree_3_b/spr_broken_tree_3_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_broken_tree_3_c",
-        "path": "sprites/spr_broken_tree_3_c/spr_broken_tree_3_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_broken_tree_4_a",
-        "path": "sprites/spr_broken_tree_4_a/spr_broken_tree_4_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_broken_tree_4_b",
-        "path": "sprites/spr_broken_tree_4_b/spr_broken_tree_4_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_broken_tree_4_c",
-        "path": "sprites/spr_broken_tree_4_c/spr_broken_tree_4_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_broken_tree_5_a",
-        "path": "sprites/spr_broken_tree_5_a/spr_broken_tree_5_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_broken_tree_5_b",
-        "path": "sprites/spr_broken_tree_5_b/spr_broken_tree_5_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_broken_tree_5_c",
-        "path": "sprites/spr_broken_tree_5_c/spr_broken_tree_5_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_broken_tree_6_a",
-        "path": "sprites/spr_broken_tree_6_a/spr_broken_tree_6_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_broken_tree_6_b",
-        "path": "sprites/spr_broken_tree_6_b/spr_broken_tree_6_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_broken_tree_6_c",
-        "path": "sprites/spr_broken_tree_6_c/spr_broken_tree_6_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_broken_tree_7_a",
-        "path": "sprites/spr_broken_tree_7_a/spr_broken_tree_7_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_broken_tree_7_b",
-        "path": "sprites/spr_broken_tree_7_b/spr_broken_tree_7_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_broken_tree_7_c",
-        "path": "sprites/spr_broken_tree_7_c/spr_broken_tree_7_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_crab_ability",
-        "path": "sprites/spr_crab_ability/spr_crab_ability.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_crab_attack_a",
-        "path": "sprites/spr_crab_attack_a/spr_crab_attack_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_crab_attack_a_fx",
-        "path": "sprites/spr_crab_attack_a_fx/spr_crab_attack_a_fx.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_crab_attack_b",
-        "path": "sprites/spr_crab_attack_b/spr_crab_attack_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_crab_attack_b_fx",
-        "path": "sprites/spr_crab_attack_b_fx/spr_crab_attack_b_fx.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_crab_attack_c",
-        "path": "sprites/spr_crab_attack_c/spr_crab_attack_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_crab_attack_c_fx",
-        "path": "sprites/spr_crab_attack_c_fx/spr_crab_attack_c_fx.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_crab_death",
-        "path": "sprites/spr_crab_death/spr_crab_death.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_crab_hit",
-        "path": "sprites/spr_crab_hit/spr_crab_hit.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_crab_idle",
-        "path": "sprites/spr_crab_idle/spr_crab_idle.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_crab_run",
-        "path": "sprites/spr_crab_run/spr_crab_run.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_crystal_1_a",
-        "path": "sprites/spr_crystal_1_a/spr_crystal_1_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_crystal_1_b",
-        "path": "sprites/spr_crystal_1_b/spr_crystal_1_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_crystal_1_c",
-        "path": "sprites/spr_crystal_1_c/spr_crystal_1_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_crystal_2_a",
-        "path": "sprites/spr_crystal_2_a/spr_crystal_2_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_crystal_2_b",
-        "path": "sprites/spr_crystal_2_b/spr_crystal_2_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_crystal_2_c",
-        "path": "sprites/spr_crystal_2_c/spr_crystal_2_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_crystal_3_a",
-        "path": "sprites/spr_crystal_3_a/spr_crystal_3_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_crystal_3_b",
-        "path": "sprites/spr_crystal_3_b/spr_crystal_3_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_crystal_3_c",
-        "path": "sprites/spr_crystal_3_c/spr_crystal_3_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_crystal_4_a",
-        "path": "sprites/spr_crystal_4_a/spr_crystal_4_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_crystal_4_b",
-        "path": "sprites/spr_crystal_4_b/spr_crystal_4_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_crystal_4_c",
-        "path": "sprites/spr_crystal_4_c/spr_crystal_4_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_dead_arm_1_a",
-        "path": "sprites/spr_dead_arm_1_a/spr_dead_arm_1_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_dead_arm_1_b",
-        "path": "sprites/spr_dead_arm_1_b/spr_dead_arm_1_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_dead_arm_1_c",
-        "path": "sprites/spr_dead_arm_1_c/spr_dead_arm_1_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_dead_arm_2_a",
-        "path": "sprites/spr_dead_arm_2_a/spr_dead_arm_2_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_dead_arm_2_b",
-        "path": "sprites/spr_dead_arm_2_b/spr_dead_arm_2_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_dead_arm_2_c",
-        "path": "sprites/spr_dead_arm_2_c/spr_dead_arm_2_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_dead_arm_3_a",
-        "path": "sprites/spr_dead_arm_3_a/spr_dead_arm_3_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_dead_arm_3_b",
-        "path": "sprites/spr_dead_arm_3_b/spr_dead_arm_3_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_dead_arm_3_c",
-        "path": "sprites/spr_dead_arm_3_c/spr_dead_arm_3_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_dead_arm_4_a",
-        "path": "sprites/spr_dead_arm_4_a/spr_dead_arm_4_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_dead_arm_4_b",
-        "path": "sprites/spr_dead_arm_4_b/spr_dead_arm_4_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_dead_arm_4_c",
-        "path": "sprites/spr_dead_arm_4_c/spr_dead_arm_4_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_dead_tree_1_a",
-        "path": "sprites/spr_dead_tree_1_a/spr_dead_tree_1_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_dead_tree_1_c",
-        "path": "sprites/spr_dead_tree_1_c/spr_dead_tree_1_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_dead_tree_2_a",
-        "path": "sprites/spr_dead_tree_2_a/spr_dead_tree_2_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_dead_tree_2_c",
-        "path": "sprites/spr_dead_tree_2_c/spr_dead_tree_2_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_dead_tree_3_a",
-        "path": "sprites/spr_dead_tree_3_a/spr_dead_tree_3_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_dead_tree_3_c",
-        "path": "sprites/spr_dead_tree_3_c/spr_dead_tree_3_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_dead_tree_big_a",
-        "path": "sprites/spr_dead_tree_big_a/spr_dead_tree_big_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_dead_tree_big_b",
-        "path": "sprites/spr_dead_tree_big_b/spr_dead_tree_big_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_dead_tree_big_c",
-        "path": "sprites/spr_dead_tree_big_c/spr_dead_tree_big_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_dead_tree_mid_a",
-        "path": "sprites/spr_dead_tree_mid_a/spr_dead_tree_mid_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_dead_tree_mid_b",
-        "path": "sprites/spr_dead_tree_mid_b/spr_dead_tree_mid_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_dead_tree_mid_c",
-        "path": "sprites/spr_dead_tree_mid_c/spr_dead_tree_mid_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_dead_tree_small_a",
-        "path": "sprites/spr_dead_tree_small_a/spr_dead_tree_small_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_dead_tree_small_b",
-        "path": "sprites/spr_dead_tree_small_b/spr_dead_tree_small_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_dead_tree_small_c",
-        "path": "sprites/spr_dead_tree_small_c/spr_dead_tree_small_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_enemy_attack",
-        "path": "sprites/spr_enemy_attack/spr_enemy_attack.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_enemy_death",
-        "path": "sprites/spr_enemy_death/spr_enemy_death.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_enemy_demon",
-        "path": "sprites/spr_enemy_demon/spr_enemy_demon.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_enemy_demon_attack",
-        "path": "sprites/spr_enemy_demon_attack/spr_enemy_demon_attack.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_enemy_demon_death",
-        "path": "sprites/spr_enemy_demon_death/spr_enemy_demon_death.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_enemy_demon_walk",
-        "path": "sprites/spr_enemy_demon_walk/spr_enemy_demon_walk.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_enemy_golem",
-        "path": "sprites/spr_enemy_golem/spr_enemy_golem.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_golem_armored_ability",
-        "path": "sprites/spr_golem_armored_ability/spr_golem_armored_ability.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_golem_armored_armor_break",
-        "path": "sprites/spr_golem_armored_armor_break/spr_golem_armored_armor_break.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_golem_armored_attack_a",
-        "path": "sprites/spr_golem_armored_attack_a/spr_golem_armored_attack_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_golem_armored_attack_a_fx",
-        "path": "sprites/spr_golem_armored_attack_a_fx/spr_golem_armored_attack_a_fx.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_golem_armored_attack_b",
-        "path": "sprites/spr_golem_armored_attack_b/spr_golem_armored_attack_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_golem_armored_attack_b_fx",
-        "path": "sprites/spr_golem_armored_attack_b_fx/spr_golem_armored_attack_b_fx.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_golem_armored_attack_c",
-        "path": "sprites/spr_golem_armored_attack_c/spr_golem_armored_attack_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_golem_armored_attack_c_fx",
-        "path": "sprites/spr_golem_armored_attack_c_fx/spr_golem_armored_attack_c_fx.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_golem_armored_hit",
-        "path": "sprites/spr_golem_armored_hit/spr_golem_armored_hit.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_golem_armored_idle",
-        "path": "sprites/spr_golem_armored_idle/spr_golem_armored_idle.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_golem_armored_run",
-        "path": "sprites/spr_golem_armored_run/spr_golem_armored_run.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_golem_attack_a",
-        "path": "sprites/spr_golem_attack_a/spr_golem_attack_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_golem_attack_a_fx",
-        "path": "sprites/spr_golem_attack_a_fx/spr_golem_attack_a_fx.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_golem_attack_b",
-        "path": "sprites/spr_golem_attack_b/spr_golem_attack_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_golem_attack_b_fx",
-        "path": "sprites/spr_golem_attack_b_fx/spr_golem_attack_b_fx.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_golem_attack_c",
-        "path": "sprites/spr_golem_attack_c/spr_golem_attack_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_golem_attack_c_fx",
-        "path": "sprites/spr_golem_attack_c_fx/spr_golem_attack_c_fx.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_golem_death_a",
-        "path": "sprites/spr_golem_death_a/spr_golem_death_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_golem_death_b",
-        "path": "sprites/spr_golem_death_b/spr_golem_death_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_golem_death_fx",
-        "path": "sprites/spr_golem_death_fx/spr_golem_death_fx.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_golem_hit_a",
-        "path": "sprites/spr_golem_hit_a/spr_golem_hit_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_golem_hit_b",
-        "path": "sprites/spr_golem_hit_b/spr_golem_hit_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_golem_idle_a",
-        "path": "sprites/spr_golem_idle_a/spr_golem_idle_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_golem_idle_b",
-        "path": "sprites/spr_golem_idle_b/spr_golem_idle_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_golem_reset",
-        "path": "sprites/spr_golem_reset/spr_golem_reset.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_golem_run",
-        "path": "sprites/spr_golem_run/spr_golem_run.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_golem_upgrade",
-        "path": "sprites/spr_golem_upgrade/spr_golem_upgrade.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_grave_10_a",
-        "path": "sprites/spr_grave_10_a/spr_grave_10_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_grave_10_b",
-        "path": "sprites/spr_grave_10_b/spr_grave_10_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_grave_10_c",
-        "path": "sprites/spr_grave_10_c/spr_grave_10_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_grave_11_a",
-        "path": "sprites/spr_grave_11_a/spr_grave_11_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_grave_11_b",
-        "path": "sprites/spr_grave_11_b/spr_grave_11_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_grave_11_c",
-        "path": "sprites/spr_grave_11_c/spr_grave_11_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_grave_12_a",
-        "path": "sprites/spr_grave_12_a/spr_grave_12_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_grave_12_b",
-        "path": "sprites/spr_grave_12_b/spr_grave_12_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_grave_12_c",
-        "path": "sprites/spr_grave_12_c/spr_grave_12_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_grave_13_a",
-        "path": "sprites/spr_grave_13_a/spr_grave_13_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_grave_13_b",
-        "path": "sprites/spr_grave_13_b/spr_grave_13_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_grave_13_c",
-        "path": "sprites/spr_grave_13_c/spr_grave_13_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_grave_14_a",
-        "path": "sprites/spr_grave_14_a/spr_grave_14_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_grave_14_b",
-        "path": "sprites/spr_grave_14_b/spr_grave_14_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_grave_14_c",
-        "path": "sprites/spr_grave_14_c/spr_grave_14_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_grave_15_a",
-        "path": "sprites/spr_grave_15_a/spr_grave_15_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_grave_15_b",
-        "path": "sprites/spr_grave_15_b/spr_grave_15_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_grave_15_c",
-        "path": "sprites/spr_grave_15_c/spr_grave_15_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_grave_16_a",
-        "path": "sprites/spr_grave_16_a/spr_grave_16_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_grave_16_b",
-        "path": "sprites/spr_grave_16_b/spr_grave_16_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_grave_16_c",
-        "path": "sprites/spr_grave_16_c/spr_grave_16_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_grave_17_a",
-        "path": "sprites/spr_grave_17_a/spr_grave_17_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_grave_17_b",
-        "path": "sprites/spr_grave_17_b/spr_grave_17_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_grave_17_c",
-        "path": "sprites/spr_grave_17_c/spr_grave_17_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_grave_1_a",
-        "path": "sprites/spr_grave_1_a/spr_grave_1_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_grave_1_b",
-        "path": "sprites/spr_grave_1_b/spr_grave_1_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_grave_1_c",
-        "path": "sprites/spr_grave_1_c/spr_grave_1_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_grave_2_a",
-        "path": "sprites/spr_grave_2_a/spr_grave_2_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_grave_2_b",
-        "path": "sprites/spr_grave_2_b/spr_grave_2_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_grave_2_c",
-        "path": "sprites/spr_grave_2_c/spr_grave_2_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_grave_3_a",
-        "path": "sprites/spr_grave_3_a/spr_grave_3_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_grave_3_b",
-        "path": "sprites/spr_grave_3_b/spr_grave_3_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_grave_3_c",
-        "path": "sprites/spr_grave_3_c/spr_grave_3_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_grave_4_a",
-        "path": "sprites/spr_grave_4_a/spr_grave_4_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_grave_4_b",
-        "path": "sprites/spr_grave_4_b/spr_grave_4_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_grave_4_c",
-        "path": "sprites/spr_grave_4_c/spr_grave_4_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_grave_5_a",
-        "path": "sprites/spr_grave_5_a/spr_grave_5_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_grave_5_b",
-        "path": "sprites/spr_grave_5_b/spr_grave_5_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_grave_5_c",
-        "path": "sprites/spr_grave_5_c/spr_grave_5_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_grave_6_a",
-        "path": "sprites/spr_grave_6_a/spr_grave_6_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_grave_6_b",
-        "path": "sprites/spr_grave_6_b/spr_grave_6_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_grave_6_c",
-        "path": "sprites/spr_grave_6_c/spr_grave_6_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_grave_7_a",
-        "path": "sprites/spr_grave_7_a/spr_grave_7_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_grave_7_b",
-        "path": "sprites/spr_grave_7_b/spr_grave_7_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_grave_7_c",
-        "path": "sprites/spr_grave_7_c/spr_grave_7_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_grave_8_a",
-        "path": "sprites/spr_grave_8_a/spr_grave_8_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_grave_8_b",
-        "path": "sprites/spr_grave_8_b/spr_grave_8_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_grave_8_c",
-        "path": "sprites/spr_grave_8_c/spr_grave_8_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_grave_9_a",
-        "path": "sprites/spr_grave_9_a/spr_grave_9_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_grave_9_b",
-        "path": "sprites/spr_grave_9_b/spr_grave_9_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_grave_9_c",
-        "path": "sprites/spr_grave_9_c/spr_grave_9_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_lich_a",
-        "path": "sprites/spr_lich_a/spr_lich_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_lich_b",
-        "path": "sprites/spr_lich_b/spr_lich_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_lich_c",
-        "path": "sprites/spr_lich_c/spr_lich_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_mask_demon",
-        "path": "sprites/spr_mask_demon/spr_mask_demon.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_mask_golem",
-        "path": "sprites/spr_mask_golem/spr_mask_golem.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_mask_small",
-        "path": "sprites/spr_mask_small/spr_mask_small.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_mask_wide",
-        "path": "sprites/spr_mask_wide/spr_mask_wide.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_pebble_death",
-        "path": "sprites/spr_pebble_death/spr_pebble_death.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_pebble_hit",
-        "path": "sprites/spr_pebble_hit/spr_pebble_hit.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_pebble_idle",
-        "path": "sprites/spr_pebble_idle/spr_pebble_idle.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_pebble_run",
-        "path": "sprites/spr_pebble_run/spr_pebble_run.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_pile_skulls_a",
-        "path": "sprites/spr_pile_skulls_a/spr_pile_skulls_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_pile_skulls_b",
-        "path": "sprites/spr_pile_skulls_b/spr_pile_skulls_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_pile_skulls_c",
-        "path": "sprites/spr_pile_skulls_c/spr_pile_skulls_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_plant_1_a",
-        "path": "sprites/spr_plant_1_a/spr_plant_1_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_plant_1_b",
-        "path": "sprites/spr_plant_1_b/spr_plant_1_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_plant_1_c",
-        "path": "sprites/spr_plant_1_c/spr_plant_1_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_plant_2_a",
-        "path": "sprites/spr_plant_2_a/spr_plant_2_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_plant_2_b",
-        "path": "sprites/spr_plant_2_b/spr_plant_2_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_plant_2_c",
-        "path": "sprites/spr_plant_2_c/spr_plant_2_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_plant_3_a",
-        "path": "sprites/spr_plant_3_a/spr_plant_3_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_plant_3_b",
-        "path": "sprites/spr_plant_3_b/spr_plant_3_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_plant_3_c",
-        "path": "sprites/spr_plant_3_c/spr_plant_3_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_plant_4_a",
-        "path": "sprites/spr_plant_4_a/spr_plant_4_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_plant_4_b",
-        "path": "sprites/spr_plant_4_b/spr_plant_4_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_plant_4_c",
-        "path": "sprites/spr_plant_4_c/spr_plant_4_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_plant_5_a",
-        "path": "sprites/spr_plant_5_a/spr_plant_5_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_plant_5_b",
-        "path": "sprites/spr_plant_5_b/spr_plant_5_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_plant_5_c",
-        "path": "sprites/spr_plant_5_c/spr_plant_5_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_player_down",
-        "path": "sprites/spr_player_down/spr_player_down.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_player_downleft",
-        "path": "sprites/spr_player_downleft/spr_player_downleft.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_player_downright",
-        "path": "sprites/spr_player_downright/spr_player_downright.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_player_left",
-        "path": "sprites/spr_player_left/spr_player_left.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_player_mask",
-        "path": "sprites/spr_player_mask/spr_player_mask.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_player_right",
-        "path": "sprites/spr_player_right/spr_player_right.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_player_roll_down",
-        "path": "sprites/spr_player_roll_down/spr_player_roll_down.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_player_roll_downleft",
-        "path": "sprites/spr_player_roll_downleft/spr_player_roll_downleft.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_player_roll_downright",
-        "path": "sprites/spr_player_roll_downright/spr_player_roll_downright.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_player_roll_left",
-        "path": "sprites/spr_player_roll_left/spr_player_roll_left.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_player_roll_right",
-        "path": "sprites/spr_player_roll_right/spr_player_roll_right.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_player_roll_up",
-        "path": "sprites/spr_player_roll_up/spr_player_roll_up.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_player_roll_upleft",
-        "path": "sprites/spr_player_roll_upleft/spr_player_roll_upleft.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_player_roll_upright",
-        "path": "sprites/spr_player_roll_upright/spr_player_roll_upright.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_player_slash_downleft",
-        "path": "sprites/spr_player_slash_downleft/spr_player_slash_downleft.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_player_slash_downright",
-        "path": "sprites/spr_player_slash_downright/spr_player_slash_downright.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_player_slash_upleft",
-        "path": "sprites/spr_player_slash_upleft/spr_player_slash_upleft.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_player_slash_upright",
-        "path": "sprites/spr_player_slash_upright/spr_player_slash_upright.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_player_up",
-        "path": "sprites/spr_player_up/spr_player_up.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_player_upleft",
-        "path": "sprites/spr_player_upleft/spr_player_upleft.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_player_upright",
-        "path": "sprites/spr_player_upright/spr_player_upright.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_ramses_idle",
-        "path": "sprites/spr_ramses_idle/spr_ramses_idle.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_ramses_track",
-        "path": "sprites/spr_ramses_track/spr_ramses_track.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_ramses_walk",
-        "path": "sprites/spr_ramses_walk/spr_ramses_walk.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_rat_ability",
-        "path": "sprites/spr_rat_ability/spr_rat_ability.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_rat_attack",
-        "path": "sprites/spr_rat_attack/spr_rat_attack.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_rat_attack_fx",
-        "path": "sprites/spr_rat_attack_fx/spr_rat_attack_fx.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_rat_basic_attack",
-        "path": "sprites/spr_rat_basic_attack/spr_rat_basic_attack.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_rat_basic_death",
-        "path": "sprites/spr_rat_basic_death/spr_rat_basic_death.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_rat_basic_hit",
-        "path": "sprites/spr_rat_basic_hit/spr_rat_basic_hit.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_rat_basic_idle",
-        "path": "sprites/spr_rat_basic_idle/spr_rat_basic_idle.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_rat_basic_jump_fall",
-        "path": "sprites/spr_rat_basic_jump_fall/spr_rat_basic_jump_fall.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_rat_basic_jump_peak",
-        "path": "sprites/spr_rat_basic_jump_peak/spr_rat_basic_jump_peak.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_rat_basic_jump_up",
-        "path": "sprites/spr_rat_basic_jump_up/spr_rat_basic_jump_up.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_rat_basic_outline_attack",
-        "path": "sprites/spr_rat_basic_outline_attack/spr_rat_basic_outline_attack.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_rat_basic_outline_death",
-        "path": "sprites/spr_rat_basic_outline_death/spr_rat_basic_outline_death.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_rat_basic_outline_hit",
-        "path": "sprites/spr_rat_basic_outline_hit/spr_rat_basic_outline_hit.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_rat_basic_outline_idle",
-        "path": "sprites/spr_rat_basic_outline_idle/spr_rat_basic_outline_idle.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_rat_basic_outline_jump_fall",
-        "path": "sprites/spr_rat_basic_outline_jump_fall/spr_rat_basic_outline_jump_fall.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_rat_basic_outline_jump_peak",
-        "path": "sprites/spr_rat_basic_outline_jump_peak/spr_rat_basic_outline_jump_peak.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_rat_basic_outline_jump_up",
-        "path": "sprites/spr_rat_basic_outline_jump_up/spr_rat_basic_outline_jump_up.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_rat_basic_outline_run",
-        "path": "sprites/spr_rat_basic_outline_run/spr_rat_basic_outline_run.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_rat_death",
-        "path": "sprites/spr_rat_death/spr_rat_death.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_rat_death_fx",
-        "path": "sprites/spr_rat_death_fx/spr_rat_death_fx.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_rat_hit",
-        "path": "sprites/spr_rat_hit/spr_rat_hit.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_rat_idle",
-        "path": "sprites/spr_rat_idle/spr_rat_idle.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_rat_run",
-        "path": "sprites/spr_rat_run/spr_rat_run.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_rock_1_a",
-        "path": "sprites/spr_rock_1_a/spr_rock_1_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_rock_1_b",
-        "path": "sprites/spr_rock_1_b/spr_rock_1_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_rock_1_c",
-        "path": "sprites/spr_rock_1_c/spr_rock_1_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_rock_2_a",
-        "path": "sprites/spr_rock_2_a/spr_rock_2_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_rock_2_b",
-        "path": "sprites/spr_rock_2_b/spr_rock_2_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_rock_2_c",
-        "path": "sprites/spr_rock_2_c/spr_rock_2_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_rock_3_a",
-        "path": "sprites/spr_rock_3_a/spr_rock_3_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_rock_3_b",
-        "path": "sprites/spr_rock_3_b/spr_rock_3_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_rock_3_c",
-        "path": "sprites/spr_rock_3_c/spr_rock_3_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_rock_4_a",
-        "path": "sprites/spr_rock_4_a/spr_rock_4_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_rock_4_b",
-        "path": "sprites/spr_rock_4_b/spr_rock_4_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_rock_4_c",
-        "path": "sprites/spr_rock_4_c/spr_rock_4_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_rock_5_a",
-        "path": "sprites/spr_rock_5_a/spr_rock_5_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_rock_5_b",
-        "path": "sprites/spr_rock_5_b/spr_rock_5_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_rock_5_c",
-        "path": "sprites/spr_rock_5_c/spr_rock_5_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_ruin_1_a",
-        "path": "sprites/spr_ruin_1_a/spr_ruin_1_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_ruin_1_b",
-        "path": "sprites/spr_ruin_1_b/spr_ruin_1_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_ruin_1_c",
-        "path": "sprites/spr_ruin_1_c/spr_ruin_1_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_ruin_2_a",
-        "path": "sprites/spr_ruin_2_a/spr_ruin_2_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_ruin_2_b",
-        "path": "sprites/spr_ruin_2_b/spr_ruin_2_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_ruin_2_c",
-        "path": "sprites/spr_ruin_2_c/spr_ruin_2_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_ruin_3_a",
-        "path": "sprites/spr_ruin_3_a/spr_ruin_3_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_ruin_3_b",
-        "path": "sprites/spr_ruin_3_b/spr_ruin_3_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_ruin_3_c",
-        "path": "sprites/spr_ruin_3_c/spr_ruin_3_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_ruin_4_a",
-        "path": "sprites/spr_ruin_4_a/spr_ruin_4_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_ruin_4_b",
-        "path": "sprites/spr_ruin_4_b/spr_ruin_4_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_ruin_4_c",
-        "path": "sprites/spr_ruin_4_c/spr_ruin_4_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_ruin_5_a",
-        "path": "sprites/spr_ruin_5_a/spr_ruin_5_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_ruin_5_b",
-        "path": "sprites/spr_ruin_5_b/spr_ruin_5_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_ruin_5_c",
-        "path": "sprites/spr_ruin_5_c/spr_ruin_5_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_shrine_a",
-        "path": "sprites/spr_shrine_a/spr_shrine_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_shrine_b",
-        "path": "sprites/spr_shrine_b/spr_shrine_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_shrine_c",
-        "path": "sprites/spr_shrine_c/spr_shrine_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_skeleton_attack",
-        "path": "sprites/spr_skeleton_attack/spr_skeleton_attack.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_skeleton_attack_b",
-        "path": "sprites/spr_skeleton_attack_b/spr_skeleton_attack_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_skeleton_death",
-        "path": "sprites/spr_skeleton_death/spr_skeleton_death.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_skeleton_hit",
-        "path": "sprites/spr_skeleton_hit/spr_skeleton_hit.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_skeleton_idle",
-        "path": "sprites/spr_skeleton_idle/spr_skeleton_idle.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_skeleton_outline_attack",
-        "path": "sprites/spr_skeleton_outline_attack/spr_skeleton_outline_attack.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_skeleton_outline_attack_b",
-        "path": "sprites/spr_skeleton_outline_attack_b/spr_skeleton_outline_attack_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_skeleton_outline_death",
-        "path": "sprites/spr_skeleton_outline_death/spr_skeleton_outline_death.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_skeleton_outline_hit",
-        "path": "sprites/spr_skeleton_outline_hit/spr_skeleton_outline_hit.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_skeleton_outline_idle",
-        "path": "sprites/spr_skeleton_outline_idle/spr_skeleton_outline_idle.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_skeleton_outline_walk",
-        "path": "sprites/spr_skeleton_outline_walk/spr_skeleton_outline_walk.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_skeleton_walk",
-        "path": "sprites/spr_skeleton_walk/spr_skeleton_walk.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_skull_death",
-        "path": "sprites/spr_skull_death/spr_skull_death.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_skull_death_fx",
-        "path": "sprites/spr_skull_death_fx/spr_skull_death_fx.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_skull_door_a",
-        "path": "sprites/spr_skull_door_a/spr_skull_door_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_skull_door_b",
-        "path": "sprites/spr_skull_door_b/spr_skull_door_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_skull_door_c",
-        "path": "sprites/spr_skull_door_c/spr_skull_door_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_skull_fly",
-        "path": "sprites/spr_skull_fly/spr_skull_fly.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_skull_hit",
-        "path": "sprites/spr_skull_hit/spr_skull_hit.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_skull_idle",
-        "path": "sprites/spr_skull_idle/spr_skull_idle.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_slime_basic_attack",
-        "path": "sprites/spr_slime_basic_attack/spr_slime_basic_attack.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_slime_basic_attack_b",
-        "path": "sprites/spr_slime_basic_attack_b/spr_slime_basic_attack_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_slime_basic_death",
-        "path": "sprites/spr_slime_basic_death/spr_slime_basic_death.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_slime_basic_hit",
-        "path": "sprites/spr_slime_basic_hit/spr_slime_basic_hit.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_slime_basic_idle",
-        "path": "sprites/spr_slime_basic_idle/spr_slime_basic_idle.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_slime_basic_jump",
-        "path": "sprites/spr_slime_basic_jump/spr_slime_basic_jump.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_slime_basic_move",
-        "path": "sprites/spr_slime_basic_move/spr_slime_basic_move.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_slime_basic_outline_attack",
-        "path": "sprites/spr_slime_basic_outline_attack/spr_slime_basic_outline_attack.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_slime_basic_outline_attack_b",
-        "path": "sprites/spr_slime_basic_outline_attack_b/spr_slime_basic_outline_attack_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_slime_basic_outline_death",
-        "path": "sprites/spr_slime_basic_outline_death/spr_slime_basic_outline_death.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_slime_basic_outline_hit",
-        "path": "sprites/spr_slime_basic_outline_hit/spr_slime_basic_outline_hit.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_slime_basic_outline_idle",
-        "path": "sprites/spr_slime_basic_outline_idle/spr_slime_basic_outline_idle.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_slime_basic_outline_jump",
-        "path": "sprites/spr_slime_basic_outline_jump/spr_slime_basic_outline_jump.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_slime_basic_outline_move",
-        "path": "sprites/spr_slime_basic_outline_move/spr_slime_basic_outline_move.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_slime_spiked_ability",
-        "path": "sprites/spr_slime_spiked_ability/spr_slime_spiked_ability.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_slime_spiked_ability_fx",
-        "path": "sprites/spr_slime_spiked_ability_fx/spr_slime_spiked_ability_fx.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_slime_spiked_death",
-        "path": "sprites/spr_slime_spiked_death/spr_slime_spiked_death.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_slime_spiked_hit",
-        "path": "sprites/spr_slime_spiked_hit/spr_slime_spiked_hit.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_slime_spiked_idle",
-        "path": "sprites/spr_slime_spiked_idle/spr_slime_spiked_idle.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_slime_spiked_jump",
-        "path": "sprites/spr_slime_spiked_jump/spr_slime_spiked_jump.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_slime_spiked_jump_fx",
-        "path": "sprites/spr_slime_spiked_jump_fx/spr_slime_spiked_jump_fx.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_slime_spiked_run",
-        "path": "sprites/spr_slime_spiked_run/spr_slime_spiked_run.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_spawn",
-        "path": "sprites/spr_spawn/spr_spawn.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_sword_downleft",
-        "path": "sprites/spr_sword_downleft/spr_sword_downleft.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_sword_downright",
-        "path": "sprites/spr_sword_downright/spr_sword_downright.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_sword_upleft",
-        "path": "sprites/spr_sword_upleft/spr_sword_upleft.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_sword_upright",
-        "path": "sprites/spr_sword_upright/spr_sword_upright.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_thorn_plant_1_a",
-        "path": "sprites/spr_thorn_plant_1_a/spr_thorn_plant_1_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_thorn_plant_1_b",
-        "path": "sprites/spr_thorn_plant_1_b/spr_thorn_plant_1_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_thorn_plant_1_c",
-        "path": "sprites/spr_thorn_plant_1_c/spr_thorn_plant_1_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_thorn_plant_2_a",
-        "path": "sprites/spr_thorn_plant_2_a/spr_thorn_plant_2_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_thorn_plant_2_b",
-        "path": "sprites/spr_thorn_plant_2_b/spr_thorn_plant_2_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_thorn_plant_2_c",
-        "path": "sprites/spr_thorn_plant_2_c/spr_thorn_plant_2_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_thorn_plant_3_a",
-        "path": "sprites/spr_thorn_plant_3_a/spr_thorn_plant_3_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_thorn_plant_3_b",
-        "path": "sprites/spr_thorn_plant_3_b/spr_thorn_plant_3_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_thorn_plant_3_c",
-        "path": "sprites/spr_thorn_plant_3_c/spr_thorn_plant_3_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_thorn_plant_4_a",
-        "path": "sprites/spr_thorn_plant_4_a/spr_thorn_plant_4_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_thorn_plant_4_b",
-        "path": "sprites/spr_thorn_plant_4_b/spr_thorn_plant_4_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_thorn_plant_4_c",
-        "path": "sprites/spr_thorn_plant_4_c/spr_thorn_plant_4_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_thorn_plant_5_a",
-        "path": "sprites/spr_thorn_plant_5_a/spr_thorn_plant_5_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_thorn_plant_5_b",
-        "path": "sprites/spr_thorn_plant_5_b/spr_thorn_plant_5_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_thorn_plant_5_c",
-        "path": "sprites/spr_thorn_plant_5_c/spr_thorn_plant_5_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_thorn_plant_6_a",
-        "path": "sprites/spr_thorn_plant_6_a/spr_thorn_plant_6_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_thorn_plant_6_b",
-        "path": "sprites/spr_thorn_plant_6_b/spr_thorn_plant_6_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_thorn_plant_6_c",
-        "path": "sprites/spr_thorn_plant_6_c/spr_thorn_plant_6_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_throne_a",
-        "path": "sprites/spr_throne_a/spr_throne_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_throne_b",
-        "path": "sprites/spr_throne_b/spr_throne_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_throne_c",
-        "path": "sprites/spr_throne_c/spr_throne_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_totem_a",
-        "path": "sprites/spr_totem_a/spr_totem_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_totem_b",
-        "path": "sprites/spr_totem_b/spr_totem_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_totem_c",
-        "path": "sprites/spr_totem_c/spr_totem_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_tree_1_a",
-        "path": "sprites/spr_tree_1_a/spr_tree_1_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_tree_1_b",
-        "path": "sprites/spr_tree_1_b/spr_tree_1_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_tree_1_c",
-        "path": "sprites/spr_tree_1_c/spr_tree_1_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_tree_2_a",
-        "path": "sprites/spr_tree_2_a/spr_tree_2_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_tree_2_b",
-        "path": "sprites/spr_tree_2_b/spr_tree_2_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_tree_2_c",
-        "path": "sprites/spr_tree_2_c/spr_tree_2_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_tree_3_a",
-        "path": "sprites/spr_tree_3_a/spr_tree_3_a.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_tree_3_b",
-        "path": "sprites/spr_tree_3_b/spr_tree_3_b.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_tree_3_c",
-        "path": "sprites/spr_tree_3_c/spr_tree_3_c.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_ts_details",
-        "path": "sprites/spr_ts_details/spr_ts_details.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_ts_ground",
-        "path": "sprites/spr_ts_ground/spr_ts_ground.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_ts_water",
-        "path": "sprites/spr_ts_water/spr_ts_water.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_ts_water_coasts",
-        "path": "sprites/spr_ts_water_coasts/spr_ts_water_coasts.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_ts_water_v2",
-        "path": "sprites/spr_ts_water_v2/spr_ts_water_v2.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "spr_wall",
-        "path": "sprites/spr_wall/spr_wall.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "ts_details",
-        "path": "tilesets/ts_details/ts_details.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "ts_ground",
-        "path": "tilesets/ts_ground/ts_ground.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "ts_water",
-        "path": "tilesets/ts_water/ts_water.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "ts_water_coasts",
-        "path": "tilesets/ts_water_coasts/ts_water_coasts.yy"
-      }
-    },
-    {
-      "id": {
-        "name": "ts_water_v2",
-        "path": "tilesets/ts_water_v2/ts_water_v2.yy"
-      }
-    }
+  "name":"multiplayergame",
+  "resources":[
+    {"id":{"name":"obj_block","path":"objects/obj_block/obj_block.yy",},},
+    {"id":{"name":"obj_boonselect","path":"objects/obj_boonselect/obj_boonselect.yy",},},
+    {"id":{"name":"obj_boss","path":"objects/obj_boss/obj_boss.yy",},},
+    {"id":{"name":"obj_camera","path":"objects/obj_camera/obj_camera.yy",},},
+    {"id":{"name":"obj_cast","path":"objects/obj_cast/obj_cast.yy",},},
+    {"id":{"name":"obj_cliff","path":"objects/obj_cliff/obj_cliff.yy",},},
+    {"id":{"name":"obj_dialogue","path":"objects/obj_dialogue/obj_dialogue.yy",},},
+    {"id":{"name":"obj_dmgnum","path":"objects/obj_dmgnum/obj_dmgnum.yy",},},
+    {"id":{"name":"obj_door","path":"objects/obj_door/obj_door.yy",},},
+    {"id":{"name":"obj_dummy","path":"objects/obj_dummy/obj_dummy.yy",},},
+    {"id":{"name":"obj_enemy_2","path":"objects/obj_enemy_2/obj_enemy_2.yy",},},
+    {"id":{"name":"obj_enemy","path":"objects/obj_enemy/obj_enemy.yy",},},
+    {"id":{"name":"obj_fire","path":"objects/obj_fire/obj_fire.yy",},},
+    {"id":{"name":"obj_floor","path":"objects/obj_floor/obj_floor.yy",},},
+    {"id":{"name":"obj_fx","path":"objects/obj_fx/obj_fx.yy",},},
+    {"id":{"name":"obj_game","path":"objects/obj_game/obj_game.yy",},},
+    {"id":{"name":"obj_juice","path":"objects/obj_juice/obj_juice.yy",},},
+    {"id":{"name":"obj_landmark","path":"objects/obj_landmark/obj_landmark.yy",},},
+    {"id":{"name":"obj_lighting","path":"objects/obj_lighting/obj_lighting.yy",},},
+    {"id":{"name":"obj_pickup","path":"objects/obj_pickup/obj_pickup.yy",},},
+    {"id":{"name":"obj_player","path":"objects/obj_player/obj_player.yy",},},
+    {"id":{"name":"obj_projectile","path":"objects/obj_projectile/obj_projectile.yy",},},
+    {"id":{"name":"obj_prop","path":"objects/obj_prop/obj_prop.yy",},},
+    {"id":{"name":"obj_rat","path":"objects/obj_rat/obj_rat.yy",},},
+    {"id":{"name":"obj_reliquary","path":"objects/obj_reliquary/obj_reliquary.yy",},},
+    {"id":{"name":"obj_rune","path":"objects/obj_rune/obj_rune.yy",},},
+    {"id":{"name":"obj_shrine","path":"objects/obj_shrine/obj_shrine.yy",},},
+    {"id":{"name":"obj_skeleton","path":"objects/obj_skeleton/obj_skeleton.yy",},},
+    {"id":{"name":"obj_slash","path":"objects/obj_slash/obj_slash.yy",},},
+    {"id":{"name":"obj_slime","path":"objects/obj_slime/obj_slime.yy",},},
+    {"id":{"name":"obj_spawn","path":"objects/obj_spawn/obj_spawn.yy",},},
+    {"id":{"name":"obj_tutorial","path":"objects/obj_tutorial/obj_tutorial.yy",},},
+    {"id":{"name":"obj_wall","path":"objects/obj_wall/obj_wall.yy",},},
+    {"id":{"name":"obj_weapon","path":"objects/obj_weapon/obj_weapon.yy",},},
+    {"id":{"name":"rm_boss","path":"rooms/rm_boss/rm_boss.yy",},},
+    {"id":{"name":"rm_chamber_1","path":"rooms/rm_chamber_1/rm_chamber_1.yy",},},
+    {"id":{"name":"rm_chamber_2","path":"rooms/rm_chamber_2/rm_chamber_2.yy",},},
+    {"id":{"name":"rm_level","path":"rooms/rm_level/rm_level.yy",},},
+    {"id":{"name":"rm_shrine_1","path":"rooms/rm_shrine_1/rm_shrine_1.yy",},},
+    {"id":{"name":"rm_shrine_2","path":"rooms/rm_shrine_2/rm_shrine_2.yy",},},
+    {"id":{"name":"rm_shrine_3","path":"rooms/rm_shrine_3/rm_shrine_3.yy",},},
+    {"id":{"name":"scr_utility","path":"scripts/scr_utility/scr_utility.yy",},},
+    {"id":{"name":"background_music","path":"sounds/background_music/background_music.yy",},},
+    {"id":{"name":"bolt_attack","path":"sounds/bolt_attack/bolt_attack.yy",},},
+    {"id":{"name":"boss_charge","path":"sounds/boss_charge/boss_charge.yy",},},
+    {"id":{"name":"boss_fight","path":"sounds/boss_fight/boss_fight.yy",},},
+    {"id":{"name":"enemy_attack","path":"sounds/enemy_attack/enemy_attack.yy",},},
+    {"id":{"name":"enemy_slash_attack","path":"sounds/enemy_slash_attack/enemy_slash_attack.yy",},},
+    {"id":{"name":"player_jump","path":"sounds/player_jump/player_jump.yy",},},
+    {"id":{"name":"player_walk","path":"sounds/player_walk/player_walk.yy",},},
+    {"id":{"name":"shrine_music","path":"sounds/shrine_music/shrine_music.yy",},},
+    {"id":{"name":"slash_sound","path":"sounds/slash_sound/slash_sound.yy",},},
+    {"id":{"name":"smash_attack","path":"sounds/smash_attack/smash_attack.yy",},},
+    {"id":{"name":"slash_hitbox","path":"sprites/slash_hitbox/slash_hitbox.yy",},},
+    {"id":{"name":"spr_bat_attack_fx","path":"sprites/spr_bat_attack_fx/spr_bat_attack_fx.yy",},},
+    {"id":{"name":"spr_bat_attack","path":"sprites/spr_bat_attack/spr_bat_attack.yy",},},
+    {"id":{"name":"spr_bat_death_fx","path":"sprites/spr_bat_death_fx/spr_bat_death_fx.yy",},},
+    {"id":{"name":"spr_bat_death","path":"sprites/spr_bat_death/spr_bat_death.yy",},},
+    {"id":{"name":"spr_bat_fly","path":"sprites/spr_bat_fly/spr_bat_fly.yy",},},
+    {"id":{"name":"spr_bat_hit","path":"sprites/spr_bat_hit/spr_bat_hit.yy",},},
+    {"id":{"name":"spr_bones_1_a","path":"sprites/spr_bones_1_a/spr_bones_1_a.yy",},},
+    {"id":{"name":"spr_bones_1_b","path":"sprites/spr_bones_1_b/spr_bones_1_b.yy",},},
+    {"id":{"name":"spr_bones_1_c","path":"sprites/spr_bones_1_c/spr_bones_1_c.yy",},},
+    {"id":{"name":"spr_bones_10_a","path":"sprites/spr_bones_10_a/spr_bones_10_a.yy",},},
+    {"id":{"name":"spr_bones_10_b","path":"sprites/spr_bones_10_b/spr_bones_10_b.yy",},},
+    {"id":{"name":"spr_bones_10_c","path":"sprites/spr_bones_10_c/spr_bones_10_c.yy",},},
+    {"id":{"name":"spr_bones_11_a","path":"sprites/spr_bones_11_a/spr_bones_11_a.yy",},},
+    {"id":{"name":"spr_bones_11_b","path":"sprites/spr_bones_11_b/spr_bones_11_b.yy",},},
+    {"id":{"name":"spr_bones_11_c","path":"sprites/spr_bones_11_c/spr_bones_11_c.yy",},},
+    {"id":{"name":"spr_bones_12_a","path":"sprites/spr_bones_12_a/spr_bones_12_a.yy",},},
+    {"id":{"name":"spr_bones_12_b","path":"sprites/spr_bones_12_b/spr_bones_12_b.yy",},},
+    {"id":{"name":"spr_bones_12_c","path":"sprites/spr_bones_12_c/spr_bones_12_c.yy",},},
+    {"id":{"name":"spr_bones_13_a","path":"sprites/spr_bones_13_a/spr_bones_13_a.yy",},},
+    {"id":{"name":"spr_bones_13_b","path":"sprites/spr_bones_13_b/spr_bones_13_b.yy",},},
+    {"id":{"name":"spr_bones_13_c","path":"sprites/spr_bones_13_c/spr_bones_13_c.yy",},},
+    {"id":{"name":"spr_bones_14_a","path":"sprites/spr_bones_14_a/spr_bones_14_a.yy",},},
+    {"id":{"name":"spr_bones_14_c","path":"sprites/spr_bones_14_c/spr_bones_14_c.yy",},},
+    {"id":{"name":"spr_bones_15_a","path":"sprites/spr_bones_15_a/spr_bones_15_a.yy",},},
+    {"id":{"name":"spr_bones_15_b","path":"sprites/spr_bones_15_b/spr_bones_15_b.yy",},},
+    {"id":{"name":"spr_bones_15_c","path":"sprites/spr_bones_15_c/spr_bones_15_c.yy",},},
+    {"id":{"name":"spr_bones_16_a","path":"sprites/spr_bones_16_a/spr_bones_16_a.yy",},},
+    {"id":{"name":"spr_bones_16_b","path":"sprites/spr_bones_16_b/spr_bones_16_b.yy",},},
+    {"id":{"name":"spr_bones_16_c","path":"sprites/spr_bones_16_c/spr_bones_16_c.yy",},},
+    {"id":{"name":"spr_bones_17_a","path":"sprites/spr_bones_17_a/spr_bones_17_a.yy",},},
+    {"id":{"name":"spr_bones_17_b","path":"sprites/spr_bones_17_b/spr_bones_17_b.yy",},},
+    {"id":{"name":"spr_bones_17_c","path":"sprites/spr_bones_17_c/spr_bones_17_c.yy",},},
+    {"id":{"name":"spr_bones_18_a","path":"sprites/spr_bones_18_a/spr_bones_18_a.yy",},},
+    {"id":{"name":"spr_bones_18_b","path":"sprites/spr_bones_18_b/spr_bones_18_b.yy",},},
+    {"id":{"name":"spr_bones_18_c","path":"sprites/spr_bones_18_c/spr_bones_18_c.yy",},},
+    {"id":{"name":"spr_bones_2_a","path":"sprites/spr_bones_2_a/spr_bones_2_a.yy",},},
+    {"id":{"name":"spr_bones_2_b","path":"sprites/spr_bones_2_b/spr_bones_2_b.yy",},},
+    {"id":{"name":"spr_bones_2_c","path":"sprites/spr_bones_2_c/spr_bones_2_c.yy",},},
+    {"id":{"name":"spr_bones_3_a","path":"sprites/spr_bones_3_a/spr_bones_3_a.yy",},},
+    {"id":{"name":"spr_bones_3_b","path":"sprites/spr_bones_3_b/spr_bones_3_b.yy",},},
+    {"id":{"name":"spr_bones_3_c","path":"sprites/spr_bones_3_c/spr_bones_3_c.yy",},},
+    {"id":{"name":"spr_bones_4_1_b","path":"sprites/spr_bones_4_1_b/spr_bones_4_1_b.yy",},},
+    {"id":{"name":"spr_bones_4_a","path":"sprites/spr_bones_4_a/spr_bones_4_a.yy",},},
+    {"id":{"name":"spr_bones_4_b","path":"sprites/spr_bones_4_b/spr_bones_4_b.yy",},},
+    {"id":{"name":"spr_bones_4_c","path":"sprites/spr_bones_4_c/spr_bones_4_c.yy",},},
+    {"id":{"name":"spr_bones_5_a","path":"sprites/spr_bones_5_a/spr_bones_5_a.yy",},},
+    {"id":{"name":"spr_bones_5_b","path":"sprites/spr_bones_5_b/spr_bones_5_b.yy",},},
+    {"id":{"name":"spr_bones_5_c","path":"sprites/spr_bones_5_c/spr_bones_5_c.yy",},},
+    {"id":{"name":"spr_bones_6_a","path":"sprites/spr_bones_6_a/spr_bones_6_a.yy",},},
+    {"id":{"name":"spr_bones_6_b","path":"sprites/spr_bones_6_b/spr_bones_6_b.yy",},},
+    {"id":{"name":"spr_bones_6_c","path":"sprites/spr_bones_6_c/spr_bones_6_c.yy",},},
+    {"id":{"name":"spr_bones_7_a","path":"sprites/spr_bones_7_a/spr_bones_7_a.yy",},},
+    {"id":{"name":"spr_bones_7_b","path":"sprites/spr_bones_7_b/spr_bones_7_b.yy",},},
+    {"id":{"name":"spr_bones_7_c","path":"sprites/spr_bones_7_c/spr_bones_7_c.yy",},},
+    {"id":{"name":"spr_bones_8_a","path":"sprites/spr_bones_8_a/spr_bones_8_a.yy",},},
+    {"id":{"name":"spr_bones_8_b","path":"sprites/spr_bones_8_b/spr_bones_8_b.yy",},},
+    {"id":{"name":"spr_bones_8_c","path":"sprites/spr_bones_8_c/spr_bones_8_c.yy",},},
+    {"id":{"name":"spr_bones_9_a","path":"sprites/spr_bones_9_a/spr_bones_9_a.yy",},},
+    {"id":{"name":"spr_bones_9_b","path":"sprites/spr_bones_9_b/spr_bones_9_b.yy",},},
+    {"id":{"name":"spr_bones_9_c","path":"sprites/spr_bones_9_c/spr_bones_9_c.yy",},},
+    {"id":{"name":"spr_broken_tree_1_1_b","path":"sprites/spr_broken_tree_1_1_b/spr_broken_tree_1_1_b.yy",},},
+    {"id":{"name":"spr_broken_tree_1_a","path":"sprites/spr_broken_tree_1_a/spr_broken_tree_1_a.yy",},},
+    {"id":{"name":"spr_broken_tree_1_b","path":"sprites/spr_broken_tree_1_b/spr_broken_tree_1_b.yy",},},
+    {"id":{"name":"spr_broken_tree_1_c","path":"sprites/spr_broken_tree_1_c/spr_broken_tree_1_c.yy",},},
+    {"id":{"name":"spr_broken_tree_2_1_b","path":"sprites/spr_broken_tree_2_1_b/spr_broken_tree_2_1_b.yy",},},
+    {"id":{"name":"spr_broken_tree_2_a","path":"sprites/spr_broken_tree_2_a/spr_broken_tree_2_a.yy",},},
+    {"id":{"name":"spr_broken_tree_2_b","path":"sprites/spr_broken_tree_2_b/spr_broken_tree_2_b.yy",},},
+    {"id":{"name":"spr_broken_tree_2_c","path":"sprites/spr_broken_tree_2_c/spr_broken_tree_2_c.yy",},},
+    {"id":{"name":"spr_broken_tree_3_1_b","path":"sprites/spr_broken_tree_3_1_b/spr_broken_tree_3_1_b.yy",},},
+    {"id":{"name":"spr_broken_tree_3_a","path":"sprites/spr_broken_tree_3_a/spr_broken_tree_3_a.yy",},},
+    {"id":{"name":"spr_broken_tree_3_b","path":"sprites/spr_broken_tree_3_b/spr_broken_tree_3_b.yy",},},
+    {"id":{"name":"spr_broken_tree_3_c","path":"sprites/spr_broken_tree_3_c/spr_broken_tree_3_c.yy",},},
+    {"id":{"name":"spr_broken_tree_4_a","path":"sprites/spr_broken_tree_4_a/spr_broken_tree_4_a.yy",},},
+    {"id":{"name":"spr_broken_tree_4_b","path":"sprites/spr_broken_tree_4_b/spr_broken_tree_4_b.yy",},},
+    {"id":{"name":"spr_broken_tree_4_c","path":"sprites/spr_broken_tree_4_c/spr_broken_tree_4_c.yy",},},
+    {"id":{"name":"spr_broken_tree_5_a","path":"sprites/spr_broken_tree_5_a/spr_broken_tree_5_a.yy",},},
+    {"id":{"name":"spr_broken_tree_5_b","path":"sprites/spr_broken_tree_5_b/spr_broken_tree_5_b.yy",},},
+    {"id":{"name":"spr_broken_tree_5_c","path":"sprites/spr_broken_tree_5_c/spr_broken_tree_5_c.yy",},},
+    {"id":{"name":"spr_broken_tree_6_a","path":"sprites/spr_broken_tree_6_a/spr_broken_tree_6_a.yy",},},
+    {"id":{"name":"spr_broken_tree_6_b","path":"sprites/spr_broken_tree_6_b/spr_broken_tree_6_b.yy",},},
+    {"id":{"name":"spr_broken_tree_6_c","path":"sprites/spr_broken_tree_6_c/spr_broken_tree_6_c.yy",},},
+    {"id":{"name":"spr_broken_tree_7_a","path":"sprites/spr_broken_tree_7_a/spr_broken_tree_7_a.yy",},},
+    {"id":{"name":"spr_broken_tree_7_b","path":"sprites/spr_broken_tree_7_b/spr_broken_tree_7_b.yy",},},
+    {"id":{"name":"spr_broken_tree_7_c","path":"sprites/spr_broken_tree_7_c/spr_broken_tree_7_c.yy",},},
+    {"id":{"name":"spr_crab_ability","path":"sprites/spr_crab_ability/spr_crab_ability.yy",},},
+    {"id":{"name":"spr_crab_attack_a_fx","path":"sprites/spr_crab_attack_a_fx/spr_crab_attack_a_fx.yy",},},
+    {"id":{"name":"spr_crab_attack_a","path":"sprites/spr_crab_attack_a/spr_crab_attack_a.yy",},},
+    {"id":{"name":"spr_crab_attack_b_fx","path":"sprites/spr_crab_attack_b_fx/spr_crab_attack_b_fx.yy",},},
+    {"id":{"name":"spr_crab_attack_b","path":"sprites/spr_crab_attack_b/spr_crab_attack_b.yy",},},
+    {"id":{"name":"spr_crab_attack_c_fx","path":"sprites/spr_crab_attack_c_fx/spr_crab_attack_c_fx.yy",},},
+    {"id":{"name":"spr_crab_attack_c","path":"sprites/spr_crab_attack_c/spr_crab_attack_c.yy",},},
+    {"id":{"name":"spr_crab_death","path":"sprites/spr_crab_death/spr_crab_death.yy",},},
+    {"id":{"name":"spr_crab_hit","path":"sprites/spr_crab_hit/spr_crab_hit.yy",},},
+    {"id":{"name":"spr_crab_idle","path":"sprites/spr_crab_idle/spr_crab_idle.yy",},},
+    {"id":{"name":"spr_crab_run","path":"sprites/spr_crab_run/spr_crab_run.yy",},},
+    {"id":{"name":"spr_crystal_1_a","path":"sprites/spr_crystal_1_a/spr_crystal_1_a.yy",},},
+    {"id":{"name":"spr_crystal_1_b","path":"sprites/spr_crystal_1_b/spr_crystal_1_b.yy",},},
+    {"id":{"name":"spr_crystal_1_c","path":"sprites/spr_crystal_1_c/spr_crystal_1_c.yy",},},
+    {"id":{"name":"spr_crystal_2_a","path":"sprites/spr_crystal_2_a/spr_crystal_2_a.yy",},},
+    {"id":{"name":"spr_crystal_2_b","path":"sprites/spr_crystal_2_b/spr_crystal_2_b.yy",},},
+    {"id":{"name":"spr_crystal_2_c","path":"sprites/spr_crystal_2_c/spr_crystal_2_c.yy",},},
+    {"id":{"name":"spr_crystal_3_a","path":"sprites/spr_crystal_3_a/spr_crystal_3_a.yy",},},
+    {"id":{"name":"spr_crystal_3_b","path":"sprites/spr_crystal_3_b/spr_crystal_3_b.yy",},},
+    {"id":{"name":"spr_crystal_3_c","path":"sprites/spr_crystal_3_c/spr_crystal_3_c.yy",},},
+    {"id":{"name":"spr_crystal_4_a","path":"sprites/spr_crystal_4_a/spr_crystal_4_a.yy",},},
+    {"id":{"name":"spr_crystal_4_b","path":"sprites/spr_crystal_4_b/spr_crystal_4_b.yy",},},
+    {"id":{"name":"spr_crystal_4_c","path":"sprites/spr_crystal_4_c/spr_crystal_4_c.yy",},},
+    {"id":{"name":"spr_dead_arm_1_a","path":"sprites/spr_dead_arm_1_a/spr_dead_arm_1_a.yy",},},
+    {"id":{"name":"spr_dead_arm_1_b","path":"sprites/spr_dead_arm_1_b/spr_dead_arm_1_b.yy",},},
+    {"id":{"name":"spr_dead_arm_1_c","path":"sprites/spr_dead_arm_1_c/spr_dead_arm_1_c.yy",},},
+    {"id":{"name":"spr_dead_arm_2_a","path":"sprites/spr_dead_arm_2_a/spr_dead_arm_2_a.yy",},},
+    {"id":{"name":"spr_dead_arm_2_b","path":"sprites/spr_dead_arm_2_b/spr_dead_arm_2_b.yy",},},
+    {"id":{"name":"spr_dead_arm_2_c","path":"sprites/spr_dead_arm_2_c/spr_dead_arm_2_c.yy",},},
+    {"id":{"name":"spr_dead_arm_3_a","path":"sprites/spr_dead_arm_3_a/spr_dead_arm_3_a.yy",},},
+    {"id":{"name":"spr_dead_arm_3_b","path":"sprites/spr_dead_arm_3_b/spr_dead_arm_3_b.yy",},},
+    {"id":{"name":"spr_dead_arm_3_c","path":"sprites/spr_dead_arm_3_c/spr_dead_arm_3_c.yy",},},
+    {"id":{"name":"spr_dead_arm_4_a","path":"sprites/spr_dead_arm_4_a/spr_dead_arm_4_a.yy",},},
+    {"id":{"name":"spr_dead_arm_4_b","path":"sprites/spr_dead_arm_4_b/spr_dead_arm_4_b.yy",},},
+    {"id":{"name":"spr_dead_arm_4_c","path":"sprites/spr_dead_arm_4_c/spr_dead_arm_4_c.yy",},},
+    {"id":{"name":"spr_dead_tree_1_a","path":"sprites/spr_dead_tree_1_a/spr_dead_tree_1_a.yy",},},
+    {"id":{"name":"spr_dead_tree_1_c","path":"sprites/spr_dead_tree_1_c/spr_dead_tree_1_c.yy",},},
+    {"id":{"name":"spr_dead_tree_2_a","path":"sprites/spr_dead_tree_2_a/spr_dead_tree_2_a.yy",},},
+    {"id":{"name":"spr_dead_tree_2_c","path":"sprites/spr_dead_tree_2_c/spr_dead_tree_2_c.yy",},},
+    {"id":{"name":"spr_dead_tree_3_a","path":"sprites/spr_dead_tree_3_a/spr_dead_tree_3_a.yy",},},
+    {"id":{"name":"spr_dead_tree_3_c","path":"sprites/spr_dead_tree_3_c/spr_dead_tree_3_c.yy",},},
+    {"id":{"name":"spr_dead_tree_big_a","path":"sprites/spr_dead_tree_big_a/spr_dead_tree_big_a.yy",},},
+    {"id":{"name":"spr_dead_tree_big_b","path":"sprites/spr_dead_tree_big_b/spr_dead_tree_big_b.yy",},},
+    {"id":{"name":"spr_dead_tree_big_c","path":"sprites/spr_dead_tree_big_c/spr_dead_tree_big_c.yy",},},
+    {"id":{"name":"spr_dead_tree_mid_a","path":"sprites/spr_dead_tree_mid_a/spr_dead_tree_mid_a.yy",},},
+    {"id":{"name":"spr_dead_tree_mid_b","path":"sprites/spr_dead_tree_mid_b/spr_dead_tree_mid_b.yy",},},
+    {"id":{"name":"spr_dead_tree_mid_c","path":"sprites/spr_dead_tree_mid_c/spr_dead_tree_mid_c.yy",},},
+    {"id":{"name":"spr_dead_tree_small_a","path":"sprites/spr_dead_tree_small_a/spr_dead_tree_small_a.yy",},},
+    {"id":{"name":"spr_dead_tree_small_b","path":"sprites/spr_dead_tree_small_b/spr_dead_tree_small_b.yy",},},
+    {"id":{"name":"spr_dead_tree_small_c","path":"sprites/spr_dead_tree_small_c/spr_dead_tree_small_c.yy",},},
+    {"id":{"name":"spr_enemy_attack","path":"sprites/spr_enemy_attack/spr_enemy_attack.yy",},},
+    {"id":{"name":"spr_enemy_death","path":"sprites/spr_enemy_death/spr_enemy_death.yy",},},
+    {"id":{"name":"spr_enemy_demon_attack","path":"sprites/spr_enemy_demon_attack/spr_enemy_demon_attack.yy",},},
+    {"id":{"name":"spr_enemy_demon_death","path":"sprites/spr_enemy_demon_death/spr_enemy_demon_death.yy",},},
+    {"id":{"name":"spr_enemy_demon_walk","path":"sprites/spr_enemy_demon_walk/spr_enemy_demon_walk.yy",},},
+    {"id":{"name":"spr_enemy_demon","path":"sprites/spr_enemy_demon/spr_enemy_demon.yy",},},
+    {"id":{"name":"spr_enemy_golem","path":"sprites/spr_enemy_golem/spr_enemy_golem.yy",},},
+    {"id":{"name":"spr_golem_armored_ability","path":"sprites/spr_golem_armored_ability/spr_golem_armored_ability.yy",},},
+    {"id":{"name":"spr_golem_armored_armor_break","path":"sprites/spr_golem_armored_armor_break/spr_golem_armored_armor_break.yy",},},
+    {"id":{"name":"spr_golem_armored_attack_a_fx","path":"sprites/spr_golem_armored_attack_a_fx/spr_golem_armored_attack_a_fx.yy",},},
+    {"id":{"name":"spr_golem_armored_attack_a","path":"sprites/spr_golem_armored_attack_a/spr_golem_armored_attack_a.yy",},},
+    {"id":{"name":"spr_golem_armored_attack_b_fx","path":"sprites/spr_golem_armored_attack_b_fx/spr_golem_armored_attack_b_fx.yy",},},
+    {"id":{"name":"spr_golem_armored_attack_b","path":"sprites/spr_golem_armored_attack_b/spr_golem_armored_attack_b.yy",},},
+    {"id":{"name":"spr_golem_armored_attack_c_fx","path":"sprites/spr_golem_armored_attack_c_fx/spr_golem_armored_attack_c_fx.yy",},},
+    {"id":{"name":"spr_golem_armored_attack_c","path":"sprites/spr_golem_armored_attack_c/spr_golem_armored_attack_c.yy",},},
+    {"id":{"name":"spr_golem_armored_hit","path":"sprites/spr_golem_armored_hit/spr_golem_armored_hit.yy",},},
+    {"id":{"name":"spr_golem_armored_idle","path":"sprites/spr_golem_armored_idle/spr_golem_armored_idle.yy",},},
+    {"id":{"name":"spr_golem_armored_run","path":"sprites/spr_golem_armored_run/spr_golem_armored_run.yy",},},
+    {"id":{"name":"spr_golem_attack_a_fx","path":"sprites/spr_golem_attack_a_fx/spr_golem_attack_a_fx.yy",},},
+    {"id":{"name":"spr_golem_attack_a","path":"sprites/spr_golem_attack_a/spr_golem_attack_a.yy",},},
+    {"id":{"name":"spr_golem_attack_b_fx","path":"sprites/spr_golem_attack_b_fx/spr_golem_attack_b_fx.yy",},},
+    {"id":{"name":"spr_golem_attack_b","path":"sprites/spr_golem_attack_b/spr_golem_attack_b.yy",},},
+    {"id":{"name":"spr_golem_attack_c_fx","path":"sprites/spr_golem_attack_c_fx/spr_golem_attack_c_fx.yy",},},
+    {"id":{"name":"spr_golem_attack_c","path":"sprites/spr_golem_attack_c/spr_golem_attack_c.yy",},},
+    {"id":{"name":"spr_golem_death_a","path":"sprites/spr_golem_death_a/spr_golem_death_a.yy",},},
+    {"id":{"name":"spr_golem_death_b","path":"sprites/spr_golem_death_b/spr_golem_death_b.yy",},},
+    {"id":{"name":"spr_golem_death_fx","path":"sprites/spr_golem_death_fx/spr_golem_death_fx.yy",},},
+    {"id":{"name":"spr_golem_hit_a","path":"sprites/spr_golem_hit_a/spr_golem_hit_a.yy",},},
+    {"id":{"name":"spr_golem_hit_b","path":"sprites/spr_golem_hit_b/spr_golem_hit_b.yy",},},
+    {"id":{"name":"spr_golem_idle_a","path":"sprites/spr_golem_idle_a/spr_golem_idle_a.yy",},},
+    {"id":{"name":"spr_golem_idle_b","path":"sprites/spr_golem_idle_b/spr_golem_idle_b.yy",},},
+    {"id":{"name":"spr_golem_reset","path":"sprites/spr_golem_reset/spr_golem_reset.yy",},},
+    {"id":{"name":"spr_golem_run","path":"sprites/spr_golem_run/spr_golem_run.yy",},},
+    {"id":{"name":"spr_golem_upgrade","path":"sprites/spr_golem_upgrade/spr_golem_upgrade.yy",},},
+    {"id":{"name":"spr_grave_1_a","path":"sprites/spr_grave_1_a/spr_grave_1_a.yy",},},
+    {"id":{"name":"spr_grave_1_b","path":"sprites/spr_grave_1_b/spr_grave_1_b.yy",},},
+    {"id":{"name":"spr_grave_1_c","path":"sprites/spr_grave_1_c/spr_grave_1_c.yy",},},
+    {"id":{"name":"spr_grave_10_a","path":"sprites/spr_grave_10_a/spr_grave_10_a.yy",},},
+    {"id":{"name":"spr_grave_10_b","path":"sprites/spr_grave_10_b/spr_grave_10_b.yy",},},
+    {"id":{"name":"spr_grave_10_c","path":"sprites/spr_grave_10_c/spr_grave_10_c.yy",},},
+    {"id":{"name":"spr_grave_11_a","path":"sprites/spr_grave_11_a/spr_grave_11_a.yy",},},
+    {"id":{"name":"spr_grave_11_b","path":"sprites/spr_grave_11_b/spr_grave_11_b.yy",},},
+    {"id":{"name":"spr_grave_11_c","path":"sprites/spr_grave_11_c/spr_grave_11_c.yy",},},
+    {"id":{"name":"spr_grave_12_a","path":"sprites/spr_grave_12_a/spr_grave_12_a.yy",},},
+    {"id":{"name":"spr_grave_12_b","path":"sprites/spr_grave_12_b/spr_grave_12_b.yy",},},
+    {"id":{"name":"spr_grave_12_c","path":"sprites/spr_grave_12_c/spr_grave_12_c.yy",},},
+    {"id":{"name":"spr_grave_13_a","path":"sprites/spr_grave_13_a/spr_grave_13_a.yy",},},
+    {"id":{"name":"spr_grave_13_b","path":"sprites/spr_grave_13_b/spr_grave_13_b.yy",},},
+    {"id":{"name":"spr_grave_13_c","path":"sprites/spr_grave_13_c/spr_grave_13_c.yy",},},
+    {"id":{"name":"spr_grave_14_a","path":"sprites/spr_grave_14_a/spr_grave_14_a.yy",},},
+    {"id":{"name":"spr_grave_14_b","path":"sprites/spr_grave_14_b/spr_grave_14_b.yy",},},
+    {"id":{"name":"spr_grave_14_c","path":"sprites/spr_grave_14_c/spr_grave_14_c.yy",},},
+    {"id":{"name":"spr_grave_15_a","path":"sprites/spr_grave_15_a/spr_grave_15_a.yy",},},
+    {"id":{"name":"spr_grave_15_b","path":"sprites/spr_grave_15_b/spr_grave_15_b.yy",},},
+    {"id":{"name":"spr_grave_15_c","path":"sprites/spr_grave_15_c/spr_grave_15_c.yy",},},
+    {"id":{"name":"spr_grave_16_a","path":"sprites/spr_grave_16_a/spr_grave_16_a.yy",},},
+    {"id":{"name":"spr_grave_16_b","path":"sprites/spr_grave_16_b/spr_grave_16_b.yy",},},
+    {"id":{"name":"spr_grave_16_c","path":"sprites/spr_grave_16_c/spr_grave_16_c.yy",},},
+    {"id":{"name":"spr_grave_17_a","path":"sprites/spr_grave_17_a/spr_grave_17_a.yy",},},
+    {"id":{"name":"spr_grave_17_b","path":"sprites/spr_grave_17_b/spr_grave_17_b.yy",},},
+    {"id":{"name":"spr_grave_17_c","path":"sprites/spr_grave_17_c/spr_grave_17_c.yy",},},
+    {"id":{"name":"spr_grave_2_a","path":"sprites/spr_grave_2_a/spr_grave_2_a.yy",},},
+    {"id":{"name":"spr_grave_2_b","path":"sprites/spr_grave_2_b/spr_grave_2_b.yy",},},
+    {"id":{"name":"spr_grave_2_c","path":"sprites/spr_grave_2_c/spr_grave_2_c.yy",},},
+    {"id":{"name":"spr_grave_3_a","path":"sprites/spr_grave_3_a/spr_grave_3_a.yy",},},
+    {"id":{"name":"spr_grave_3_b","path":"sprites/spr_grave_3_b/spr_grave_3_b.yy",},},
+    {"id":{"name":"spr_grave_3_c","path":"sprites/spr_grave_3_c/spr_grave_3_c.yy",},},
+    {"id":{"name":"spr_grave_4_a","path":"sprites/spr_grave_4_a/spr_grave_4_a.yy",},},
+    {"id":{"name":"spr_grave_4_b","path":"sprites/spr_grave_4_b/spr_grave_4_b.yy",},},
+    {"id":{"name":"spr_grave_4_c","path":"sprites/spr_grave_4_c/spr_grave_4_c.yy",},},
+    {"id":{"name":"spr_grave_5_a","path":"sprites/spr_grave_5_a/spr_grave_5_a.yy",},},
+    {"id":{"name":"spr_grave_5_b","path":"sprites/spr_grave_5_b/spr_grave_5_b.yy",},},
+    {"id":{"name":"spr_grave_5_c","path":"sprites/spr_grave_5_c/spr_grave_5_c.yy",},},
+    {"id":{"name":"spr_grave_6_a","path":"sprites/spr_grave_6_a/spr_grave_6_a.yy",},},
+    {"id":{"name":"spr_grave_6_b","path":"sprites/spr_grave_6_b/spr_grave_6_b.yy",},},
+    {"id":{"name":"spr_grave_6_c","path":"sprites/spr_grave_6_c/spr_grave_6_c.yy",},},
+    {"id":{"name":"spr_grave_7_a","path":"sprites/spr_grave_7_a/spr_grave_7_a.yy",},},
+    {"id":{"name":"spr_grave_7_b","path":"sprites/spr_grave_7_b/spr_grave_7_b.yy",},},
+    {"id":{"name":"spr_grave_7_c","path":"sprites/spr_grave_7_c/spr_grave_7_c.yy",},},
+    {"id":{"name":"spr_grave_8_a","path":"sprites/spr_grave_8_a/spr_grave_8_a.yy",},},
+    {"id":{"name":"spr_grave_8_b","path":"sprites/spr_grave_8_b/spr_grave_8_b.yy",},},
+    {"id":{"name":"spr_grave_8_c","path":"sprites/spr_grave_8_c/spr_grave_8_c.yy",},},
+    {"id":{"name":"spr_grave_9_a","path":"sprites/spr_grave_9_a/spr_grave_9_a.yy",},},
+    {"id":{"name":"spr_grave_9_b","path":"sprites/spr_grave_9_b/spr_grave_9_b.yy",},},
+    {"id":{"name":"spr_grave_9_c","path":"sprites/spr_grave_9_c/spr_grave_9_c.yy",},},
+    {"id":{"name":"spr_lich_a","path":"sprites/spr_lich_a/spr_lich_a.yy",},},
+    {"id":{"name":"spr_lich_b","path":"sprites/spr_lich_b/spr_lich_b.yy",},},
+    {"id":{"name":"spr_lich_c","path":"sprites/spr_lich_c/spr_lich_c.yy",},},
+    {"id":{"name":"spr_mask_demon","path":"sprites/spr_mask_demon/spr_mask_demon.yy",},},
+    {"id":{"name":"spr_mask_golem","path":"sprites/spr_mask_golem/spr_mask_golem.yy",},},
+    {"id":{"name":"spr_mask_small","path":"sprites/spr_mask_small/spr_mask_small.yy",},},
+    {"id":{"name":"spr_mask_wide","path":"sprites/spr_mask_wide/spr_mask_wide.yy",},},
+    {"id":{"name":"spr_pebble_death","path":"sprites/spr_pebble_death/spr_pebble_death.yy",},},
+    {"id":{"name":"spr_pebble_hit","path":"sprites/spr_pebble_hit/spr_pebble_hit.yy",},},
+    {"id":{"name":"spr_pebble_idle","path":"sprites/spr_pebble_idle/spr_pebble_idle.yy",},},
+    {"id":{"name":"spr_pebble_run","path":"sprites/spr_pebble_run/spr_pebble_run.yy",},},
+    {"id":{"name":"spr_pile_skulls_a","path":"sprites/spr_pile_skulls_a/spr_pile_skulls_a.yy",},},
+    {"id":{"name":"spr_pile_skulls_b","path":"sprites/spr_pile_skulls_b/spr_pile_skulls_b.yy",},},
+    {"id":{"name":"spr_pile_skulls_c","path":"sprites/spr_pile_skulls_c/spr_pile_skulls_c.yy",},},
+    {"id":{"name":"spr_plant_1_a","path":"sprites/spr_plant_1_a/spr_plant_1_a.yy",},},
+    {"id":{"name":"spr_plant_1_b","path":"sprites/spr_plant_1_b/spr_plant_1_b.yy",},},
+    {"id":{"name":"spr_plant_1_c","path":"sprites/spr_plant_1_c/spr_plant_1_c.yy",},},
+    {"id":{"name":"spr_plant_2_a","path":"sprites/spr_plant_2_a/spr_plant_2_a.yy",},},
+    {"id":{"name":"spr_plant_2_b","path":"sprites/spr_plant_2_b/spr_plant_2_b.yy",},},
+    {"id":{"name":"spr_plant_2_c","path":"sprites/spr_plant_2_c/spr_plant_2_c.yy",},},
+    {"id":{"name":"spr_plant_3_a","path":"sprites/spr_plant_3_a/spr_plant_3_a.yy",},},
+    {"id":{"name":"spr_plant_3_b","path":"sprites/spr_plant_3_b/spr_plant_3_b.yy",},},
+    {"id":{"name":"spr_plant_3_c","path":"sprites/spr_plant_3_c/spr_plant_3_c.yy",},},
+    {"id":{"name":"spr_plant_4_a","path":"sprites/spr_plant_4_a/spr_plant_4_a.yy",},},
+    {"id":{"name":"spr_plant_4_b","path":"sprites/spr_plant_4_b/spr_plant_4_b.yy",},},
+    {"id":{"name":"spr_plant_4_c","path":"sprites/spr_plant_4_c/spr_plant_4_c.yy",},},
+    {"id":{"name":"spr_plant_5_a","path":"sprites/spr_plant_5_a/spr_plant_5_a.yy",},},
+    {"id":{"name":"spr_plant_5_b","path":"sprites/spr_plant_5_b/spr_plant_5_b.yy",},},
+    {"id":{"name":"spr_plant_5_c","path":"sprites/spr_plant_5_c/spr_plant_5_c.yy",},},
+    {"id":{"name":"spr_player_down","path":"sprites/spr_player_down/spr_player_down.yy",},},
+    {"id":{"name":"spr_player_downleft","path":"sprites/spr_player_downleft/spr_player_downleft.yy",},},
+    {"id":{"name":"spr_player_downright","path":"sprites/spr_player_downright/spr_player_downright.yy",},},
+    {"id":{"name":"spr_player_left","path":"sprites/spr_player_left/spr_player_left.yy",},},
+    {"id":{"name":"spr_player_mask","path":"sprites/spr_player_mask/spr_player_mask.yy",},},
+    {"id":{"name":"spr_player_right","path":"sprites/spr_player_right/spr_player_right.yy",},},
+    {"id":{"name":"spr_player_roll_down","path":"sprites/spr_player_roll_down/spr_player_roll_down.yy",},},
+    {"id":{"name":"spr_player_roll_downleft","path":"sprites/spr_player_roll_downleft/spr_player_roll_downleft.yy",},},
+    {"id":{"name":"spr_player_roll_downright","path":"sprites/spr_player_roll_downright/spr_player_roll_downright.yy",},},
+    {"id":{"name":"spr_player_roll_left","path":"sprites/spr_player_roll_left/spr_player_roll_left.yy",},},
+    {"id":{"name":"spr_player_roll_right","path":"sprites/spr_player_roll_right/spr_player_roll_right.yy",},},
+    {"id":{"name":"spr_player_roll_up","path":"sprites/spr_player_roll_up/spr_player_roll_up.yy",},},
+    {"id":{"name":"spr_player_roll_upleft","path":"sprites/spr_player_roll_upleft/spr_player_roll_upleft.yy",},},
+    {"id":{"name":"spr_player_roll_upright","path":"sprites/spr_player_roll_upright/spr_player_roll_upright.yy",},},
+    {"id":{"name":"spr_player_slash_downleft","path":"sprites/spr_player_slash_downleft/spr_player_slash_downleft.yy",},},
+    {"id":{"name":"spr_player_slash_downright","path":"sprites/spr_player_slash_downright/spr_player_slash_downright.yy",},},
+    {"id":{"name":"spr_player_slash_upleft","path":"sprites/spr_player_slash_upleft/spr_player_slash_upleft.yy",},},
+    {"id":{"name":"spr_player_slash_upright","path":"sprites/spr_player_slash_upright/spr_player_slash_upright.yy",},},
+    {"id":{"name":"spr_player_up","path":"sprites/spr_player_up/spr_player_up.yy",},},
+    {"id":{"name":"spr_player_upleft","path":"sprites/spr_player_upleft/spr_player_upleft.yy",},},
+    {"id":{"name":"spr_player_upright","path":"sprites/spr_player_upright/spr_player_upright.yy",},},
+    {"id":{"name":"spr_ramses_idle","path":"sprites/spr_ramses_idle/spr_ramses_idle.yy",},},
+    {"id":{"name":"spr_ramses_track","path":"sprites/spr_ramses_track/spr_ramses_track.yy",},},
+    {"id":{"name":"spr_ramses_walk","path":"sprites/spr_ramses_walk/spr_ramses_walk.yy",},},
+    {"id":{"name":"spr_rat_ability","path":"sprites/spr_rat_ability/spr_rat_ability.yy",},},
+    {"id":{"name":"spr_rat_attack_fx","path":"sprites/spr_rat_attack_fx/spr_rat_attack_fx.yy",},},
+    {"id":{"name":"spr_rat_attack","path":"sprites/spr_rat_attack/spr_rat_attack.yy",},},
+    {"id":{"name":"spr_rat_basic_attack","path":"sprites/spr_rat_basic_attack/spr_rat_basic_attack.yy",},},
+    {"id":{"name":"spr_rat_basic_death","path":"sprites/spr_rat_basic_death/spr_rat_basic_death.yy",},},
+    {"id":{"name":"spr_rat_basic_hit","path":"sprites/spr_rat_basic_hit/spr_rat_basic_hit.yy",},},
+    {"id":{"name":"spr_rat_basic_idle","path":"sprites/spr_rat_basic_idle/spr_rat_basic_idle.yy",},},
+    {"id":{"name":"spr_rat_basic_jump_fall","path":"sprites/spr_rat_basic_jump_fall/spr_rat_basic_jump_fall.yy",},},
+    {"id":{"name":"spr_rat_basic_jump_peak","path":"sprites/spr_rat_basic_jump_peak/spr_rat_basic_jump_peak.yy",},},
+    {"id":{"name":"spr_rat_basic_jump_up","path":"sprites/spr_rat_basic_jump_up/spr_rat_basic_jump_up.yy",},},
+    {"id":{"name":"spr_rat_basic_outline_attack","path":"sprites/spr_rat_basic_outline_attack/spr_rat_basic_outline_attack.yy",},},
+    {"id":{"name":"spr_rat_basic_outline_death","path":"sprites/spr_rat_basic_outline_death/spr_rat_basic_outline_death.yy",},},
+    {"id":{"name":"spr_rat_basic_outline_hit","path":"sprites/spr_rat_basic_outline_hit/spr_rat_basic_outline_hit.yy",},},
+    {"id":{"name":"spr_rat_basic_outline_idle","path":"sprites/spr_rat_basic_outline_idle/spr_rat_basic_outline_idle.yy",},},
+    {"id":{"name":"spr_rat_basic_outline_jump_fall","path":"sprites/spr_rat_basic_outline_jump_fall/spr_rat_basic_outline_jump_fall.yy",},},
+    {"id":{"name":"spr_rat_basic_outline_jump_peak","path":"sprites/spr_rat_basic_outline_jump_peak/spr_rat_basic_outline_jump_peak.yy",},},
+    {"id":{"name":"spr_rat_basic_outline_jump_up","path":"sprites/spr_rat_basic_outline_jump_up/spr_rat_basic_outline_jump_up.yy",},},
+    {"id":{"name":"spr_rat_basic_outline_run","path":"sprites/spr_rat_basic_outline_run/spr_rat_basic_outline_run.yy",},},
+    {"id":{"name":"spr_rat_death_fx","path":"sprites/spr_rat_death_fx/spr_rat_death_fx.yy",},},
+    {"id":{"name":"spr_rat_death","path":"sprites/spr_rat_death/spr_rat_death.yy",},},
+    {"id":{"name":"spr_rat_hit","path":"sprites/spr_rat_hit/spr_rat_hit.yy",},},
+    {"id":{"name":"spr_rat_idle","path":"sprites/spr_rat_idle/spr_rat_idle.yy",},},
+    {"id":{"name":"spr_rat_run","path":"sprites/spr_rat_run/spr_rat_run.yy",},},
+    {"id":{"name":"spr_rock_1_a","path":"sprites/spr_rock_1_a/spr_rock_1_a.yy",},},
+    {"id":{"name":"spr_rock_1_b","path":"sprites/spr_rock_1_b/spr_rock_1_b.yy",},},
+    {"id":{"name":"spr_rock_1_c","path":"sprites/spr_rock_1_c/spr_rock_1_c.yy",},},
+    {"id":{"name":"spr_rock_2_a","path":"sprites/spr_rock_2_a/spr_rock_2_a.yy",},},
+    {"id":{"name":"spr_rock_2_b","path":"sprites/spr_rock_2_b/spr_rock_2_b.yy",},},
+    {"id":{"name":"spr_rock_2_c","path":"sprites/spr_rock_2_c/spr_rock_2_c.yy",},},
+    {"id":{"name":"spr_rock_3_a","path":"sprites/spr_rock_3_a/spr_rock_3_a.yy",},},
+    {"id":{"name":"spr_rock_3_b","path":"sprites/spr_rock_3_b/spr_rock_3_b.yy",},},
+    {"id":{"name":"spr_rock_3_c","path":"sprites/spr_rock_3_c/spr_rock_3_c.yy",},},
+    {"id":{"name":"spr_rock_4_a","path":"sprites/spr_rock_4_a/spr_rock_4_a.yy",},},
+    {"id":{"name":"spr_rock_4_b","path":"sprites/spr_rock_4_b/spr_rock_4_b.yy",},},
+    {"id":{"name":"spr_rock_4_c","path":"sprites/spr_rock_4_c/spr_rock_4_c.yy",},},
+    {"id":{"name":"spr_rock_5_a","path":"sprites/spr_rock_5_a/spr_rock_5_a.yy",},},
+    {"id":{"name":"spr_rock_5_b","path":"sprites/spr_rock_5_b/spr_rock_5_b.yy",},},
+    {"id":{"name":"spr_rock_5_c","path":"sprites/spr_rock_5_c/spr_rock_5_c.yy",},},
+    {"id":{"name":"spr_ruin_1_a","path":"sprites/spr_ruin_1_a/spr_ruin_1_a.yy",},},
+    {"id":{"name":"spr_ruin_1_b","path":"sprites/spr_ruin_1_b/spr_ruin_1_b.yy",},},
+    {"id":{"name":"spr_ruin_1_c","path":"sprites/spr_ruin_1_c/spr_ruin_1_c.yy",},},
+    {"id":{"name":"spr_ruin_2_a","path":"sprites/spr_ruin_2_a/spr_ruin_2_a.yy",},},
+    {"id":{"name":"spr_ruin_2_b","path":"sprites/spr_ruin_2_b/spr_ruin_2_b.yy",},},
+    {"id":{"name":"spr_ruin_2_c","path":"sprites/spr_ruin_2_c/spr_ruin_2_c.yy",},},
+    {"id":{"name":"spr_ruin_3_a","path":"sprites/spr_ruin_3_a/spr_ruin_3_a.yy",},},
+    {"id":{"name":"spr_ruin_3_b","path":"sprites/spr_ruin_3_b/spr_ruin_3_b.yy",},},
+    {"id":{"name":"spr_ruin_3_c","path":"sprites/spr_ruin_3_c/spr_ruin_3_c.yy",},},
+    {"id":{"name":"spr_ruin_4_a","path":"sprites/spr_ruin_4_a/spr_ruin_4_a.yy",},},
+    {"id":{"name":"spr_ruin_4_b","path":"sprites/spr_ruin_4_b/spr_ruin_4_b.yy",},},
+    {"id":{"name":"spr_ruin_4_c","path":"sprites/spr_ruin_4_c/spr_ruin_4_c.yy",},},
+    {"id":{"name":"spr_ruin_5_a","path":"sprites/spr_ruin_5_a/spr_ruin_5_a.yy",},},
+    {"id":{"name":"spr_ruin_5_b","path":"sprites/spr_ruin_5_b/spr_ruin_5_b.yy",},},
+    {"id":{"name":"spr_ruin_5_c","path":"sprites/spr_ruin_5_c/spr_ruin_5_c.yy",},},
+    {"id":{"name":"spr_shrine_a","path":"sprites/spr_shrine_a/spr_shrine_a.yy",},},
+    {"id":{"name":"spr_shrine_b","path":"sprites/spr_shrine_b/spr_shrine_b.yy",},},
+    {"id":{"name":"spr_shrine_c","path":"sprites/spr_shrine_c/spr_shrine_c.yy",},},
+    {"id":{"name":"spr_skeleton_attack_b","path":"sprites/spr_skeleton_attack_b/spr_skeleton_attack_b.yy",},},
+    {"id":{"name":"spr_skeleton_attack","path":"sprites/spr_skeleton_attack/spr_skeleton_attack.yy",},},
+    {"id":{"name":"spr_skeleton_death","path":"sprites/spr_skeleton_death/spr_skeleton_death.yy",},},
+    {"id":{"name":"spr_skeleton_hit","path":"sprites/spr_skeleton_hit/spr_skeleton_hit.yy",},},
+    {"id":{"name":"spr_skeleton_idle","path":"sprites/spr_skeleton_idle/spr_skeleton_idle.yy",},},
+    {"id":{"name":"spr_skeleton_outline_attack_b","path":"sprites/spr_skeleton_outline_attack_b/spr_skeleton_outline_attack_b.yy",},},
+    {"id":{"name":"spr_skeleton_outline_attack","path":"sprites/spr_skeleton_outline_attack/spr_skeleton_outline_attack.yy",},},
+    {"id":{"name":"spr_skeleton_outline_death","path":"sprites/spr_skeleton_outline_death/spr_skeleton_outline_death.yy",},},
+    {"id":{"name":"spr_skeleton_outline_hit","path":"sprites/spr_skeleton_outline_hit/spr_skeleton_outline_hit.yy",},},
+    {"id":{"name":"spr_skeleton_outline_idle","path":"sprites/spr_skeleton_outline_idle/spr_skeleton_outline_idle.yy",},},
+    {"id":{"name":"spr_skeleton_outline_walk","path":"sprites/spr_skeleton_outline_walk/spr_skeleton_outline_walk.yy",},},
+    {"id":{"name":"spr_skeleton_walk","path":"sprites/spr_skeleton_walk/spr_skeleton_walk.yy",},},
+    {"id":{"name":"spr_skull_death_fx","path":"sprites/spr_skull_death_fx/spr_skull_death_fx.yy",},},
+    {"id":{"name":"spr_skull_death","path":"sprites/spr_skull_death/spr_skull_death.yy",},},
+    {"id":{"name":"spr_skull_door_a","path":"sprites/spr_skull_door_a/spr_skull_door_a.yy",},},
+    {"id":{"name":"spr_skull_door_b","path":"sprites/spr_skull_door_b/spr_skull_door_b.yy",},},
+    {"id":{"name":"spr_skull_door_c","path":"sprites/spr_skull_door_c/spr_skull_door_c.yy",},},
+    {"id":{"name":"spr_skull_fly","path":"sprites/spr_skull_fly/spr_skull_fly.yy",},},
+    {"id":{"name":"spr_skull_hit","path":"sprites/spr_skull_hit/spr_skull_hit.yy",},},
+    {"id":{"name":"spr_skull_idle","path":"sprites/spr_skull_idle/spr_skull_idle.yy",},},
+    {"id":{"name":"spr_slime_basic_attack_b","path":"sprites/spr_slime_basic_attack_b/spr_slime_basic_attack_b.yy",},},
+    {"id":{"name":"spr_slime_basic_attack","path":"sprites/spr_slime_basic_attack/spr_slime_basic_attack.yy",},},
+    {"id":{"name":"spr_slime_basic_death","path":"sprites/spr_slime_basic_death/spr_slime_basic_death.yy",},},
+    {"id":{"name":"spr_slime_basic_hit","path":"sprites/spr_slime_basic_hit/spr_slime_basic_hit.yy",},},
+    {"id":{"name":"spr_slime_basic_idle","path":"sprites/spr_slime_basic_idle/spr_slime_basic_idle.yy",},},
+    {"id":{"name":"spr_slime_basic_jump","path":"sprites/spr_slime_basic_jump/spr_slime_basic_jump.yy",},},
+    {"id":{"name":"spr_slime_basic_move","path":"sprites/spr_slime_basic_move/spr_slime_basic_move.yy",},},
+    {"id":{"name":"spr_slime_basic_outline_attack_b","path":"sprites/spr_slime_basic_outline_attack_b/spr_slime_basic_outline_attack_b.yy",},},
+    {"id":{"name":"spr_slime_basic_outline_attack","path":"sprites/spr_slime_basic_outline_attack/spr_slime_basic_outline_attack.yy",},},
+    {"id":{"name":"spr_slime_basic_outline_death","path":"sprites/spr_slime_basic_outline_death/spr_slime_basic_outline_death.yy",},},
+    {"id":{"name":"spr_slime_basic_outline_hit","path":"sprites/spr_slime_basic_outline_hit/spr_slime_basic_outline_hit.yy",},},
+    {"id":{"name":"spr_slime_basic_outline_idle","path":"sprites/spr_slime_basic_outline_idle/spr_slime_basic_outline_idle.yy",},},
+    {"id":{"name":"spr_slime_basic_outline_jump","path":"sprites/spr_slime_basic_outline_jump/spr_slime_basic_outline_jump.yy",},},
+    {"id":{"name":"spr_slime_basic_outline_move","path":"sprites/spr_slime_basic_outline_move/spr_slime_basic_outline_move.yy",},},
+    {"id":{"name":"spr_slime_spiked_ability_fx","path":"sprites/spr_slime_spiked_ability_fx/spr_slime_spiked_ability_fx.yy",},},
+    {"id":{"name":"spr_slime_spiked_ability","path":"sprites/spr_slime_spiked_ability/spr_slime_spiked_ability.yy",},},
+    {"id":{"name":"spr_slime_spiked_death","path":"sprites/spr_slime_spiked_death/spr_slime_spiked_death.yy",},},
+    {"id":{"name":"spr_slime_spiked_hit","path":"sprites/spr_slime_spiked_hit/spr_slime_spiked_hit.yy",},},
+    {"id":{"name":"spr_slime_spiked_idle","path":"sprites/spr_slime_spiked_idle/spr_slime_spiked_idle.yy",},},
+    {"id":{"name":"spr_slime_spiked_jump_fx","path":"sprites/spr_slime_spiked_jump_fx/spr_slime_spiked_jump_fx.yy",},},
+    {"id":{"name":"spr_slime_spiked_jump","path":"sprites/spr_slime_spiked_jump/spr_slime_spiked_jump.yy",},},
+    {"id":{"name":"spr_slime_spiked_run","path":"sprites/spr_slime_spiked_run/spr_slime_spiked_run.yy",},},
+    {"id":{"name":"spr_spawn","path":"sprites/spr_spawn/spr_spawn.yy",},},
+    {"id":{"name":"spr_sword_downleft","path":"sprites/spr_sword_downleft/spr_sword_downleft.yy",},},
+    {"id":{"name":"spr_sword_downright","path":"sprites/spr_sword_downright/spr_sword_downright.yy",},},
+    {"id":{"name":"spr_sword_upleft","path":"sprites/spr_sword_upleft/spr_sword_upleft.yy",},},
+    {"id":{"name":"spr_sword_upright","path":"sprites/spr_sword_upright/spr_sword_upright.yy",},},
+    {"id":{"name":"spr_thorn_plant_1_a","path":"sprites/spr_thorn_plant_1_a/spr_thorn_plant_1_a.yy",},},
+    {"id":{"name":"spr_thorn_plant_1_b","path":"sprites/spr_thorn_plant_1_b/spr_thorn_plant_1_b.yy",},},
+    {"id":{"name":"spr_thorn_plant_1_c","path":"sprites/spr_thorn_plant_1_c/spr_thorn_plant_1_c.yy",},},
+    {"id":{"name":"spr_thorn_plant_2_a","path":"sprites/spr_thorn_plant_2_a/spr_thorn_plant_2_a.yy",},},
+    {"id":{"name":"spr_thorn_plant_2_b","path":"sprites/spr_thorn_plant_2_b/spr_thorn_plant_2_b.yy",},},
+    {"id":{"name":"spr_thorn_plant_2_c","path":"sprites/spr_thorn_plant_2_c/spr_thorn_plant_2_c.yy",},},
+    {"id":{"name":"spr_thorn_plant_3_a","path":"sprites/spr_thorn_plant_3_a/spr_thorn_plant_3_a.yy",},},
+    {"id":{"name":"spr_thorn_plant_3_b","path":"sprites/spr_thorn_plant_3_b/spr_thorn_plant_3_b.yy",},},
+    {"id":{"name":"spr_thorn_plant_3_c","path":"sprites/spr_thorn_plant_3_c/spr_thorn_plant_3_c.yy",},},
+    {"id":{"name":"spr_thorn_plant_4_a","path":"sprites/spr_thorn_plant_4_a/spr_thorn_plant_4_a.yy",},},
+    {"id":{"name":"spr_thorn_plant_4_b","path":"sprites/spr_thorn_plant_4_b/spr_thorn_plant_4_b.yy",},},
+    {"id":{"name":"spr_thorn_plant_4_c","path":"sprites/spr_thorn_plant_4_c/spr_thorn_plant_4_c.yy",},},
+    {"id":{"name":"spr_thorn_plant_5_a","path":"sprites/spr_thorn_plant_5_a/spr_thorn_plant_5_a.yy",},},
+    {"id":{"name":"spr_thorn_plant_5_b","path":"sprites/spr_thorn_plant_5_b/spr_thorn_plant_5_b.yy",},},
+    {"id":{"name":"spr_thorn_plant_5_c","path":"sprites/spr_thorn_plant_5_c/spr_thorn_plant_5_c.yy",},},
+    {"id":{"name":"spr_thorn_plant_6_a","path":"sprites/spr_thorn_plant_6_a/spr_thorn_plant_6_a.yy",},},
+    {"id":{"name":"spr_thorn_plant_6_b","path":"sprites/spr_thorn_plant_6_b/spr_thorn_plant_6_b.yy",},},
+    {"id":{"name":"spr_thorn_plant_6_c","path":"sprites/spr_thorn_plant_6_c/spr_thorn_plant_6_c.yy",},},
+    {"id":{"name":"spr_throne_a","path":"sprites/spr_throne_a/spr_throne_a.yy",},},
+    {"id":{"name":"spr_throne_b","path":"sprites/spr_throne_b/spr_throne_b.yy",},},
+    {"id":{"name":"spr_throne_c","path":"sprites/spr_throne_c/spr_throne_c.yy",},},
+    {"id":{"name":"spr_totem_a","path":"sprites/spr_totem_a/spr_totem_a.yy",},},
+    {"id":{"name":"spr_totem_b","path":"sprites/spr_totem_b/spr_totem_b.yy",},},
+    {"id":{"name":"spr_totem_c","path":"sprites/spr_totem_c/spr_totem_c.yy",},},
+    {"id":{"name":"spr_tree_1_a","path":"sprites/spr_tree_1_a/spr_tree_1_a.yy",},},
+    {"id":{"name":"spr_tree_1_b","path":"sprites/spr_tree_1_b/spr_tree_1_b.yy",},},
+    {"id":{"name":"spr_tree_1_c","path":"sprites/spr_tree_1_c/spr_tree_1_c.yy",},},
+    {"id":{"name":"spr_tree_2_a","path":"sprites/spr_tree_2_a/spr_tree_2_a.yy",},},
+    {"id":{"name":"spr_tree_2_b","path":"sprites/spr_tree_2_b/spr_tree_2_b.yy",},},
+    {"id":{"name":"spr_tree_2_c","path":"sprites/spr_tree_2_c/spr_tree_2_c.yy",},},
+    {"id":{"name":"spr_tree_3_a","path":"sprites/spr_tree_3_a/spr_tree_3_a.yy",},},
+    {"id":{"name":"spr_tree_3_b","path":"sprites/spr_tree_3_b/spr_tree_3_b.yy",},},
+    {"id":{"name":"spr_tree_3_c","path":"sprites/spr_tree_3_c/spr_tree_3_c.yy",},},
+    {"id":{"name":"spr_ts_details","path":"sprites/spr_ts_details/spr_ts_details.yy",},},
+    {"id":{"name":"spr_ts_ground","path":"sprites/spr_ts_ground/spr_ts_ground.yy",},},
+    {"id":{"name":"spr_ts_water_coasts","path":"sprites/spr_ts_water_coasts/spr_ts_water_coasts.yy",},},
+    {"id":{"name":"spr_ts_water_v2","path":"sprites/spr_ts_water_v2/spr_ts_water_v2.yy",},},
+    {"id":{"name":"spr_ts_water","path":"sprites/spr_ts_water/spr_ts_water.yy",},},
+    {"id":{"name":"spr_wall","path":"sprites/spr_wall/spr_wall.yy",},},
+    {"id":{"name":"ts_details","path":"tilesets/ts_details/ts_details.yy",},},
+    {"id":{"name":"ts_ground","path":"tilesets/ts_ground/ts_ground.yy",},},
+    {"id":{"name":"ts_water_coasts","path":"tilesets/ts_water_coasts/ts_water_coasts.yy",},},
+    {"id":{"name":"ts_water_v2","path":"tilesets/ts_water_v2/ts_water_v2.yy",},},
+    {"id":{"name":"ts_water","path":"tilesets/ts_water/ts_water.yy",},},
   ],
-  "resourceType": "GMProject",
-  "resourceVersion": "2.0",
-  "RoomOrderNodes": [
-    {
-      "roomId": {
-        "name": "rm_chamber_1",
-        "path": "rooms/rm_chamber_1/rm_chamber_1.yy"
-      }
-    },
-    {
-      "roomId": {
-        "name": "rm_chamber_2",
-        "path": "rooms/rm_chamber_2/rm_chamber_2.yy"
-      }
-    },
-    {
-      "roomId": {
-        "name": "rm_boss",
-        "path": "rooms/rm_boss/rm_boss.yy"
-      }
-    },
-    {
-      "roomId": {
-        "name": "rm_shrine_1",
-        "path": "rooms/rm_shrine_1/rm_shrine_1.yy"
-      }
-    },
-    {
-      "roomId": {
-        "name": "rm_shrine_2",
-        "path": "rooms/rm_shrine_2/rm_shrine_2.yy"
-      }
-    },
-    {
-      "roomId": {
-        "name": "rm_shrine_3",
-        "path": "rooms/rm_shrine_3/rm_shrine_3.yy"
-      }
-    },
-    {
-      "roomId": {
-        "name": "rm_level",
-        "path": "rooms/rm_level/rm_level.yy"
-      }
-    }
+  "resourceType":"GMProject",
+  "resourceVersion":"2.0",
+  "RoomOrderNodes":[
+    {"roomId":{"name":"rm_boss","path":"rooms/rm_boss/rm_boss.yy",},},
+    {"roomId":{"name":"rm_chamber_1","path":"rooms/rm_chamber_1/rm_chamber_1.yy",},},
+    {"roomId":{"name":"rm_chamber_2","path":"rooms/rm_chamber_2/rm_chamber_2.yy",},},
+    {"roomId":{"name":"rm_shrine_1","path":"rooms/rm_shrine_1/rm_shrine_1.yy",},},
+    {"roomId":{"name":"rm_shrine_2","path":"rooms/rm_shrine_2/rm_shrine_2.yy",},},
+    {"roomId":{"name":"rm_shrine_3","path":"rooms/rm_shrine_3/rm_shrine_3.yy",},},
+    {"roomId":{"name":"rm_level","path":"rooms/rm_level/rm_level.yy",},},
   ],
-  "templateType": "game",
-  "TextureGroups": [
-    {
-      "$GMTextureGroup": "",
-      "%Name": "Default",
-      "autocrop": true,
-      "border": 2,
-      "compressFormat": "bz2",
-      "customOptions": "",
-      "directory": "",
-      "groupParent": null,
-      "isScaled": true,
-      "loadType": "default",
-      "mipsToGenerate": 0,
-      "name": "Default",
-      "resourceType": "GMTextureGroup",
-      "resourceVersion": "2.0",
-      "targets": -1
-    }
-  ]
+  "templateType":"game",
+  "TextureGroups":[
+    {"$GMTextureGroup":"","%Name":"Default","autocrop":true,"border":2,"compressFormat":"bz2","customOptions":"","directory":"","groupParent":null,"isScaled":true,"loadType":"default","mipsToGenerate":0,"name":"Default","resourceType":"GMTextureGroup","resourceVersion":"2.0","targets":-1,},
+  ],
 }

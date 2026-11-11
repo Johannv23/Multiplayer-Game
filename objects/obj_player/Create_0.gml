@@ -101,6 +101,9 @@ bond_hint_t = 0;        // the first full Bond meter gets a big banner
 drink_t = 0;            // Fury Draught: > 0 while the potion is drawn at the hero's lips
 whet_mark = -1;         // Whetstone Step: the dash that last sharpened the sword
 
+// Walking sound
+walk_sound_id = -1;
+
 // stats that come from boons; called again whenever a boon is chosen
 function apply_boons() {
     var ih = blv(1, "ironheart");

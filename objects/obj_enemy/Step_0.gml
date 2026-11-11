@@ -169,13 +169,19 @@ if (!dead && instance_exists(obj_player)) {
         var fx0 = x, fy = bbox_bottom - 2;                 // from the feet, on the ground
         var aim = point_direction(fx0, fy, player.x, player.bbox_bottom - 6);
         if (ranged_kind == "bolt") {
+			// Play bolt attack sound
+			audio_play_sound(bolt_attack, 1, false);
+			
             for (var i = 0; i < ranged_count; i++) {
                 var a = aim + (i - (ranged_count - 1) / 2) * ranged_spread;
                 instance_create_layer(fx0 + lengthdir_x(10, a), fy + lengthdir_y(10, a), "Instances", obj_projectile,
                     { kind: "bolt", dir: a, spd: ranged_speed, dmg: ranged_damage, col: ranged_colour });
             }
         } else {
-            instance_create_layer(fx0, fy, "Instances", obj_projectile,
+			// Play shockwave attack sound
+			audio_play_sound(smash_attack, 1, false);
+            
+			instance_create_layer(fx0, fy, "Instances", obj_projectile,
                 { kind: "wave", dir: 0, spd: ranged_speed, dmg: ranged_damage, col: ranged_colour });
         }
     }

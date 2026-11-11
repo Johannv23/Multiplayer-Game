@@ -33,10 +33,6 @@ spawn_timer = 0;
 spawn_interval = 180;
 max_enemies = 6;
 
-// Background music
-if (!audio_is_playing(background_music)) {
-    audio_play_sound(background_music, 0, true);
-}
 // ---------------------------------------------------------------- chambers (Hades-style rooms)
 // Rooms are built from ASCII blockouts by _tools/build_chambers.py. Each chamber runs its waves;
 // when the last wave is dead the doors open and walking into one goes to the next chamber.
@@ -61,6 +57,45 @@ global.hitstop_t = 0;
 var key = room_get_name(room);
 shrine_room = (string_pos("rm_shrine_", key) == 1);          // a Reliquary's inside
 shrine_n = shrine_room ? real(string_delete(key, 1, 10)) : 0;
+
+// a footstep loop from the last room would keep playing: stop it
+audio_stop_sound(player_walk);
+
+// Music system
+if (room == rm_boss) {
+
+    // Boss fight music
+    audio_stop_sound(background_music);
+    audio_stop_sound(shrine_music);
+
+	if (!audio_is_playing(boss_fight)) {
+	    var boss_music_id = audio_play_sound(boss_fight, 0, true);
+	    audio_sound_gain(boss_music_id, 0.3, 0);
+	}
+
+}
+else if (shrine_room) {
+
+    // Shrine music
+    audio_stop_sound(background_music);
+    audio_stop_sound(boss_fight);
+
+    if (!audio_is_playing(shrine_music)) {
+        audio_play_sound(shrine_music, 0, true);
+    }
+
+}
+else {
+
+    // Normal background music
+    audio_stop_sound(boss_fight);
+    audio_stop_sound(shrine_music);
+
+    if (!audio_is_playing(background_music)) {
+        audio_play_sound(background_music, 0, true);
+    }
+}
+
 revisit = variable_struct_exists(global.cleared, key);       // back from this room's Reliquary: no fight
 instance_create_depth(0, 0, -15005, obj_juice);              // particles, hit-stop, flash, debug keys
 waves = variable_struct_exists(wave_table, key) ? wave_table[$ key] : [];

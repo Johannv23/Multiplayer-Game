@@ -53,15 +53,18 @@ switch (bstate) {
         }
         break;
 
-    case "aim":
-        timer -= 1;
-        if (timer <= 0) {
-            bstate = "charge";
-            timer = 45;
-            charge_hit = false;
-            image_speed = 1;
-        }
-        break;
+	case "aim":
+	    timer -= 1;
+	    if (timer <= 0) {
+	        bstate = "charge";
+	        timer = 45;
+	        charge_hit = false;
+	        image_speed = 1;
+
+	        // Play boss charge sound
+	        audio_play_sound(boss_charge, 1, false);
+	    }
+	    break;
 
     case "charge":
         var cx = lengthdir_x(5, charge_dir), cy = lengthdir_y(5, charge_dir);
